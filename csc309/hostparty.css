@@ -1,0 +1,49 @@
+@charset "utf-8";
+/* CSS Document */
+
+.container {
+	width: 60%;
+	display: inline;
+}
+
+div.tr {
+	display:table-row;
+}
+
+div.tc{
+	display:table-cell;
+}
+
+div.inline {
+	display: inline;
+}
+
+label.size {
+	width: 300px;
+	display: inline;
+}
+
+.box1 {
+	width: 40%;
+	display: inline;
+}
+
+.box2 {
+	width: 20%;
+	display: inline;
+}
+
+.box3{
+	width: 10%;
+	display: inline;
+}
+
+.fr {
+	width: 20%;
+	display:inline;
+	}
+	
+textarea {
+	resize: none;
+	}
+	
