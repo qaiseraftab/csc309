@@ -1,0 +1,48 @@
+/**SearchResultPage**/
+
+.search-table-first {
+	background-color: white;
+	padding: 10px;
+}
+
+.search-table-after {
+	background-color: white;
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-bottom: 10px;
+}
+
+.search-row {
+	width: 10%;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #ececec;
+}
+
+.search-row:hover {
+	border-color:#1e62d0
+}
+
+.main-info-area {
+	padding-left: 15px;
+}
+
+.party-info {
+	vertical-align:text-top;
+	padding-left:10px;
+}
+
+.party-desc {
+	padding-left: 25px;
+}
+
+.party-title {
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+.preview-image {
+	vertical-align:middle;
+	height: 120px;
+	width: 120px;
+}
