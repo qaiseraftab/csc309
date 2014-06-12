@@ -26,24 +26,52 @@ label.size {
 .box1 {
 	width: 40%;
 	display: inline;
+	float:left;
 }
 
 .box2 {
-	width: 20%;
+	width: 15%;
 	display: inline;
+	float:left;
 }
 
 .box3{
 	width: 10%;
 	display: inline;
+	float:left;
 }
 
 .fr {
-	width: 20%;
+	width: 15%;
 	display:inline;
 	}
 	
 textarea {
 	resize: none;
 	}
+
+.pad10 {
+	width: 100px;
+	text-align: left;
+	float: left;
+	}
+.padprov{
+	width:100px;
+	text-align:left;
+	float:left;
+	outline-offset:15px;
+	}
 	
+form.host{
+	font-family:"Myriad Pro";
+	padding:20px;
+	}
+	
+
+.feat-head h2 {
+	color:white;
+	background-color:#054387;
+	margin:0% 0 0% 0;
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+}
