@@ -144,15 +144,21 @@ nav{
 	text-align:center;
 	
 }
+.main-nav a:link,a:visited,a:hover,a:active {
+	text-decoration:none;
+	color:white;
+	font-family:"Myriad Pro";
+}
+/*
 .main-nav a:link,a:visited,a:active{
 	text-decoration:none;
 	color:white;
 	font-family:"Myriad Pro";
 
-	/*background-color:#054387;*/
+	
 	
 
-}
+}*/
 .main-nav td{
 	-webkit-border-top-left-radius:0.5em;
 	-moz-border-radius-topleft:0.5em;
@@ -308,5 +314,297 @@ footer a:hover{
 	opacity:0.8;
 	border-radius:10px;
 	box-shadow: 0px 2px 20px #044d99;
+}
+
+/***************Party-info css*****************************/
+.party-info{
+	width:70%;
+	float:left;
+}
+.name-host-pic-status img{
+	width:20%;
+	background-color:yellow;
+	float:left;
+}
+
+.name-host-pic-status h1 {
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	margin:0;
+	width:100%;
+}
+.name-host-pic-status h2 {
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	margin:0;
+
+	width:80%;
+}
+.name-host-pic-status h3 {
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	border:medium #054387 solid;
+	text-align:center;
+	clear:both;
+	width:100%;
+}
+.album h2{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+.party-description h2 {
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+.party-description p {
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+	width:60%;
+	float:left;
+}
+#map_canvas {
+        width: 35%;
+		height:200px;     
+}
+.live-stream{
+	clear:both;
+	margin-top:5%;
+}
+.live-stream h2 {
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+.live-stream img{
+	width:100%;
+}
+.side-bar{
+	width:25%;
+	float:right;
+	margin-left:5%;
+}
+.party-rating img{
+	width:60%;
+	float:left;
+}
+
+.party-rating p {
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:right;	
+}
+.similar-parties{
+	border-left:20px white solid; 
+}
+.similar-parties p{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+}
+.similar-parties h2 {
+	color:white;
+	background-color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+.div-similar-party{
+	clear:both;
+	margin-top:5%;
+	
+}
+.div-similar-party h3{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+
+}
+.div-similar-party p{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:.8em;
+	font-weight:normal;
+	text-align:left;
+	margin:0;
+}
+.party-date {
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+	margin:0;
+}
+
+.div-similar-party img{
+	width:30%;
+	float:left;
+}
+
+/*************************Privacy Policy**********************/
+
+.privacy-policy h1{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:2em;
+	border-bottom:10px white solid;
+	font-weight:normal;
+	text-align:center;
+	width:100%;
+}
+.privacy-policy h2{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+
+.privacy-policy p{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+
+/***************************site map***********************************/
+.site-map h1{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:2em;
+	border-bottom:10px white solid;
+	font-weight:normal;
+	text-align:center;
+	width:100%;
+}
+.site-map h2{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+
+.site-map p{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+	width:100%;
+}
+
+.site-map ul{
+	list-style-type:none;
+	width:100%;
+	margin-left:0;
+	padding:0;
+}
+.site-map li{
+	display:inline-block;
+	width:20%;
+	padding:2% 2%;
+	vertical-align:top;
+	text-align:center;
+}
+
+.site-map a:link{
+	color:#054387;
+	text-decoration:none;
+	font-size:1em;
+}
+
+.site-map a:visited{
+	color:#054387;
+	text-decoration:none;
+	font-size:1em;
+}
+.site-map a:hover{
+	color:#054387;
+	text-decoration:none;
+	font-size:1em;
+}
+.site-map a:active{
+	color:#054387;
+	text-decoration:none;
+	font-size:1em;
 }
 
