@@ -1,0 +1,11 @@
+.td-featured {
+	float:left;
+	padding-right:10px;
+	padding-bottom:10px;
+}
+
+img.preview-img {
+	height:100px;
+	width:200px;
+}
+
