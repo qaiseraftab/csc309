@@ -117,6 +117,17 @@ header {
 	margin-top: 12px;
 }
 
+#content-centered {
+	width:90%;
+	display: block;
+	margin-left:auto;
+	margin-right: auto;
+	margin-top: 12px;
+
+vertical-align: center;
+
+}
+
 /** Footer **/
 
 footer {

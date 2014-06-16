@@ -3,13 +3,16 @@
 .LogInBox {
 	padding-top: 5%;
 	padding-left: 5%;
-	padding-right: 5%;
+	padding-right: 13%;
 	padding-bottom: 5%;
 	
 	border-style:solid;
 	border-color:white;
 	border-radius: 10px;
 	background-color:white;
+
+	display: inline-block;
+
 }
 
 .align-right{
