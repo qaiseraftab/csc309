@@ -4,9 +4,32 @@
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 	<link rel="stylesheet" href="../styles/reset.css">
 	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" type="text/css" href="../styles/party-info.css" >
 
 	<title>House Party Finder</title>
+
+ 	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    
+	<!-- jQuery -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+	<!-- Fotorama -->
+	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
+	<script src="../fotorama-4.5.1/fotorama.js"></script>
 </head>
+
 <body><div id="mainwrapper">
 	<header>
 		<div id="logo">
@@ -34,10 +57,107 @@
 		<li><a href="featured-parties.html" class="button">Featured Parties</a></li>
 		<li><a href="host-a-party.html" class="button">Host a Party</a></li>
 		<li><a href="host-a-party.html" class="button">Live Streams</a></li>
-		<li><a href="host-a-party.html" class="button">My party</a></li>
+		<li><a href="host-a-party.html" class="button">My Party</a></li>
 	</ul></nav>
 	<div id="content">
-		<!-- CONTENT HERE -->
+		<section class="party-info" >
+			<div class="name-host-pic-status">
+				<div class="name-host-pic">
+					<img src="../images/homepage-images/1_copy(1).JPG" />
+					<h1>French Tarot Meet and Greet</h1>
+					<h2>Hosted by ChatelaineLaReine</h2>
+				</div>
+				<h3 class="completed">This party has been completed!</h3>
+			</div>
+			<div class="album">
+				<h2>Party Album</h2>
+				<!-- Fotorama -->
+				<div class="fotorama">
+				 	<img src="../images/party/1.jpg">
+				 	<img src="../images/party/2.jpg">
+				 	<img src="../images/party/3.jpg">
+				 	<img src="../images/party/4.jpg">
+				</div>
+			</div>
+			<div class="party-description">
+				<h2>Party Description</h2>
+				<div class="clear"></div>
+				<div class="party-description-text">
+					<p>Want to learn another way to play with Tarot cards other tha next to a crystal ball?
+					 Let's get to know each other and have a drink or two at my place!</p>
+					<p>Address: 294 Faywood Avenue, Toronto, ON</p>
+					<p>Occupancy: 10 <br />
+					 Things to bring: None- All materials provided <br />
+					 Food Provided: YES
+					</p>
+				</div>
+				<div id="map_canvas"></div>
+			</div>
+			<div class="live-stream">
+				<h2>Live Streaming</h2>
+				<img src="../images/download.jpg">
+			
+			</div>					
+			
+			
+		</section>
+		<section class="side-bar" >
+			<div class="party-rating">
+				<img src="../images/Anonymous_one_star_rating.png">
+				<p>(13 Ratings)</p>
+			</div>
+			<div class="similar-parties">
+				<h2>Similar Parties</h2>
+				<div class="div-similar-party">
+					<img src="../images/homepage-images/1_copy(1).JPG">
+					<div class="div-similar-party-description">
+						<p>Go Fish! House Club</p>
+						<p class="party-date">2014-03-15</p>
+						<img src="../images/Anonymous_one_star_rating.png" >
+						<p>(5)</p>
+						<div class="clear"></div>
+						<p>View details</p>		
+					</div>				
+				</div>
+				<div class="div-similar-party">
+					<img src="../images/homepage-images/1_copy(1).JPG">
+					<div class="div-similar-party-description">
+						<p>Go Fish! House Club</p>
+						<p class="party-date">2014-03-15</p>
+						<img src="../images/Anonymous_one_star_rating.png" >
+						<p>(5)</p>
+						<div class="clear"></div>
+						<p>View details</p>		
+					</div>					
+				</div>
+				<div class="div-similar-party">
+					<img src="../images/homepage-images/1_copy(1).JPG">
+					<div class="div-similar-party-description">
+						<p>Go Fish! House Club</p>
+						<p class="party-date">2014-03-15</p>
+						<img src="../images/Anonymous_one_star_rating.png" >
+						<p>(5)</p>
+						<div class="clear"></div>
+						<p>View details</p>		
+					</div>	
+				
+				</div>
+				<div class="div-similar-party">
+					<img src="../images/homepage-images/1_copy(1).JPG">
+					<div class="div-similar-party-description">
+						<p>Go Fish! House Club</p>
+						<p class="party-date">2014-03-15</p>
+						<img src="../images/Anonymous_one_star_rating.png" >
+						<p>(5)</p>
+						<div class="clear"></div>
+						<p>View details</p>		
+					</div>	
+				</div>
+
+				
+			</div>
+		
+		</section>			
 	</div>
 	<div class="clear"></div>
 	<footer>
