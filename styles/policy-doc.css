@@ -1,0 +1,33 @@
+/*************************Privacy Policy and Terms of Use**********************/
+
+.policy-doc h1{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:2em;
+	border-bottom:10px white solid;
+	font-weight:normal;
+	text-align:center;
+}
+.policy-doc h2{
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	font-weight:normal;
+	text-align:left;
+}
+
+.policy-doc p{
+	color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.1em .1em;
+	font-family:"Myriad Pro";
+	font-size:1em;
+	font-weight:normal;
+	text-align:left;
+}
