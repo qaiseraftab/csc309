@@ -164,6 +164,7 @@ footer {
 }
 
 .feat-head h2 {
+	display:inline-block;
 	color:white;
 	background-color:#054387;
 	/*margin:0 0 2% 0;*/
