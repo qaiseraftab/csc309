@@ -1,0 +1,19 @@
+/**LogInCSS**/
+
+.LogInBox {
+	padding-top: 5%;
+	padding-left: 5%;
+	padding-right: 5%;
+	padding-bottom: 5%;
+	
+	border-style:solid;
+	border-color:white;
+	border-radius: 10px;
+	background-color:white;
+}
+
+.align-right{
+	display: inline-block;
+	text-align: right;
+	width: 100%;
+}
