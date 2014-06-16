@@ -38,6 +38,7 @@
 .party-title {
 	font-weight: bold;
 	text-decoration: underline;
+	vertical-align:text-top;
 }
 
 .preview-image {

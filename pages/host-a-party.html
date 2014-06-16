@@ -4,78 +4,44 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 <!--<meta	name="viewport"	content="width=device-width"/> -->
-<link rel="stylesheet" type="text/css" href="../style.css" >
-
-<link rel="stylesheet" type="text/css" href="../hostparty.css">
-<link rel="stylesheet" type="text/css" href="../LogIn.css">
+<link rel="stylesheet" type="text/css" href="../css/style.css" >
 
 <title>House Party Finder</title>
 </head>
 
-<body>
-<div class="mainwrapper"> <!--everything comes inside mainwrapper -->
-<header>
-	<table class="header-table"><tr>
-		<td class="td-logo">
-		<div id="logo-div">
-			<h1><a href="../index.html" class="logo"><img src="../images/house.png"> <br />House Party Finder </a></h1>
-			
-			
-		</div> <!--logo close-->
-		</td>
-		<td class="td-top-links">
-			<div class="top-links">
-				<nav>
-					<a href="register-login.html" class="button">Login</a>
-					<a href="register-login.html" class="button">Register</a>	
-				</nav>
-				
+<body><div id="mainwrapper"> <!--everything comes inside mainwrapper -->
+	<header>
+		<div id="logo">
+			<a href="index.html">
+				<img src="../img/house.png">
+				<h1>House Party Finder</h1>
+			</a>
+		</div>
+		<div id="header-aside">
+			<div id="top-links">
+				<ul>
+					<li><a href="pages/login.html" class="button">Login</a></li>
+					<li><a href="pages/register.html" class="button">Register</a></li>
+				</ul>
 			</div>
-			<div id="search-bar" >
-				<!-- <form action="process.php" autocomplete="on" id="search-form">
-	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
-	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
-				</form> -->
-				
-				<!-- temporary fake search result page -->
-				<form action="search-party.html" autocomplete="on" id="search-form">
-	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
-	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+			<div id="search-bar">
+				<form action="#" autocomplete="on" id="search-form">
+					<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field" autofocus>
+					<input type="image" src="../img/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+					
 				</form>
-		
-			</div> <!--search bar close -->
-		
-		
-		
-		</td>
+			</div>
+		</div>
+	</header>
 
-	</tr></table> <!--close table containing logo, top links and search bar -->
-	</header> <!--close header -->
-	
-	<!-- Table containing 1 row. This row have two coloums. 1) navigation  2) page content -->
-	<table class="content-nav-table">
-		<tr>
-			<td class="td-nav">
-				<!--<nav class="main-nav">
-					<a href="pages/featured-parties.html">Featured Parties</a> <br />
-					<a href="pages/host-a-party.html">Host a party</a><br />
-					<a href="pages/host-a-party.html">Live Streams</a><br />
-					<a href="pages/host-a-party.html">My party </a><br />
-
-				
-				</nav>-->
-				
-				<table class="main-nav">
-					<tr><td><a href="featured-parties.html">Featured Parties</a></td></tr> 
-					<tr><td><a href="host-a-party.html">Host a party</a></td></tr> 
-					<tr><td><a href="live-stream.html">Live Streams</a></td></tr> 
-					<tr><td><a href="host-a-party.html">My party </a></td></tr> 
-
-				
-				</table>
-
-			</td>
-			<td class="td-content">
+	<nav id="main-nav"><ul>
+		<li><a href="#" class="button">Item 1</a></li>
+		<li><a href="#" class="button">Item 2</a></li>
+		<li><a href="#" class="button">Item 3</a></li>
+		<li><a href="#" class="button">Item 4</a></li>
+	</ul></nav>
+	<div id="content">
+	<!-- CONTENT HERE -->
 			<label class="feat-head"><h2>Host a new Party</h2></label>
                 <form class="host" role="form">
 					
@@ -139,23 +105,15 @@
 					<button type="submit" class="button" formaction="individual-party-page.html">Submit</button>
 					</form>
                 </form>
-			</td>
-		
-		</tr>	
-	</table>
-		
+		</div>
+	<div class="clear"></div>
 	<footer>
-	<table id="footer-table">
-		<tr>
-			<td class="footer-links"><a href="privacy-policy.html">Privacy Policy</a></td>
-			<td class="footer-links"><a href="terms-of-use.html">Terms of Use</a></td>
-			<td class="footer-links"><a href="site-map.html">Site Map</a></td>
-			<td class="copy-right">&copy; House Party Finder</td>
-		</tr>
-	</table>
-	</footer>		
-		
-	</div> <!--main wrapper close -->
-</body>
-
+		<nav id="footer-nav"><ul>
+			<li><a href="#">Privacy Policy</a></li>
+			<li><a href="#">Terms of Use</a></li>
+			<li><a href="#">Site Map</a></li>
+		</ul></nav>
+		<span id="footer-copyright">&copy; House Party Finder</span>
+	</footer>
+</div></body>
 </html>

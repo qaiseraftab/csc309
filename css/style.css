@@ -163,6 +163,15 @@ footer {
 	margin-top: -0.5em;
 }
 
+.feat-head h2 {
+	color:white;
+	background-color:#054387;
+	/*margin:0 0 2% 0;*/
+	padding:.3em .3em;
+	width:95%;
+}
+
+
 /** Utility **/
 
 .clear {
