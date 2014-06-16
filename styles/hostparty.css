@@ -60,6 +60,7 @@ textarea {
 	text-align:left;
 	float:left;
 	outline-offset:15px;
+	margin-left: 4px;
 	}
 	
 form.host{
@@ -72,6 +73,7 @@ form.host{
 	color:white;
 	background-color:#054387;
 	margin:0% 0 0% 0;
-	padding:.1em .1em;
+	padding:.2em .2em;
+	font-size: 1.4em;
 	font-family:"Myriad Pro";
 }
