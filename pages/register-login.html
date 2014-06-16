@@ -1,161 +1,79 @@
 ﻿<!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-<!--<meta	name="viewport"	content="width=device-width"/> -->
-<link rel="stylesheet" type="text/css" href="../style.css" >
-<link rel="stylesheet" type="text/css" href="../LogIn.css" >
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<link rel="stylesheet" href="../styles/reset.css">
+	<link rel="stylesheet" href="../styles/main.css">
+	<link rel="stylesheet" href="../styles/LogIn.css" >
 
-<title>House Party Finder</title>
+	<title>House Party Finder</title>
 </head>
 
-<body>
-<div class="mainwrapper"> <!--everything comes inside mainwrapper -->
-<header>
-	<table class="header-table"><tr>
-		<td class="td-logo">
-		<div id="logo-div">
-			<h1><a href="../index.html" class="logo"><img src="../images/house.png"> <br />House Party Finder </a></h1>
-			
-			
-		</div> <!--logo close-->
-		</td>
-		<td class="td-top-links">
-			<div class="top-links">
-				<nav>
-					<a href="register-login.html" class="button">Login</a>
-					<a href="register-login.html" class="button">Register</a>	
-				</nav>
-				
+<body><div id="mainwrapper">
+	<header>
+		<div id="logo">
+			<a href="../index.html">
+				<img src="../images/house.png">
+				<h1>House Party Finder</h1>
+			</a>
+		</div>
+		<div id="header-aside">
+			<div id="top-links">
+				<ul>
+					<li><a href="login-register.html" class="button">Login or Register</a></li>
+				</ul>
 			</div>
-			<div id="search-bar" >
-				<!-- <form action="process.php" autocomplete="on" id="search-form">
-	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
-	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
-				</form> -->
-				
-				<!-- temporary fake search result page -->
+			<div id="search-bar">
 				<form action="search-party.html" autocomplete="on" id="search-form">
-	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
-	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+					<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field" autofocus>
+					<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
 				</form>
-		
-			</div> <!--search bar close -->
-		
-		
-		
-		</td>
+			</div>
+		</div>
+	</header>
+	<div class="clear"></div>
+	<nav id="main-nav"><ul>
+		<li><a href="featured-parties.html" class="button">Featured Parties</a></li>
+		<li><a href="host-a-party.html" class="button">Host a Party</a></li>
+		<li><a href="host-a-party.html" class="button">Live Streams</a></li>
+		<li><a href="host-a-party.html" class="button">My Party</a></li>
+	</ul></nav>
+	<div id="content" class="centered"> <!-- Main content -->
+		<div class="LogInBox" id="LogIn"> 
+			<h3>Log-In</h3>
+			<input type="text" name="email"  placeholder="E-mail" required>
+			<input type="password" name="pwd" placeholder="Password" required>
 
-	</tr></table> <!--close table containing logo, top links and search bar -->
-	</header> <!--close header -->
-	
-	<table class="content-nav-table">
-		<tr>
-			<td class="td-nav">
-				<!--<nav class="main-nav">
-					<a href="pages/featured-parties.html">Featured Parties</a> <br />
-					<a href="pages/host-a-party.html">Host a party</a><br />
-					<a href="pages/host-a-party.html">Live Streams</a><br />
-					<a href="pages/host-a-party.html">My party </a><br />
+			<a href="#">Forgot your password?</a>
+			<a href="#" class="login-button button">Login</a>
+			
+		</div>
+		<div class="LogInBoxOR">OR</div>
+		<div class = "LogInBox" id = "Registration"> 
+		<h3>Register</h3>
+			<form>
+				<input type="text" name="email" placeholder = "E-mail" required>
+				<input type="password" name="pwd" placeholder = "Password" required>
+				<input type="password" name="re_pwd" placeholder = "Confirm Password" required> 
+				<input type="text" name="f_name" placeholder = "First Name" required>
+				<input type="text" name="l_name" placeholder = "Last Name" required>
+				<input type="text" name="u_name" placeholder = "Desired User Name" required>
+				<input type="text" name="country" placeholder = "Country">
+				<input type="text" name="city" placeholder = "City">
+			</form>
 
-				
-				</nav>-->
-				
-				<table class="main-nav">
-					<tr><td><a href="featured-parties.html">Featured Parties</a></td></tr> 
-					<tr><td><a href="host-a-party.html">Host a party</a></td></tr> 
-					<tr><td><a href="live-stream.html">Live Streams</a></td></tr> 
-					<tr><td><a href="my-party.html">My party </a></td></tr> 
+			<a href="#" class="button">Register</a>
+		</div>
+	</div> <!-- End main content -->
 
-				
-				</table>
-
-			</td>
-			<td class="td-content">
-			<table id="content-table">
-				
-				<!-- Create Log-In Area Box -->
-				<td>
-					<div class = "LogInBox" id = "LogIn"> 
-						<b><u>Log-In</u></b>
-						<br><br>
-						<table>
-							<tr>
-								<td>
-									<form>
-										<span style="padding-left:20px">
-											<input type="text" name="email"  placeholder = "E-mail" required><br>
-										</span>
-									
-										<span style="padding-left:20px">
-											<input type="password" name="pwd" placeholder = "Password" required>
-										</span>
-									</form>
-								</td>
-								
-							<tr>
-						</table>
-
-						<span style="padding-left:20px"> 
-							<font color = "blue" size = "2">Forgot your password?</font>
-						</span>
-						<br>
-						<span class="align-right"><a href="pages/login.html" class="button">Login</a></span>
-						
-					</div>
-				</td>
-				<td>&nbsp;&nbsp;&nbsp; OR</td>
-				<!-- Create Registration Box -->
-				<td>
-					<div class = "LogInBox" id = "Registration"> 
-					<b><u>Register</u></b>
-					<br><br>
-						<form>
-							<span style="padding-left:20px">
-								<input type="text" name="email" placeholder = "E-mail" required><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="password" name="pwd" placeholder = "Password" required><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="password" name="re_pwd" placeholder = "Confirm Password" required> <br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="text" name="f_name" placeholder = "First Name" required><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="text" name="l_name" placeholder = "Last Name" required><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="text" name="u_name" placeholder = "Desired User Name" required><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="text" name="country" placeholder = "Country"><br>
-							</span>
-							<span style="padding-left:20px">
-								<input type="text" name="city" placeholder = "City"><br>
-							</span>
-						</form>
-						<span class="align-right"><a href="pages/login.html" class="button">Register</a></span>
-					</div>
-				</td>
-						
-			</table>			
-			</td>
-		
-		</tr>
-	</table>
-	<br>
-	
-	
-<footer>
-	<table id="footer-table">
-		<tr>
-			<td class="footer-links"><a href="privacy-policy.html">Privacy Policy</a></td>
-			<td class="footer-links"><a href="terms-of-use.html">Terms of Use</a></td>
-			<td class="footer-links"><a href="site-map.html">Site Map</a></td>
-			<td class="copy-right">&copy; House Party Finder</td>
-		</tr>
-	</table>
-</footer>
+	<div class="clear"></div>
+	<footer>
+		<nav id="footer-nav"><ul>
+			<li><a href="privacy-policy.html">Privacy Policy</a></li>
+			<li><a href="terms-of-use.html">Terms of Use</a></li>
+			<li><a href="site-map.html">Site Map</a></li>
+		</ul></nav>
+		<span id="footer-copyright">&copy; House Party Finder, 2014</span>
+	</footer>
+</div></body>
+</html>
