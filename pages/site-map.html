@@ -15,7 +15,7 @@
 	<table class="header-table"><tr>
 		<td class="td-logo">
 		<div id="logo-div">
-			<h1><a href="index.html" class="logo"><img src="images/house.png"> <br />House Party Finder </a></h1>
+			<h1><a href="../index.html" class="logo"><img src="../images/house.png"> <br />House Party Finder </a></h1>
 			
 			
 		</div> <!--logo close-->
@@ -23,15 +23,21 @@
 		<td class="td-top-links">
 			<div class="top-links">
 				<nav>
-					<a href="pages/login.html" class="button">Login</a>
-					<a href="pages/register.html" class="button">Register</a>	
+					<a href="register-login.html" class="button">Login</a>
+					<a href="register-login.html" class="button">Register</a>	
 				</nav>
 				
 			</div>
 			<div id="search-bar" >
-				<form action="process.php" autocomplete="on" id="search-form">
+				<!-- <form action="process.php" autocomplete="on" id="search-form">
 	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
-	  			 	<input type="image" src="images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+				</form> -->
+				
+				<!-- temporary fake search result page -->
+				<form action="search-party.html" autocomplete="on" id="search-form">
+	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
+	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
 				</form>
 		
 			</div> <!--search bar close -->
@@ -57,10 +63,10 @@
 				</nav>-->
 				
 				<table class="main-nav">
-					<tr><td><a href="pages/featured-parties.html">Featured Parties</a></td></tr> 
-					<tr><td><a href="pages/host-a-party.html">Host a party</a></td></tr> 
-					<tr><td><a href="pages/host-a-party.html">Live Streams</a></td></tr> 
-					<tr><td><a href="pages/host-a-party.html">My party </a></td></tr> 
+					<tr><td><a href="featured-parties.html">Featured Parties</a></td></tr> 
+					<tr><td><a href="host-a-party.html">Host a party</a></td></tr> 
+					<tr><td><a href="live-stream.html">Live Streams</a></td></tr> 
+					<tr><td><a href="host-a-party.html">My party </a></td></tr> 
 
 				
 				</table>
@@ -76,16 +82,16 @@
 					
 					<h2>Home</h2>
 						<ul>
-							<li><a href="#">Featured parties</a></li>
-							<li><a href="#">Host a party</a> </li>
-							<li><a href="#">Live streams</a></li>
-							<li><a href="#">My party</a></li>
+							<li><a href="featured-parties.html">Featured parties</a></li>
+							<li><a href="host-a-party.html">Host a party</a> </li>
+							<li><a href="live-stream.html">Live streams</a></li>
+							<li><a href="my-party.html">My parties</a></li>
 						</ul>
 						<ul>
-							<li><a href="#">Login</a></li>
-							<li><a href="#">Register</a> </li>
-							<li><a href="#">Privacy policy</a></li>
-							<li><a href="#">Terms of use</a></li>
+							<li><a href="register-login.html">Login</a></li>
+							<li><a href="register-login.html">Register</a> </li>
+							<li><a href="privacy-policy.html">Privacy policy</a></li>
+							<li><a href="terms-of-use.html">Terms of use</a></li>
 						</ul>
 						<ul>
 							<li><a href="#">About us</a></li>
@@ -112,9 +118,9 @@
 	<footer>
 	<table id="footer-table">
 		<tr>
-			<td class="footer-links"><a href="pages/privacy-policy.html">Privacy Policy</a></td>
-			<td class="footer-links"><a href="pages/terms-of-use.html">Terms of Use</a></td>
-			<td class="footer-links"><a href="pages/site-map.html">Site Map</a></td>
+			<td class="footer-links"><a href="privacy-policy.html">Privacy Policy</a></td>
+			<td class="footer-links"><a href="terms-of-use.html">Terms of Use</a></td>
+			<td class="footer-links"><a href="site-map.html">Site Map</a></td>
 			<td class="copy-right">&copy; House Party Finder</td>
 		</tr>
 	</table>

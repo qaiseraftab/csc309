@@ -26,13 +26,19 @@
 		<td class="td-top-links">
 			<div class="top-links">
 				<nav>
-					<a href="login.html" class="button">Login</a>
-					<a href="register.html" class="button">Register</a>	
+					<a href="register-login.html" class="button">Login</a>
+					<a href="register-login.html" class="button">Register</a>	
 				</nav>
 				
 			</div>
 			<div id="search-bar" >
-				<form action="process.php" autocomplete="on" id="search-form">
+				<!-- <form action="process.php" autocomplete="on" id="search-form">
+	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
+	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+				</form> -->
+				
+				<!-- temporary fake search result page -->
+				<form action="search-party.html" autocomplete="on" id="search-form">
 	  				<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field"  autofocus>
 	  			 	<input type="image" src="../images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
 				</form>
@@ -130,7 +136,7 @@
                     </div>
                     <br>
 					<form action="search-party.html" method="get">
-					<button type="submit" class="button" formaction="register.html">Submit</button>
+					<button type="submit" class="button" formaction="individual-party-page.html">Submit</button>
 					</form>
                 </form>
 			</td>
@@ -138,6 +144,16 @@
 		</tr>	
 	</table>
 		
+	<footer>
+	<table id="footer-table">
+		<tr>
+			<td class="footer-links"><a href="privacy-policy.html">Privacy Policy</a></td>
+			<td class="footer-links"><a href="terms-of-use.html">Terms of Use</a></td>
+			<td class="footer-links"><a href="site-map.html">Site Map</a></td>
+			<td class="copy-right">&copy; House Party Finder</td>
+		</tr>
+	</table>
+	</footer>		
 		
 	</div> <!--main wrapper close -->
 </body>

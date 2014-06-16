@@ -13,7 +13,6 @@
 }
 
 .search-row {
-	width: 10%;
 	border-style: solid;
 	border-width: 3px;
 	border-color: #ececec;
@@ -49,8 +48,27 @@
 
 .location {
 	font-weight:bold;
+	float:right;
 }
 
 .date{
 	font-weight:bold;
+	float:left;
+}
+
+.date-answer{
+	font-weight:normal;
+}
+	
+.location-answer {
+	font-weight:normal;
+}
+
+.attending {
+	font-weight:bold;
+	float:right;
+}
+	
+.attending-answer {
+	font-weight:normal;
 }
