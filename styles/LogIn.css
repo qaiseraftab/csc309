@@ -16,7 +16,8 @@
 	border-color:white;
 	border-radius: 10px;
 	background-color:white;
-	width: 30%;
+	width: 25%;
+	padding:5%;
 }
 
 @media (max-width: 960px) {
