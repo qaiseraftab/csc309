@@ -5,6 +5,8 @@
 	<link rel="stylesheet" href="../styles/reset.css">
 	<link rel="stylesheet" href="../styles/main.css">
 	<link rel="stylesheet" href="../styles/LogIn.css" >
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="../javascript/google_maps_api.js"></script>
 
 	<title>House Party Finder</title>
 </head>
@@ -50,6 +52,7 @@
 		</div>
 		<div class="LogInBoxOR">OR</div>
 		<div class = "LogInBox" id = "Registration"> 
+			
 		<h3>Register</h3>
 			<form>
 				<input type="text" name="email" placeholder = "E-mail" required>
@@ -58,10 +61,16 @@
 				<input type="text" name="f_name" placeholder = "First Name" required>
 				<input type="text" name="l_name" placeholder = "Last Name" required>
 				<input type="text" name="u_name" placeholder = "Desired User Name" required>
-				<input type="text" name="country" placeholder = "Country">
-				<input type="text" name="city" placeholder = "City">
+				<input type="text" id="country" onChange = "clearCity(); codeAddress()" placeholder = "Country">
+				<input type="text" id="city" onChange = "codeAddress()" placeholder = "City">
 			</form>
-
+			
+			<span id='location' value = "asdf"></span>
+			<span id='province' value = "asdf"></span>
+			
+			<div id="map-canvas">
+			</div>
+			<div id = "map-spacing"></div>
 			<a href="#" class="button">Register</a>
 		</div>
 	</div> <!-- End main content -->
