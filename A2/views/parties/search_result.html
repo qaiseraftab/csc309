@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
@@ -25,8 +25,8 @@
 				</ul>
 			</div>
 			<div id="search-bar">
-				<form action="/parties/search_results" method="post" autocomplete="on" id="search-form">
-					<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field" autofocus>
+				<form action="/parties/search_results" method="get" autocomplete="on" id="search-form">
+					<input type="text" name="search" placeholder="search a house party in your area" id="search-bar-field" autofocus>
 					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
 				</form>
 			</div>
@@ -39,32 +39,35 @@
 		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
 		<li><a href="/my-parties" class="button">My parties</a></li>
 	</ul></nav>
-	<div id="content"> <!-- Main content -->
-				
-		<div class="search-table-first">
-			<a href="/individual-party-page">
-				<div class="search-row">
-					<img class="preview-image" src="/images/homepage-images/1_copy(1).JPG">
-					<div class="party-info">
-						<div class="party-info-text">
-							<div class="party-info-text-left">
-								<h4 class="party-title"> Party Title: French Tarot Meet and Greet </h4>
-								<div class="date">Date: <span class="date-answer">September 21, 2013</span></div>
-							</div>
-							<div class="party-info-text-right">
-								<div class="location">Location: <span class = "location-answer">294 Faywood Avenue, Toronto, ON</span></div>
-								<div class="attending">Attending: <span class = "attending-answer">1</span></div>
+	<div id="content"> <!-- Main content -->	
+		<% if(parties.length == 0) { %>
+			<h1>SORRY NO RESULTS</h1>
+		<% } else { %>
+			<% for(var i = 0; i < parties.length; i++) { %>
+				<div class="search-table-first">
+					<a href="individual-party-page.html">
+						<div class="search-row">
+							<img class="preview-image" src="../images/homepage-images/1_copy(1).JPG">
+							<div class="party-info">
+								<div class="party-info-text">
+									<div class="party-info-text-left">
+										<h4 class="party-title"> Party Title: <%= parties[i][0] %> </h4>
+										<div class="date">Date: <span class="date-answer"><%= parties[i][1] %></span></div>
+									</div>
+									<div class="party-info-text-right">
+										<div class="location">Location: <span class = "location-answer"><%= parties[i][2] %></span></div>
+										<div class="attending">Attending: <span class = "attending-answer"><%= parties[i][3] %></span></div>
+									</div>
+								</div>
+								<p class="party-desc">
+									<%= parties[i][4] %>
+								</p>					
 							</div>
 						</div>
-						<p class="party-desc">
-							Want to learn another way to play with Tarot cards other tha next to a crystal ball? 
-							Let's get to know each other and have a drink or two at my place!
-						</p>					
-					</div>
+					</a>
 				</div>
-			</a>
-		</div>
-
+			<% } %>
+		<% } %>
 	</div> <!-- End main content -->
 
 	<div class="clear"></div>
