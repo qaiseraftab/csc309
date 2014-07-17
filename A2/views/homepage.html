@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+	<link rel="stylesheet" href="/styles/reset.css">
+	<link rel="stylesheet" href="/styles/main.css">
+	<link rel="stylesheet" type="text/css" href="/styles/homepage.css" >
+
+	<title>House Party Finder</title>
+</head>
+
+<body><div id="mainwrapper">
+	<header>
+		<div id="logo">
+			<a href="/">
+				<img src="/images/house.png">
+				<h1>House Party Finder</h1>
+			</a>
+		</div>
+		<div id="header-aside">
+			<div id="top-links">
+				<ul>
+					<li><a href="/register_login" class="button">Login or Register</a></li>
+				</ul>
+			</div>
+			<div id="search-bar">
+				<form action="/parties/search_results" method="post" autocomplete="on" id="search-form">
+					<input type="text" name="fname" placeholder="search a house party in your area" id="search-bar-field" autofocus>
+					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+				</form>
+			</div>
+		</div>
+	</header>
+
+	<div class="clear"></div>
+
+	<nav id="main-nav"><ul>
+		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
+		<li><a href="/parties/new" class="button">Host a Party</a></li>
+		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
+		<li><a href="/my-parties" class="button">My parties</a></li>
+	</ul></nav>
+
+	<div id="content">
+		<!--homepage content -->
+		<div class="featured-heading">
+			<h2>Sponsored</h2>
+		</div>
+		<ul class="featured-list"> <!--unordered list for top 4 divs  -->	
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/1.JPG" >
+				<h4>Crazy Twenties</h4>
+				<p>Toronto Downtown</p>
+				<p>Attending: 20</p>
+			</div></li>
+		
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/2.JPG" >
+				<h4>Fun Night</h4>
+				<p>North York</p>
+				<p>Attending: 15</p>
+			</div></li>
+			
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/3.JPG" >
+				<h4>College Reunion</h4>
+				<p>Richmond hill</p>
+				<p>Attending: 23</p>
+			</div></li>
+			
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/4.JPG" >
+				<h4>Game Night</h4>
+				<p>Brampton</p>
+				<p>Attending: 8</p>
+			</div></li>
+		</ul>
+
+		<div class="featured-heading">				
+			<h2>Hot Parties</h2>
+		</div>
+		<ul class="featured-list">
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/5.JPG" >
+				<h4>Poker Party</h4>
+				<p>Richmond Hill</p>
+				<p>Attending: 65</p>
+			</div></li>
+			
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/6.JPG" >
+				<h4>Movie and Dinner</h4>
+				<p>Toronto Downtown</p>
+				<p>Attending: 12</p>
+			</div></li>
+			
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/7.JPG" >
+				<h4>Outdoor Hangout</h4>
+				<p>Missisauga</p>
+				<p>Attending: 19</p>
+			</div></li>
+			
+			<li><div class="featured-div">
+				<img src="/images/homepage-images/8.JPG" >
+				<h4>Music and Dance</h4>
+				<p>Toronto Downtown</p>
+				<p>Attending: 32</p>
+			</div></li>
+		</ul> 			
+	</div>
+
+	<div class="clear"></div>
+
+	<footer>
+		<nav id="footer-nav"><ul>
+			<li><a href="/privacy_policy">Privacy Policy</a></li>
+			<li><a href="/terms_of_use">Terms of Use</a></li>
+			<li><a href="/site_map">Site Map</a></li>
+			<li><a href="/about_us">About Us</a></li>
+		</ul></nav>
+		<span id="footer-copyright">&copy; House Party Finder, 2014</span>
+	</footer>
+</div></body>
+</html>
