@@ -21,10 +21,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attends` (
-  `party` int(11) unsigned NOT NULL,
-  `guest` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`party`,`guest`),
-  KEY `guest` (`guest`)
+  `party` int(11) unsigned NOT NULL REFERENCES parties(id),
+  `guest` int(11) unsigned NOT NULL REFERENCES users(id),
+  PRIMARY KEY (`party`,`guest`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -36,16 +35,23 @@ CREATE TABLE `attends` (
 CREATE TABLE `parties` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) NOT NULL,
-  `host` int(11) unsigned NOT NULL,
+  `host` int(11) unsigned NOT NULL REFERENCES users(id),
   `capacity` int(8) NOT NULL,
-  `location` varchar(256) NOT NULL,
-  `description` text NOT NULL,
+  `address` varchar(256) NOT NULL,
+  `description` text,
   `posted_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' CHECK (end_date > start_date),
+  `ended` tinyint(1) NOT NULL DEFAULT 1,
   `featured_until` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `streaming` tinyint(1) NOT NULL DEFAULT 0,
+  `private` tinyint(1) NOT NULL DEFAULT 0,
+  `food_provided` tinyint(1) NOT NULL DEFAULT 0,
+  `alcohol` tinyint(1) NOT NULL DEFAULT 0,
+  `parking` tinyint(1) NOT NULL DEFAULT 0,
+  `adult_only` tinyint(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 -- --------------------------------------------------------
 
 --
@@ -53,12 +59,11 @@ CREATE TABLE `parties` (
 --
 
 CREATE TABLE `ratings` (
-  `rated_by` int(11) unsigned NOT NULL,
-  `rated_for` int(11) unsigned NOT NULL,
+  `rated_by` int(11) unsigned NOT NULL REFERENCES users(id),
+  `rated_for` int(11) unsigned NOT NULL REFERENCES parties(id),
   `rating` tinyint(4) unsigned NOT NULL,
   `comment` varchar(256) DEFAULT NULL,
-  PRIMARY KEY (`rated_by`,`rated_for`),
-  KEY `rated_for` (`rated_for`)
+  PRIMARY KEY (`rated_by`,`rated_for`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -68,10 +73,9 @@ CREATE TABLE `ratings` (
 --
 
 CREATE TABLE `subscribes_to` (
-  `subscriber` int(11) unsigned NOT NULL,
-  `user` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`subscriber`,`user`),
-  KEY `user` (`user`)
+  `subscriber` int(11) unsigned NOT NULL REFERENCES users(id),
+  `user` int(11) unsigned NOT NULL REFERENCES users(id),
+  PRIMARY KEY (`subscriber`,`user`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -85,6 +89,9 @@ CREATE TABLE `users` (
   `username` varchar(64) NOT NULL,
   `password` varchar(128) NOT NULL,
   `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `address` varchar (256) NOT NULL,
+  `latitude` decimal(6) NOT NULL,
+  `longitude` decimal(6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
