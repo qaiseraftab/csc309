@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Parties = require('../models/parties.js');
-
+var Search = require('../models/search.js');
 //Parties
 
 /* GET featured parties */
@@ -27,12 +27,19 @@ router.get('/streaming', function(req, res) {
 });
 
 /* GET party search engine results */
-router.get('/parties/search_results', function(req, res) {
-	Search.find(req.query.search, function(result) {
-		res.render('search_result', {
-			parties : result
+router.get('/search_results', function(req, res) {
+	if(req.query.search == "") {
+		res.render('parties/search_result', {
+			parties : []
 		});
-	});
+	} else {
+		Search.find(req.query.search, function(result) {
+			console.log(result);
+			res.render('parties/search_result', {
+				parties : result
+			});
+		});
+	}
 });
 
 /* GET party pages */

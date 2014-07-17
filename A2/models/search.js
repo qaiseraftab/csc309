@@ -18,6 +18,7 @@ module.exports = {
 				data.push(rows[i].location);
 				data.push(rows[i].capacity.toString());
 				data.push(rows[i].description);
+				data.push(rows[i].id);
 				result.push(data);
 			}
 			console.log(result);
