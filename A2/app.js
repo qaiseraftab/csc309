@@ -8,6 +8,7 @@ var ejs = require('ejs');
 var method_override = require('method-override');
 var mysql_conn = require('./models/__mysql_connector__'); //Get the connection cached first
 var routes = require('./routes/index');
+var parties = require('./routes/parties');
 
 var app = express();
 
@@ -26,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(method_override('X-HTTP-Method-Override'));
 
 app.use('/', routes);
-//app.use('/users', users);
+app.use('/parties', parties);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
