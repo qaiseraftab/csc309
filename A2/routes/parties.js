@@ -6,7 +6,7 @@ var Parties = require('../models/parties.js');
 
 /* GET featured parties */
 router.get('/featured', function(req, res) {
-	res.render('featured-parties');
+	res.render('parties/featured');
 });
 
 /* GET create party form */
@@ -23,7 +23,7 @@ router.post('/create', function(req, res) {
 
 /* GET streaming parties */
 router.get('/streaming', function(req, res) {
-	res.render('live-stream');
+	res.render('parties/streaming');
 });
 
 /* GET party search engine results */
