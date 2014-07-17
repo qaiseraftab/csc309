@@ -10,6 +10,7 @@ module.exports = {
 		});
 	},
 	create: function(params, callback) {
+		//Insert into parties table --- from Richard
 		var query = "INSERT INTO parties (name, host, capacity, location, start_date, description) VALUES (?, ?, ?, ?, ?, ?)";
 		var query_params = [
 			params.pname, 

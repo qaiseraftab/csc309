@@ -45,6 +45,7 @@ router.get('/parties/new', function(req, res) {
 	res.render('host-a-party.html');
 });
 
+/* POST create party --- from Richard */
 router.post('/parties/create', function(req, res) {
 	Parties.create(req.body, function(id) {
 		res.redirect("/parties/" + id);
