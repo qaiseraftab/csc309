@@ -41,12 +41,12 @@
 	<div id="content" class="centered"> <!-- Main content -->
 		<div class="LogInBox" id="LogIn"> 
 			<h3>Log-In</h3>
-			<input type="text" name="email"  placeholder="E-mail" required>
-			<input type="password" name="pwd" placeholder="Password" required>
-
-			<a href="#">Forgot your password?</a>
-			<a href="#" class="login-button button">Login</a>
-			
+			<form action="/login" method="post">
+				<input type="text" name="username"  placeholder="E-mail" required>
+				<input type="password" name="password" placeholder="Password" required>
+				<input type="submit" value="Login" class="login-button button" style="width: 100%; cursor: pointer; font-size: 1em;">
+				<a href="#" style="margin-top: 0.4em; display: inline-block;">Forgot your password?</a>
+			</form>
 		</div>
 		<div class="LogInBoxOR">OR</div>
 		<div class = "LogInBox" id = "Registration"> 

@@ -8,5 +8,17 @@ module.exports = {
 			console.log(query);
 			callback(rows[0]);
 		});
+	},
+	find_by: function(field_name, val, callback) {
+		var query = "SELECT * FROM users WHERE ?? = ? LIMIT 1";
+		mysql_conn.query(query, [[field_name], val], function(err, rows) {
+			console.log(query);
+			if (err) {
+				callback(null);
+			}
+			else {
+				callback(rows[0]);
+			}
+		});
 	}
 };
