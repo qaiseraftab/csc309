@@ -38,6 +38,7 @@ passport.serializeUser(function(user, done) {
 });
 
 passport.deserializeUser(function(id, done) {
+    console.log('deserializeUser: ', id);
     Users.find(id, function(user){
         console.log(user);
         done(null, user);
@@ -69,7 +70,7 @@ app.use(passport.session());
 
 //Helpers
 app.use(function(req, res, next) {
-    res.locals.current_user = req.session.user; //Current user
+    res.locals.current_user = req.user; //Current user
     res.locals.logged_in = req.isAuthenticated(); //Whether user is logged in
     next();
 });
