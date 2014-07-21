@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<link rel="stylesheet" href="/styles/reset.css">
-	<link rel="stylesheet" href="/styles/main.css">
+<%- include ../template/header %>
 	<link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
-
-	<title>House Party Finder</title>
 
  	<script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
@@ -28,146 +21,103 @@
 	<!-- Fotorama -->
 	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
 	<script src="../fotorama-4.5.1/fotorama.js"></script>
-</head>
-
-<body><div id="mainwrapper">
-	<header>
-		<div id="logo">
-			<a href="/">
-				<img src="/images/house.png">
-				<h1>House Party Finder</h1>
-			</a>
-		</div>
-		<div id="header-aside">
-			<div id="top-links">
-				<ul>
-					<li><a href="/register_login" class="button">Login or Register</a></li>
-				</ul>
+<%- include ../template/nav %>
+	<section class="party-info" >
+		<div class="name-host-pic-status">
+			<div class="name-host-pic">
+				<img src="/images/homepage-images/1_copy(1).JPG" />
+				<h1 name="pname"><%= pname %></h1>
+				<h2>Hosted by ChatelaineLaReine</h2>
+				<h2 name="date">Date: <%= date %></h2>
 			</div>
-			<div id="search-bar">
-				<form action="/parties/search_results" method="get" autocomplete="on" id="search-form">
-					<input type="text" name="search" placeholder="search a house party in your area" id="search-bar-field" autofocus>
-					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
-				</form>
+			<h3 class="completed">This party has been completed!</h3>
+		</div>
+		<div class="album">
+			<h2>Party Album</h2>
+			<!-- Fotorama -->
+			<div class="fotorama">
+			 	<img src="/images/party/1.jpg">
+			 	<img src="/images/party/2.jpg">
+			 	<img src="/images/party/3.jpg">
+			 	<img src="/images/party/4.jpg">
 			</div>
 		</div>
-	</header>
-	<div class="clear"></div>
-	<nav id="main-nav"><ul>
-		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
-		<li><a href="/parties/new" class="button">Host a Party</a></li>
-		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
-		<li><a href="/my-parties" class="button">My parties</a></li>
-	</ul></nav>
-	<div id="content">
-		<section class="party-info" >
-			<div class="name-host-pic-status">
-				<div class="name-host-pic">
-					<img src="/images/homepage-images/1_copy(1).JPG" />
-					<h1 name="pname"><%= pname %></h1>
-					<h2>Hosted by ChatelaineLaReine</h2>
-					<h2 name="date">Date: <%= date %></h2>
-				</div>
-				<h3 class="completed">This party has been completed!</h3>
+		<div class="party-description">
+			<h2>Party Description</h2>
+			<div class="clear"></div>
+			<div class="party-description-text">
+				<p name="party-description"><%= description %></p>
+				<p name="location">Address: <%= location %></p>
+				<p name="capacity">Capacity: <%= capacity %> <br />
+				 Things to bring: None- All materials provided <br />
+				 Food Provided: YES
+				</p>
 			</div>
-			<div class="album">
-				<h2>Party Album</h2>
-				<!-- Fotorama -->
-				<div class="fotorama">
-				 	<img src="/images/party/1.jpg">
-				 	<img src="/images/party/2.jpg">
-				 	<img src="/images/party/3.jpg">
-				 	<img src="/images/party/4.jpg">
-				</div>
-			</div>
-			<div class="party-description">
-				<h2>Party Description</h2>
-				<div class="clear"></div>
-				<div class="party-description-text">
-					<p name="party-description"><%= description %></p>
-					<p name="location">Address: <%= location %></p>
-					<p name="capacity">Capacity: <%= capacity %> <br />
-					 Things to bring: None- All materials provided <br />
-					 Food Provided: YES
-					</p>
-				</div>
-				<div id="map_canvas"></div>
-			</div>
-			<div class="live-stream">
-				<h2>Live Streaming</h2>
-				<img src="/images/download.jpg">
-			
-			</div>					
-			
-			
-		</section>
-		<section class="side-bar" >
-			<div class="party-rating">
-				<img src="/images/Anonymous_one_star_rating.png">
-				<p>(13 Ratings)</p>
-			</div>
-			<div class="similar-parties">
-				<h2>Similar Parties</h2>
-				<div class="div-similar-party">
-					<img src="/images/homepage-images/1_copy(1).JPG">
-					<div class="div-similar-party-description">
-						<p>Go Fish! House Club</p>
-						<p class="party-date">2014-03-15</p>
-						<img src="/images/Anonymous_one_star_rating.png" >
-						<p>(5)</p>
-						<div class="clear"></div>
-						<p>View details</p>		
-					</div>				
-				</div>
-				<div class="div-similar-party">
-					<img src="/images/homepage-images/1_copy(1).JPG">
-					<div class="div-similar-party-description">
-						<p>Jass Chalet</p>
-						<p class="party-date">2014-02-12</p>
-						<img src="/images/Anonymous_one_star_rating.png" >
-						<p>(2)</p>
-						<div class="clear"></div>
-						<p>View details</p>		
-					</div>					
-				</div>
-				<div class="div-similar-party">
-					<img src="/images/homepage-images/1_copy(1).JPG">
-					<div class="div-similar-party-description">
-						<p>Fun with Hanafuda</p>
-						<p class="party-date">2014-01-22</p>
-						<img src="/images/Anonymous_one_star_rating.png" >
-						<p>(15)</p>
-						<div class="clear"></div>
-						<p>View details</p>		
-					</div>	
-				
-				</div>
-				<div class="div-similar-party">
-					<img src="/images/homepage-images/1_copy(1).JPG">
-					<div class="div-similar-party-description">
-						<p>Skat 'n Knackwursts</p>
-						<p class="party-date">2014-01-13</p>
-						<img src="/images/Anonymous_one_star_rating.png" >
-						<p>(22)</p>
-						<div class="clear"></div>
-						<p>View details</p>		
-					</div>	
-				</div>
-
-				
-			</div>
+			<div id="map_canvas"></div>
+		</div>
+		<div class="live-stream">
+			<h2>Live Streaming</h2>
+			<img src="/images/download.jpg">
 		
-		</section>			
-	</div>
-	<div class="clear"></div>
-	<footer>
-		<nav id="footer-nav"><ul>
-			<li><a href="/privacy_policy">Privacy Policy</a></li>
-			<li><a href="/terms_of_use">Terms of Use</a></li>
-			<li><a href="/site_map">Site Map</a></li>
-			<li><a href="/about_us">About Us</a></li>
-		</ul></nav>
-		<span id="footer-copyright">&copy; House Party Finder, 2014</span>
-	</footer>
-</div></body>
-</html>
+		</div>					
+		
+		
+	</section>
+	<section class="side-bar" >
+		<div class="party-rating">
+			<img src="/images/Anonymous_one_star_rating.png">
+			<p>(13 Ratings)</p>
+		</div>
+		<div class="similar-parties">
+			<h2>Similar Parties</h2>
+			<div class="div-similar-party">
+				<img src="/images/homepage-images/1_copy(1).JPG">
+				<div class="div-similar-party-description">
+					<p>Go Fish! House Club</p>
+					<p class="party-date">2014-03-15</p>
+					<img src="/images/Anonymous_one_star_rating.png" >
+					<p>(5)</p>
+					<div class="clear"></div>
+					<p>View details</p>		
+				</div>				
+			</div>
+			<div class="div-similar-party">
+				<img src="/images/homepage-images/1_copy(1).JPG">
+				<div class="div-similar-party-description">
+					<p>Jass Chalet</p>
+					<p class="party-date">2014-02-12</p>
+					<img src="/images/Anonymous_one_star_rating.png" >
+					<p>(2)</p>
+					<div class="clear"></div>
+					<p>View details</p>		
+				</div>					
+			</div>
+			<div class="div-similar-party">
+				<img src="/images/homepage-images/1_copy(1).JPG">
+				<div class="div-similar-party-description">
+					<p>Fun with Hanafuda</p>
+					<p class="party-date">2014-01-22</p>
+					<img src="/images/Anonymous_one_star_rating.png" >
+					<p>(15)</p>
+					<div class="clear"></div>
+					<p>View details</p>		
+				</div>	
+			
+			</div>
+			<div class="div-similar-party">
+				<img src="/images/homepage-images/1_copy(1).JPG">
+				<div class="div-similar-party-description">
+					<p>Skat 'n Knackwursts</p>
+					<p class="party-date">2014-01-13</p>
+					<img src="/images/Anonymous_one_star_rating.png" >
+					<p>(22)</p>
+					<div class="clear"></div>
+					<p>View details</p>		
+				</div>	
+			</div>
+
+			
+		</div>
+	
+	</section>			
+<%- include ../template/footer %>

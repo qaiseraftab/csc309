@@ -1,84 +1,33 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<link rel="stylesheet" href="/styles/reset.css">
-	<link rel="stylesheet" href="/styles/main.css">
+﻿<%- include ../template/header %>
 	<link rel="stylesheet" type="text/css" href="/styles/LogIn.css" >
 	<link rel="stylesheet" type="text/css" href="/styles/SearchResult.css" >
-
-	<title>House Party Finder</title>
-</head>
-
-<body><div id="mainwrapper">
-	<header>
-		<div id="logo">
-			<a href="/">
-				<img src="/images/house.png">
-				<h1>House Party Finder</h1>
-			</a>
-		</div>
-		<div id="header-aside">
-			<div id="top-links">
-				<ul>
-					<li><a href="/register_login" class="button">Login or Register</a></li>
-				</ul>
-			</div>
-			<div id="search-bar">
-				<form action="/parties/search_results" method="get" autocomplete="on" id="search-form">
-					<input type="text" name="search" placeholder="search a house party in your area" id="search-bar-field" autofocus>
-					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
-				</form>
-			</div>
-		</div>
-	</header>
-	<div class="clear"></div>
-	<nav id="main-nav"><ul>
-		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
-		<li><a href="/parties/new" class="button">Host a Party</a></li>
-		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
-		<li><a href="/my-parties" class="button">My parties</a></li>
-	</ul></nav>
-	<div id="content"> <!-- Main content -->	
-		<% if(parties.length == 0) { %>
-			<h1>SORRY NO RESULTS</h1>
-		<% } else { %>
-			<% for(var i = 0; i < parties.length; i++) { %>
-				<div class="search-table-first">
-					<a href="<%= parties[i][5] %>">
-						<div class="search-row">
-							<img class="preview-image" src="../images/homepage-images/1_copy(1).JPG">
-							<div class="party-info">
-								<div class="party-info-text">
-									<div class="party-info-text-left">
-										<h4 class="party-title"> Party Title: <%= parties[i][0] %> </h4>
-										<div class="date">Date: <span class="date-answer"><%= parties[i][1] %></span></div>
-									</div>
-									<div class="party-info-text-right">
-										<div class="location">Location: <span class = "location-answer"><%= parties[i][2] %></span></div>
-										<div class="attending">Attending: <span class = "attending-answer"><%= parties[i][3] %></span></div>
-									</div>
+<%- include ../template/nav %>
+	<% if(parties.length == 0) { %>
+		<h1>SORRY NO RESULTS</h1>
+	<% } else { %>
+		<% for(var i = 0; i < parties.length; i++) { %>
+			<div class="search-table-first">
+				<a href="<%= parties[i][5] %>">
+					<div class="search-row">
+						<img class="preview-image" src="../images/homepage-images/1_copy(1).JPG">
+						<div class="party-info">
+							<div class="party-info-text">
+								<div class="party-info-text-left">
+									<h4 class="party-title"> Party Title: <%= parties[i][0] %> </h4>
+									<div class="date">Date: <span class="date-answer"><%= parties[i][1] %></span></div>
 								</div>
-								<p class="party-desc">
-									<%= parties[i][4] %>
-								</p>					
+								<div class="party-info-text-right">
+									<div class="location">Location: <span class = "location-answer"><%= parties[i][2] %></span></div>
+									<div class="attending">Attending: <span class = "attending-answer"><%= parties[i][3] %></span></div>
+								</div>
 							</div>
+							<p class="party-desc">
+								<%= parties[i][4] %>
+							</p>					
 						</div>
-					</a>
-				</div>
-			<% } %>
+					</div>
+				</a>
+			</div>
 		<% } %>
-	</div> <!-- End main content -->
-
-	<div class="clear"></div>
-	<footer>
-		<nav id="footer-nav"><ul>
-			<li><a href="/privacy_policy">Privacy Policy</a></li>
-			<li><a href="/terms_of_use">Terms of Use</a></li>
-			<li><a href="/site_map">Site Map</a></li>
-			<li><a href="/about_us">About Us</a></li>
-		</ul></nav>
-		<span id="footer-copyright">&copy; House Party Finder, 2014</span>
-	</footer>
-</div></body>
-</html>
+	<% } %>
+<%- include ../template/footer %>

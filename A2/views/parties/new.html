@@ -1,119 +1,68 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-	<link rel="stylesheet" href="/styles/reset.css">
-	<link rel="stylesheet" href="/styles/main.css">
+﻿<%- include ../template/header %>
 	<link rel="stylesheet" href="/styles/homepage.css">
 	<link rel="stylesheet" href="/styles/hostparty.css">
-
-	<title>House Party Finder</title>
-</head>
-
-<body><div id="mainwrapper">
-	<header>
-		<div id="logo">
-			<a href="/">
-				<img src="/images/house.png">
-				<h1>House Party Finder</h1>
-			</a>
-		</div>
-		<div id="header-aside">
-			<div id="top-links">
-				<ul>
-					<li><a href="/register_login" class="button">Login or Register</a></li>
-				</ul>
-			</div>
-			<div id="search-bar">
-				<form action="/parties/search_results" method="get" autocomplete="on" id="search-form">
-					<input type="text" name="search" placeholder="search a house party in your area" id="search-bar-field" autofocus>
-					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
-				</form>
-			</div>
-		</div>
-	</header>
-	<div class="clear"></div>
-	<nav id="main-nav"><ul>
-		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
-		<li><a href="/parties/new" class="button">Host a Party</a></li>
-		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
-		<li><a href="/my-parties" class="button">My parties</a></li>
-	</ul></nav>
-	<div id="content"> <!-- Main content -->
-		<label class="feat-head"><h2>Host a new Party</h2></label>
-        <form class="host" role="form" action="/parties/create" method="post" enctype="multiform/form-data">
-            <span>
-                <label class="pad10">Party Name: </label><input type="text" name="pname" class="box1" required placeholder="Enter party name"><br><br>
+<%- include ../template/nav %>
+	<label class="feat-head"><h2>Host a new Party</h2></label>
+    <form class="host" role="form" action="/parties/create" method="post" enctype="multiform/form-data">
+        <span>
+            <label class="pad10">Party Name: </label><input type="text" name="pname" class="box1" required placeholder="Enter party name"><br><br>
+        </span>
+        <span>
+            <label class="pad10">Location: </label><input type="text" name="address" class="box1" required placeholder="Enter the address of the party"><br><br>
+        </span>
+        <span>
+            <label class="pad10">City: </label><input type="text" name="city" class="box2" required placeholder="Enter City">
+            <label class="padprov">Province: </label>
+            <select class="fr" name="prov">
+                <option value="none">Select Province</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="YT">Yukon</option>
+            </select>
+            <br><br>
+        </span>
+        <span>
+            <label class="pad10">Date: </label><input type="date" name="date" placeholder="mm/dd/yyyy" class="box3"><br><br>
+        </span>
+        <span>
+            <label class="pad10">Capacity: </label><input type="text" name="capacity" required placeholder="Capacity">
+            <label><input type="checkbox" value="">Public?</label><br><br>
+        </span>
+        <span style="clear:both">
+            <label class="pad10">Description: </label>
+            <span style="padding-left:20px">
+                <textarea rows="8" name="description" class="box1 ta" placeholder="None"></textarea>
             </span>
-            <span>
-                <label class="pad10">Location: </label><input type="text" name="address" class="box1" required placeholder="Enter the address of the party"><br><br>
-            </span>
-            <span>
-                <label class="pad10">City: </label><input type="text" name="city" class="box2" required placeholder="Enter City">
-                <label class="padprov">Province: </label>
-                <select class="fr" name="prov">
-                    <option value="none">Select Province</option>
-                    <option value="AB">Alberta</option>
-                    <option value="BC">British Columbia</option>
-                    <option value="MB">Manitoba</option>
-                    <option value="NB">New Brunswick</option>
-                    <option value="NL">Newfoundland and Labrador</option>
-                    <option value="NS">Nova Scotia</option>
-                    <option value="ON">Ontario</option>
-                    <option value="PE">Prince Edward Island</option>
-                    <option value="QC">Quebec</option>
-                    <option value="SK">Saskatchewan</option>
-                    <option value="NT">Northwest Territories</option>
-                    <option value="NU">Nunavut</option>
-                    <option value="YT">Yukon</option>
-                </select>
-                <br><br>
-            </span>
-            <span>
-                <label class="pad10">Date: </label><input type="date" name="date" placeholder="mm/dd/yyyy" class="box3"><br><br>
-            </span>
-            <span>
-                <label class="pad10">Capacity: </label><input type="text" name="capacity" required placeholder="Capacity">
-                <label><input type="checkbox" value="">Public?</label><br><br>
-            </span>
-            <span style="clear:both">
-                <label class="pad10">Description: </label>
-                <span style="padding-left:20px">
-                    <textarea rows="8" name="description" class="box1 ta" placeholder="None"></textarea>
-                </span>
-            </span>
-            <div style="clear:both">
-                <br>
-                <span>
-                    <label><input type="checkbox" value="">Food/Drinks Provided</label>
-                </span>
-                <span>
-                    <label><input type="checkbox" value="">Alcohol</label>
-                </span>
-                <span>
-                    <label><input type="checkbox" value="">Parking</label>
-                </span>
-                <span>
-                    <label><input type="checkbox" value="">18+</label>
-                </span>
-                <span>
-                    <label><input type="checkbox" value="">Live Stream?</label>
-                </span>
-            </div>
+        </span>
+        <div style="clear:both">
             <br>
-            <button type="submit" class="button" >Submit</button>
-        </form>
-	</div> <!-- End main content -->
-
-	<div class="clear"></div>
-	<footer>
-		<nav id="footer-nav"><ul>
-			<li><a href="/privacy_policy">Privacy Policy</a></li>
-			<li><a href="/terms_of_use">Terms of Use</a></li>
-			<li><a href="/site_map">Site Map</a></li>
-			<li><a href="/about_us">About Us</a></li>
-		</ul></nav>
-		<span id="footer-copyright">&copy; House Party Finder, 2014</span>
-	</footer>
-</div></body>
-</html>
+            <span>
+                <label><input type="checkbox" value="">Food/Drinks Provided</label>
+            </span>
+            <span>
+                <label><input type="checkbox" value="">Alcohol</label>
+            </span>
+            <span>
+                <label><input type="checkbox" value="">Parking</label>
+            </span>
+            <span>
+                <label><input type="checkbox" value="">18+</label>
+            </span>
+            <span>
+                <label><input type="checkbox" value="">Live Stream?</label>
+            </span>
+        </div>
+        <br>
+        <button type="submit" class="button" >Submit</button>
+    </form>
+<%- include ../template/footer %>
