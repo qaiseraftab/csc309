@@ -67,6 +67,13 @@ app.use(method_override('X-HTTP-Method-Override'));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Helpers
+app.use(function(req, res, next) {
+    res.locals.current_user = req.session.user; //Current user
+    res.locals.logged_in = req.isAuthenticated(); //Whether user is logged in
+    next();
+});
+
 app.use('/', routes);
 app.use('/parties', parties);
 
@@ -78,6 +85,14 @@ app.post('/login',
         //failureFlash: true
     }),
     function(req, res) {
+        res.redirect('/');
+    }
+);
+
+/* POST logout */
+app.post('/logout',
+    function(req, res) {
+        req.logout();
         res.redirect('/');
     }
 );

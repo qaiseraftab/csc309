@@ -20,7 +20,14 @@
 		<div id="header-aside">
 			<div id="top-links">
 				<ul>
-					<li><a href="/register_login" class="button">Login or Register</a></li>
+					<% if (!logged_in) { %>
+						<li><a href="/register_login" class="button">Login or Register</a></li>
+					<% } else { %>
+						<li>Signed in as <a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+						<li><form action="/logout" method="post">
+							<input type="submit" value="Logout" class="login-button button" style="cursor: pointer; font-size: 1em;">
+						</form></li>
+					<% } %>
 				</ul>
 			</div>
 			<div id="search-bar">
