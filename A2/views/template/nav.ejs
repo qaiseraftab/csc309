@@ -1,0 +1,39 @@
+<title>House Party Finder</title>
+</head>
+<body><div id="mainwrapper">
+	<header>
+		<div id="logo">
+			<a href="/">
+				<img src="/images/house.png">
+				<h1>House Party Finder</h1>
+			</a>
+		</div>
+		<div id="header-aside">
+			<div id="top-links">
+				<ul>
+					<% if (logged_in) { %>
+						<li>Signed in as <a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
+						<li><form action="/logout" method="post">
+							<input type="submit" value="Logout" class="login-button button" style="cursor: pointer; font-size: 1em;">
+						</form></li>
+					<% } else { %>
+						<li><a href="/register_login" class="button">Login or Register</a></li>
+					<% } %>
+				</ul>
+			</div>
+			<div id="search-bar">
+				<form action="/parties/search_results" method="get" autocomplete="on" id="search-form">
+					<input type="text" name="search" placeholder="search a house party in your area" id="search-bar-field" autofocus>
+					<input type="image" src="/images/Search.png" alt="Submit" id="search-button"  width="24" height="24">
+				</form>
+			</div>
+		</div>
+	</header>
+	<div class="clear"></div>
+	<nav id="main-nav"><ul>
+		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
+		<li><a href="/parties/new" class="button">Host a Party</a></li>
+		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
+		<li><a href="/my-parties" class="button">My parties</a></li>
+	</ul></nav>
+	<div id="content">
