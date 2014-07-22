@@ -1,5 +1,7 @@
 ﻿<%- include template/header %>
 	<link rel="stylesheet" href="/styles/LogIn.css" >
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="../google_maps_api/google_maps_api.js"></script>
 <%- include template/nav %>
 	<div class="LogInBox" id="LogIn"> 
 		<h3>Log-In</h3>
@@ -13,17 +15,25 @@
 	<div class="LogInBoxOR">OR</div>
 	<div class = "LogInBox" id = "Registration"> 
 	<h3>Register</h3>
-		<form>
+		<form action="/users/register" method="post" enctype="multiform/form-data">
 			<input type="text" name="email" placeholder = "E-mail" required>
 			<input type="password" name="pwd" placeholder = "Password" required>
 			<input type="password" name="re_pwd" placeholder = "Confirm Password" required> 
 			<input type="text" name="f_name" placeholder = "First Name" required>
 			<input type="text" name="l_name" placeholder = "Last Name" required>
-			<input type="text" name="u_name" placeholder = "Desired User Name" required>
-			<input type="text" name="country" placeholder = "Country">
-			<input type="text" name="city" placeholder = "City">
+			<input type="text" name="province" id="province" placeholder = "Province" onChange = "clearCity(); codeAddress()" required>
+			<input type="text" name="city" id="city" placeholder = "City" onChange = "codeAddress()" required>
+			<input type="text" name="location" id="location" placeholder = "Street Address" onChange = "codeAddress()" required>
+			
+			<div id="map-canvas"></div>
+			<div id = "map-spacing"></div>
+			
+			<input type="hidden" name="longitude" id ="longitude">
+			<input type = "hidden" name = "latitude" id = "latitude">
+			
+			<button type="submit" class="login-button button" style="width: 100%; cursor: pointer; font-size: 1em;">Register</button>
 		</form>
 
-		<a href="#" class="button">Register</a>
+		
 	</div>
 <%- include template/footer %>

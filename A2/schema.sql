@@ -90,8 +90,8 @@ CREATE TABLE `users` (
   `password` varchar(128) NOT NULL,
   `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar (256) NOT NULL,
-  `latitude` decimal(6) NOT NULL,
-  `longitude` decimal(6) NOT NULL,
+  `latitude` decimal(9,6) NOT NULL,
+  `longitude` decimal(9,6) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 

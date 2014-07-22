@@ -10,6 +10,7 @@ var session = require('express-session');
 var mysql_conn = require('./models/__mysql_connector__'); //Get the connection cached first
 var routes = require('./routes/index');
 var parties = require('./routes/parties');
+var users = require('./routes/users');
 
 //Authentication
 var Users = require('./models/users');
@@ -77,6 +78,7 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/parties', parties);
+app.use('/users', users);
 
 /* POST login */
 app.post('/login',

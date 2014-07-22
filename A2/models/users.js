@@ -20,5 +20,23 @@ module.exports = {
 				callback(rows[0]);
 			}
 		});
+	},
+	register: function(params, callback) {
+		//register new user into users table
+		console.log(params.longitude);
+		var query_params = [
+			params.email,
+			params.pwd,
+			params.city + " " + params.location,
+			params.longitude,
+			params.latitude
+		];
+		console.log(query_params[4]);
+		var query = "INSERT INTO users (username, password, address, latitude, longitude) VALUES (?,?,?,?,?)";
+		mysql_conn.query(query, query_params, function(err, result) {
+			console.log(query);
+			if (err) throw err;
+			callback(result.insertId);
+		});
 	}
 };
