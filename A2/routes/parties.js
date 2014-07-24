@@ -41,7 +41,7 @@ router.get('/search_results', function(req, res) {
 			parties : []
 		});
 	} else {
-		Search.find(req.query.search, function(result) {
+		Search.find(req.query.search, 4294967295, 0, function(result) {
 			console.log(result);
 			res.render('parties/search_result', {
 				parties : result
@@ -53,14 +53,16 @@ router.get('/search_results', function(req, res) {
 /* GET party pages */
 router.get('/:id(\\d+)', function(req, res) {
 	Parties.find(req.param('id'), function(party) {
-		console.log(party.ended);
-		res.render('parties/show', {
-			pname: party.name,
-			date: party.start_date,
-			description: party.description,
-			location: party.location,
-			capacity: party.capacity,
-			ended: 0
+		Search.find(party.name, 4, req.param('id') , function(result) {
+			res.render('parties/show', {
+				pname: party.name,
+				date: party.start_date,
+				description: party.description,
+				location: party.location,
+				capacity: party.capacity,
+				ended: 0,
+				parties: result
+			});
 		});
 	});
 });

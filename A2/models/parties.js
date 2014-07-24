@@ -5,7 +5,6 @@ module.exports = {
 		var query = "SELECT * FROM parties WHERE id = ? LIMIT 1";
 		mysql_conn.query(query, [id], function(err, rows) {
 			if (err) throw err;
-			console.log(query);
 			callback(rows[0]);
 		});
 	},
@@ -22,7 +21,6 @@ module.exports = {
 		];
 		mysql_conn.query(query, query_params, function(err, result) {
 			if (err) throw err;
-			console.log(query);
 			callback(result.insertId);
 		});
 	},

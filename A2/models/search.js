@@ -1,11 +1,13 @@
 var mysql_conn = require('./__mysql_connector__');
 
 module.exports = {
-	find: function(query, callback) {
+	find: function(query, num, id, callback) {
+		console.log(num);
 		var strQuery = 'select *, ((p.location like "%' + query + 
 					'%") + (p.capacity like "%' + query + '%") + (p.name like "%' + 
 					query + '%") + (p.description like "%' + query + 
-					'%")) as hits from parties p having hits > 0 order by hits desc ';
+					'%")) as hits from parties p where p.id != ' + 
+					id + ' having hits > 0 order by hits desc limit ' + num;
 		mysql_conn.query(strQuery, function(err, rows, fields) {
 			if (err) throw err;
 			console.log(fields);
@@ -23,8 +25,5 @@ module.exports = {
 			console.log(result);
 			callback(result);
 		});
-	},
-	similar_parties: function(query, callback) {
-		
 	}
 };

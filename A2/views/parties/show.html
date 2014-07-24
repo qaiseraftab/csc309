@@ -1,6 +1,5 @@
 <%- include ../template/header %>
 	<link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
-
  	<script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
       function initialize() {
@@ -96,53 +95,33 @@
 		</div>
 		<div class="similar-parties">
 			<h2>Similar Parties</h2>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Go Fish! House Club</p>
-					<p class="party-date">2014-03-15</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(5)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>				
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Jass Chalet</p>
-					<p class="party-date">2014-02-12</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(2)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>					
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Fun with Hanafuda</p>
-					<p class="party-date">2014-01-22</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(15)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>	
-			
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Skat 'n Knackwursts</p>
-					<p class="party-date">2014-01-13</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(22)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>	
-			</div>
-
-			
+			<% if(parties.length == 0) { %>
+				<div class="div-similar-party">
+					<h3>Sorry no similar parties!</h3>
+				</div>
+			<% } else { %>
+				<% for(var i = 0; i < parties.length; i++) { %>
+					<a href="<%= parties[i][5] %>">
+						<div class="div-similar-party">
+							<img src="/images/homepage-images/1_copy(1).JPG">
+							<div class="div-similar-party-description">
+								<p><%= parties[i][0] %></p>
+								<p class="party-date"><%= parties[i][1] %></p>
+								<img src="/images/Anonymous_one_star_rating.png" >
+								<p><%= parties[i][3] %></p>
+								<div class="clear"></div>
+								<p>
+									<% if(parties[i][4].length >= 16) { %>
+										<%= parties[i][4].substring(0, 16) + "..." %>
+									<% } else { %>
+										<%= parties[i][4] %>
+									<% } %>							
+								</p>		
+							</div>				
+						</div>
+					</a>
+				<% } %>
+			<% } %>
 		</div>
 	
 	</section>			

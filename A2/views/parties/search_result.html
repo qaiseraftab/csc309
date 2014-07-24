@@ -22,7 +22,11 @@
 								</div>
 							</div>
 							<p class="party-desc">
-								<%= parties[i][4] %>
+								<% if(parties[i][4].length >= 460) { %>
+									<%= parties[i][4].substring(0, 460) + "..." %>
+								<% } else { %>
+									<%= parties[i][4] %>
+								<% } %>	
 							</p>					
 						</div>
 					</div>
