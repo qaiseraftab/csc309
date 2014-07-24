@@ -42,7 +42,6 @@ router.get('/search_results', function(req, res) {
 		});
 	} else {
 		Search.find(req.query.search, 4294967295, 0, function(result) {
-			console.log(result);
 			res.render('parties/search_result', {
 				parties : result
 			});
