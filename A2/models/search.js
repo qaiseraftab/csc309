@@ -2,6 +2,14 @@ var mysql_conn = require('./__mysql_connector__');
 
 module.exports = {
 	find: function(query, num, id, callback) {
+		/* Old query string
+		var strQuery = 'select *, ((p.location like "%' + query +
+				'%") + (p.capacity like "%' + query + '%") + (p.name like "%' +
+				query + '%") + (p.description like "%' + query +
+				'%")) as hits from parties p where p.id != ' +
+				id + ' having hits > 0 order by hits desc limit ' + num;
+		*/
+
 		var strQuery = "select *, ((p.location like \"%?%\") + (p.capacity like \"%?%\") + \
 				(p.name like \"%?%\") + (p.description like \"%?%\")) as hits \
 				from parties p where p.id != ? \
