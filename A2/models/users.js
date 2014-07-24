@@ -26,13 +26,15 @@ module.exports = {
 		console.log(params.longitude);
 		var query_params = [
 			params.email,
+			params.username,
+			params.first_name,
+			params.last_name,
 			params.pwd,
-			params.city + " " + params.location,
+			params.province + " " + params.city + " " + params.location,
 			params.longitude,
 			params.latitude
 		];
-		console.log(query_params[4]);
-		var query = "INSERT INTO users (username, password, address, latitude, longitude) VALUES (?,?,?,?,?)";
+		var query = "INSERT INTO users (email, username, first_name, last_name, password, address, latitude, longitude) VALUES (?,?,?,?,?,?,?,?)";
 		mysql_conn.query(query, query_params, function(err, result) {
 			console.log(query);
 			if (err) throw err;

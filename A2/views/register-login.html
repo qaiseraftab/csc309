@@ -17,10 +17,11 @@
 	<h3>Register</h3>
 		<form action="/users/register" method="post" enctype="multiform/form-data">
 			<input type="text" name="email" placeholder = "E-mail" required>
+			<input type="text" name="username" placeholder = "Desired User Name" required>
 			<input type="password" name="pwd" placeholder = "Password" required>
 			<input type="password" name="re_pwd" placeholder = "Confirm Password" required> 
-			<input type="text" name="f_name" placeholder = "First Name" required>
-			<input type="text" name="l_name" placeholder = "Last Name" required>
+			<input type="text" name="first_name" placeholder = "First Name" required>
+			<input type="text" name="last_name" placeholder = "Last Name" required>
 			<select name="province" id="province" onChange = "clearCity(); codeAddress()" required style="width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;">
                 <option value="none">Select Province</option>
                 <option value="AB">Alberta</option>
