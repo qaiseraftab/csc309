@@ -17,7 +17,23 @@
     
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
+	<script>
+		$(document).ready(function(){
+			$("#party-completed").on("click", function(e){
+				$.ajax({
+					url:'/parties/completed',
+					type: "POST",
+					data: {page: window.location.pathname.replace("/parties/", "")}
+				});
+				e.preventDefault();
+				$(".completed").css("background-color", "red");
+				$('.completed').html("This party has been completed!");
+				$("#party-completed").attr('disabled', true);
+				$('#party-completed').html("Finished!");
+				$('#party-completed').removeClass('button').addClass('button-completed');
+			});
+		});
+	</script>
 	<!-- Fotorama -->
 	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
 	<script src="../fotorama-4.5.1/fotorama.js"></script>
@@ -30,7 +46,17 @@
 				<h2>Hosted by ChatelaineLaReine</h2>
 				<h2 name="date">Date: <%= date %></h2>
 			</div>
-			<h3 class="completed">This party has been completed!</h3>
+			<% if(ended == 0) { %>
+				<h3 class="completed">This party has not been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button" type="submit">Completed?</button>
+				<!-- </form>-->
+			<% } else { %>
+				<h3 class="completed" style="background-color: red">This party has been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
+				<!-- </form>-->
+			<% } %>
 		</div>
 		<div class="album">
 			<h2>Party Album</h2>

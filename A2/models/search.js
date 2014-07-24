@@ -2,12 +2,11 @@ var mysql_conn = require('./__mysql_connector__');
 
 module.exports = {
 	find: function(query, callback) {
-		console.log(query);	
 		var strQuery = 'select *, ((p.location like "%' + query + 
 					'%") + (p.capacity like "%' + query + '%") + (p.name like "%' + 
 					query + '%") + (p.description like "%' + query + 
-					'%")) as hits from parties p having hits > 0';
-	mysql_conn.query(strQuery, function(err, rows, fields) {
+					'%")) as hits from parties p having hits > 0 order by hits desc ';
+		mysql_conn.query(strQuery, function(err, rows, fields) {
 			if (err) throw err;
 			console.log(fields);
 			var result = [];
@@ -24,5 +23,8 @@ module.exports = {
 			console.log(result);
 			callback(result);
 		});
+	},
+	similar_parties: function(query, callback) {
+		
 	}
 };

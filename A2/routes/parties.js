@@ -21,6 +21,14 @@ router.post('/create', function(req, res) {
 	});
 });
 
+/* POST completed party */
+router.post('/completed', function(req, res) {
+	console.log(req.body.page);
+	Parties.completed(req.body.page, function(id) {
+		//res.status(204);	
+	});
+});
+
 /* GET streaming parties */
 router.get('/streaming', function(req, res) {
 	res.render('parties/streaming');
@@ -45,12 +53,14 @@ router.get('/search_results', function(req, res) {
 /* GET party pages */
 router.get('/:id(\\d+)', function(req, res) {
 	Parties.find(req.param('id'), function(party) {
+		console.log(party.ended);
 		res.render('parties/show', {
 			pname: party.name,
 			date: party.start_date,
 			description: party.description,
 			location: party.location,
-			capacity: party.capacity
+			capacity: party.capacity,
+			ended: 0
 		});
 	});
 });

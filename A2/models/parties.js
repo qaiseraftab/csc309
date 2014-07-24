@@ -25,5 +25,12 @@ module.exports = {
 			console.log(query);
 			callback(result.insertId);
 		});
+	},
+	completed: function(id, callback) {
+		var query = "UPDATE parties SET ended = 1 WHERE id = ?";
+		mysql_conn.query(query, id, function(err, result) {
+			if (err) throw err;
+			callback(result);
+		});					
 	}
 };
