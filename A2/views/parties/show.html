@@ -1,6 +1,5 @@
 <%- include ../template/header %>
 	<link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
-
  	<script src="https://maps.googleapis.com/maps/api/js"></script>
     <script>
       function initialize() {
@@ -17,7 +16,23 @@
     
 	<!-- jQuery -->
 	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-
+	<script>
+		$(document).ready(function(){
+			$("#party-completed").on("click", function(e){
+				$.ajax({
+					url:'/parties/completed',
+					type: "POST",
+					data: {page: window.location.pathname.replace("/parties/", "")}
+				});
+				e.preventDefault();
+				$(".completed").css("background-color", "red");
+				$('.completed').html("This party has been completed!");
+				$("#party-completed").attr('disabled', true);
+				$('#party-completed').html("Finished!");
+				$('#party-completed').removeClass('button').addClass('button-completed');
+			});
+		});
+	</script>
 	<!-- Fotorama -->
 	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
 	<script src="../fotorama-4.5.1/fotorama.js"></script>
@@ -27,10 +42,20 @@
 			<div class="name-host-pic">
 				<img src="/images/homepage-images/1_copy(1).JPG" />
 				<h1 name="pname"><%= pname %></h1>
-				<h2>Hosted by ChatelaineLaReine</h2>
+				<h2>Hosted by <%= host %></h2>
 				<h2 name="date">Date: <%= date %></h2>
 			</div>
-			<h3 class="completed">This party has been completed!</h3>
+			<% if(ended == 0) { %>
+				<h3 class="completed">This party has not been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button" type="submit">Completed?</button>
+				<!-- </form>-->
+			<% } else { %>
+				<h3 class="completed" style="background-color: red">This party has been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
+				<!-- </form>-->
+			<% } %>
 		</div>
 		<div class="album">
 			<h2>Party Album</h2>
@@ -70,53 +95,33 @@
 		</div>
 		<div class="similar-parties">
 			<h2>Similar Parties</h2>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Go Fish! House Club</p>
-					<p class="party-date">2014-03-15</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(5)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>				
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Jass Chalet</p>
-					<p class="party-date">2014-02-12</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(2)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>					
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Fun with Hanafuda</p>
-					<p class="party-date">2014-01-22</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(15)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>	
-			
-			</div>
-			<div class="div-similar-party">
-				<img src="/images/homepage-images/1_copy(1).JPG">
-				<div class="div-similar-party-description">
-					<p>Skat 'n Knackwursts</p>
-					<p class="party-date">2014-01-13</p>
-					<img src="/images/Anonymous_one_star_rating.png" >
-					<p>(22)</p>
-					<div class="clear"></div>
-					<p>View details</p>		
-				</div>	
-			</div>
-
-			
+			<% if(parties.length == 0) { %>
+				<div class="div-similar-party">
+					<h3>Sorry no similar parties!</h3>
+				</div>
+			<% } else { %>
+				<% for(var i = 0; i < parties.length; i++) { %>
+					<a href="<%= parties[i][5] %>">
+						<div class="div-similar-party">
+							<img src="/images/homepage-images/1_copy(1).JPG">
+							<div class="div-similar-party-description">
+								<p><%= parties[i][0] %></p>
+								<p class="party-date"><%= parties[i][1] %></p>
+								<img src="/images/Anonymous_one_star_rating.png" >
+								<p><%= parties[i][3] %></p>
+								<div class="clear"></div>
+								<p>
+									<% if(parties[i][4].length >= 16) { %>
+										<%= parties[i][4].substring(0, 16) + "..." %>
+									<% } else { %>
+										<%= parties[i][4] %>
+									<% } %>							
+								</p>		
+							</div>				
+						</div>
+					</a>
+				<% } %>
+			<% } %>
 		</div>
 	
 	</section>			

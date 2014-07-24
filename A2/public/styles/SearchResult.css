@@ -94,3 +94,7 @@
 		float: left;
 	}
 }
+
+p {
+	word-wrap: break-word;
+}

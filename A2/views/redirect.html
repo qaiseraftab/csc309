@@ -1,0 +1,16 @@
+﻿<%- include template/header_redirect %>
+	<link rel="stylesheet" type="text/css" href="/styles/main.css" >
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script>
+		$(document).ready(function(){
+			var count = 5;
+			var counter = setInterval(function(){
+				count = count - 1;
+				$('#time').html(count);
+			}, 1000);
+			
+		});
+	</script>
+<%- include template/nav %>
+<h1>Please log in to continue, redirecting to login or register page in <span id="time">5</span> seconds ... or click <a href="/register_login">this</a> to go now.</h1>			
+<%- include template/footer %>

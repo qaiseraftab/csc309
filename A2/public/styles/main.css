@@ -181,6 +181,16 @@ footer {
 	padding: 8px;
 }
 
+.button-disabled {
+	display: block;
+	color: white;
+	text-decoration: none;
+	background-color: grey;
+	border: 1px solid #337fed;
+	border-radius: 0.5em;
+	padding: 8px;
+}
+
 .button:hover {
 	background-color: #1e62d0;
 }

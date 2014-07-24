@@ -11,13 +11,25 @@ router.get('/featured', function(req, res) {
 
 /* GET create party form */
 router.get('/new', function(req, res) {
-	res.render('parties/new');
+	if(req.user) {	
+		res.render('parties/new');
+	} else {
+		res.redirect("/redirect");	
+	}
 });
 
 /* POST create party --- from Richard */
 router.post('/create', function(req, res) {
-	Parties.create(req.body, function(id) {
+	Parties.create(req.body, req.user.id, function(id) {
 		res.redirect("/parties/" + id);
+	});
+});
+
+/* POST completed party */
+router.post('/completed', function(req, res) {
+	console.log(req.body.page);
+	Parties.completed(req.body.page, function(id) {
+		//res.status(204);	
 	});
 });
 
@@ -33,8 +45,7 @@ router.get('/search_results', function(req, res) {
 			parties : []
 		});
 	} else {
-		Search.find(req.query.search, function(result) {
-			console.log(result);
+		Search.find(req.query.search, 4294967295, 0, function(result) {
 			res.render('parties/search_result', {
 				parties : result
 			});
@@ -45,12 +56,18 @@ router.get('/search_results', function(req, res) {
 /* GET party pages */
 router.get('/:id(\\d+)', function(req, res) {
 	Parties.find(req.param('id'), function(party) {
-		res.render('parties/show', {
-			pname: party.name,
-			date: party.start_date,
-			description: party.description,
-			location: party.location,
-			capacity: party.capacity
+		console.log(party);
+		Search.find(party.name, 4, req.param('id') , function(result) {
+			res.render('parties/show', {
+				pname: party.name,
+				host: party.username,
+				date: party.start_date,
+				description: party.description,
+				location: party.location,
+				capacity: party.capacity,
+				ended: 0,
+				parties: result
+			});
 		});
 	});
 });

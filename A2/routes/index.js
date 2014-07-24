@@ -33,5 +33,9 @@ router.get('/register_login', function(req, res) {
 	res.render('register-login');
 });
 
+/* GET redirect page to register or login*/
+router.get('/redirect', function(req, res) {
+	res.render('redirect');
+});
 
 module.exports = router;
