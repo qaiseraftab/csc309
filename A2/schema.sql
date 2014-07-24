@@ -56,6 +56,25 @@ CREATE TABLE `parties` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
 -- --------------------------------------------------------
 
+CREATE TABLE `uploads` (
+	`id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+	`posted_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	`owner` int(11) unsigned NOT NULL REFERENCES users(id),
+	PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;
+
+CREATE TABLE `user_album` (
+	`owner` int(11) unsigned NOT NULL REFERENCES users(id),
+	`picture` int(11) unsigned NOT NULL REFERENCES uploads(id),
+	PRIMARY KEY (`owner`, `picture`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1; 
+
+CREATE TABLE `party_album` (
+	`owner` int(11) unsigned NOT NULL REFERENCES parties(id),
+	`picture` int(11) unsigned NOT NULL REFERENCES uploads(id),
+	PRIMARY KEY (`owner`, `picture`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1; 
+
 --
 -- Table structure for table `ratings`
 --
@@ -88,10 +107,7 @@ CREATE TABLE `subscribes_to` (
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(16) NOT NULL,
-  `last_name` varchar(32) NOT NULL,
-  `username` varchar(32) NOT NULL UNIQUE,
-  `email` varchar(64) NOT NULL UNIQUE,
+  `username` varchar(64) NOT NULL,
   `password` varchar(128) NOT NULL,
   `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar (256) NOT NULL,
