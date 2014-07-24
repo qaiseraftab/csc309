@@ -88,7 +88,10 @@ CREATE TABLE `subscribes_to` (
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(64) NOT NULL,
+  `first_name` varchar(16) NOT NULL,
+  `last_name` varchar(32) NOT NULL,
+  `username` varchar(32) NOT NULL,
+  `email` varchar(64) NOT NULL,
   `password` varchar(128) NOT NULL,
   `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar (256) NOT NULL,
