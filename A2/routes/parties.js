@@ -11,12 +11,16 @@ router.get('/featured', function(req, res) {
 
 /* GET create party form */
 router.get('/new', function(req, res) {
-	res.render('parties/new');
+	if(req.user) {	
+		res.render('parties/new');
+	} else {
+		res.redirect("/redirect");	
+	}
 });
 
 /* POST create party --- from Richard */
 router.post('/create', function(req, res) {
-	Parties.create(req.body, function(id) {
+	Parties.create(req.body, req.user.id, function(id) {
 		res.redirect("/parties/" + id);
 	});
 });
@@ -52,9 +56,11 @@ router.get('/search_results', function(req, res) {
 /* GET party pages */
 router.get('/:id(\\d+)', function(req, res) {
 	Parties.find(req.param('id'), function(party) {
+		console.log(party);
 		Search.find(party.name, 4, req.param('id') , function(result) {
 			res.render('parties/show', {
 				pname: party.name,
+				host: party.username,
 				date: party.start_date,
 				description: party.description,
 				location: party.location,
