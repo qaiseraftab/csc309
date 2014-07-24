@@ -21,7 +21,22 @@
 			<input type="password" name="re_pwd" placeholder = "Confirm Password" required> 
 			<input type="text" name="f_name" placeholder = "First Name" required>
 			<input type="text" name="l_name" placeholder = "Last Name" required>
-			<input type="text" name="province" id="province" placeholder = "Province" onChange = "clearCity(); codeAddress()" required>
+			<select name="province" id="province" onChange = "clearCity(); codeAddress()" required style="width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;">
+                <option value="none">Select Province</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="YT">Yukon</option>
+            </select>
 			<input type="text" name="city" id="city" placeholder = "City" onChange = "codeAddress()" required>
 			<input type="text" name="location" id="location" placeholder = "Street Address" onChange = "codeAddress()" required>
 			
