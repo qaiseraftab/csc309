@@ -67,6 +67,8 @@
 }
 
 #map-spacing {
-	padding-top:80%;
+	display:block;
+
+	padding: 50%;
 }
 

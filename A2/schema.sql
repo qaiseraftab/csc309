@@ -38,6 +38,8 @@ CREATE TABLE `parties` (
   `host` int(11) unsigned NOT NULL REFERENCES users(id),
   `capacity` int(8) NOT NULL,
   `address` varchar(256) NOT NULL,
+  `latitude` decimal(9,6) NOT NULL,
+  `longitude` decimal(9,6) NOT NULL,
   `description` text,
   `posted_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',

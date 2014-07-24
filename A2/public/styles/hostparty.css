@@ -51,6 +51,7 @@ textarea {
 	}
 
 .pad10 {
+	margin-top:3px; 
 	width: 100px;
 	text-align: left;
 	float: left;
@@ -60,10 +61,11 @@ textarea {
 	text-align:left;
 	float:left;
 	outline-offset:15px;
-	margin-left: 4px;
+
 	}
 	
 form.host{
+	position: relative;
 	font-family:"Myriad Pro";
 	padding:20px;
 	}
@@ -76,4 +78,14 @@ form.host{
 	padding:.2em .2em;
 	font-size: 1.4em;
 	font-family:"Myriad Pro";
+}
+
+
+#map-canvas {
+	position: absolute;
+	z-index:5;
+	display: block;
+	vertical-align: middle;
+	height: 60%;
+	width: 40%;
 }
