@@ -42,7 +42,7 @@ CREATE TABLE `parties` (
   `posted_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `start_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `end_date` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' CHECK (end_date > start_date),
-  `ended` tinyint(1) NOT NULL DEFAULT 1,
+  `ended` tinyint(1) NOT NULL DEFAULT 0,
   `featured_until` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `streaming` tinyint(1) NOT NULL DEFAULT 0,
   `private` tinyint(1) NOT NULL DEFAULT 0,
