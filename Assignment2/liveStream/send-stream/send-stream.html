@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<script src="jquery-1.6.2.min.js"></script>
+<script src="blob.js"></script>
+</head>
+
+<body>
+<div>
+    <video id="live" width="320" height="240" autoplay style="display: inline;"></video>
+    <canvas width="320" id="canvas" height="240" style="display:none"></canvas>
+    <!-- canvas element is there but is hidden. We want to display the video without delay, therefore video directly from webcam
+    	is displayed. 'display:none' -->
+</div>
+ 
+ <script type="text/javascript">
+    var video = $("#live").get()[0];
+    var canvas = $("#canvas");
+    var ctx = canvas.get()[0].getContext('2d');
+ 
+    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+	window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL; 
+	if (navigator.getUserMedia) {    
+   
+	    navigator.getUserMedia({video: true}, handleVideo, videoError);
+	}
+ 
+	function handleVideo(stream) {
+	    video.src = window.URL.createObjectURL(stream);
+	}
+ 
+	function videoError(e) {
+
+	}
+		
+	var ws = new WebSocket("ws://192.168.0.12:8082");
+
+    ws.onopen = function () {
+              console.log("Openened connection to websocket");
+             //ws.send("hello");
+             timer = setInterval(
+            function () {
+                ctx.drawImage(video, 0, 0, 320, 240);
+                var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
+                newblob = dataURItoBlob(data);
+                ws.send(newblob);
+               }, 100); 
+               /*currently the timer delay is set to 100ms. If it is increased, 
+               video will be slow (images sent at greater time intervals). Increase it if the network is slow*/
+ 
+    }
+ 	        
+    </script>
+
+
+</body>
+
+</html>
