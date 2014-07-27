@@ -100,6 +100,7 @@ orm_db.on('connect', function(err) {
 
 //Helpers
 app.use(function(req, res, next) {
+    req.orm_db = orm_db;
     res.locals.current_user = req.user; //Current user
     res.locals.logged_in = req.isAuthenticated(); //Whether user is logged in
     next();
@@ -159,4 +160,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports.app = app;
-module.exports.orm_db = orm_db;
+module.exports.orm_db = function() { return orm_db; };

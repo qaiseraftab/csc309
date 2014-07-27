@@ -13,17 +13,19 @@ router.post('/register', function(req, res) {
 
 /* GET user page */
 router.get('/:id(\\d+)', function(req, res) {
-	Users.find(req.param('id'), function(user) {
-		res.render('users/main',{
-			user: user,
-			frag: req.param('page') || default_fragment
-		});
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
+		if (user) {
+			res.render('users/main',{
+				user: user,
+				frag: req.param('page') || default_fragment
+			});
+		}
 	});
 });
 
 /* GET profile fragment */
 router.get('/:id(\\d+)/profile', function(req, res) {
-	Users.find(req.param('id'), function(user) {
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
 		res.render('users/profile_frag', {
 			user: user
 		});
