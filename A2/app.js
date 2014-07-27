@@ -162,5 +162,4 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports.app = app;
-module.exports.orm_db = function() { return orm_db; };
+module.exports = app;
