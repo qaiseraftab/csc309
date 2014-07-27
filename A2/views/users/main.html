@@ -1,0 +1,80 @@
+<%- include ../template/header %>
+	<!-- Fotorama -->
+	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
+	<script src="../fotorama-4.5.1/fotorama.js"></script>
+	<!-- Page style -->
+	<style>
+		#user-page .user-name, #user-page .user-rating {
+			margin-top: 1.4em;
+		}
+
+		#user-page .user-name {
+			float: left;
+		}
+
+		#user-page .user-name > img, #user-page .user-name > h1 {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		#user-page .user-rating {
+			float: right;
+		}
+
+		#user-page .user-rating > img, #user-page .user-rating > p {
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.user-nav {
+			display: block;
+			margin-top: 1.4em;
+		}
+
+		.user-nav > li {
+			display: inline-block;
+		}
+
+		.user-nav > li a {
+			display: block;
+			background-color: navy;
+			color: white;
+			text-decoration: none;
+			padding: 0.4em;
+			border: 2px navy solid;
+		}
+
+		#dynamic-box {
+			display: block;
+			width: 100%;
+			border: 2px navy solid;
+			height: 480px;
+		}
+	</style>
+<%- include ../template/nav %>
+	<div id="user-page">
+		<div class="fotorama" data-width="100%" data-height="128" data-loop="true" data-autoplay="true" data-nav="thumbs" data-navposition="top">
+		 	<img src="/images/party/1.jpg">
+		 	<img src="/images/party/2.jpg">
+		 	<img src="/images/party/3.jpg">
+		 	<img src="/images/party/4.jpg">
+		</div>
+		<div class="user-name">
+			<img src="/images/faces/dickson.jpg" width="64" height="64">
+			<h1><%= user.username %></h1>
+		</div>
+		<div class="user-rating">
+			<img src="/images/Anonymous_one_star_rating.png" height="32"> 
+			<p>(N ratings)</p>
+		</div>
+		<div class="clear"></div>
+		<ul class="user-nav">
+			<li><a href="/users/<%= user.id %>/profile" class="dynamic-load" target="dynamic-box">Profile</a></li>
+			<li><a href="/users/<%= user.id %>/activity" class="dynamic-load" target="dynamic-box">Activity</a></li>
+			<li><a href="/users/<%= user.id %>/subscribers" class="dynamic-load" target="dynamic-box">Subscribers</a></li>
+			<li><a href="/users/<%= user.id %>/portfolio" class="dynamic-load" target="dynamic-box">Portfolio</a></li>
+		</ul>
+		<iframe name="dynamic-box" src="/users/<%= user.id %>/<%= frag %>" id="dynamic-box"></iframe>
+	</div>
+<%- include ../template/footer %>
