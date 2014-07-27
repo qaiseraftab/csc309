@@ -9,42 +9,9 @@ var method_override = require('method-override');
 var session = require('express-session');
 var mysql_conn = require('./models/__mysql_connector__'); //Get the connection cached first
 var routes = require('./routes/index');
-var parties = require('./routes/parties');
-var users = require('./routes/users');
-
-//Authentication
-var Users = require('./models/users');
-var passport = require('passport'),
-    LocalStrategy = require('passport-local').Strategy;
-
-passport.use(new LocalStrategy(
-  function(username, password, done) {
-    Users.find_by('username', username, function(user) {
-      if (!user) {
-        done(null, false, { message: 'Incorrect username.' });
-        console.log("Incorrect username");
-      }
-      if (user.password != password) {
-       done(null, false, { message: 'Incorrect password.' });
-       console.log("Incorrect password");
-      }
-      done(null, user);
-    });
-  }
-));
-
-passport.serializeUser(function(user, done) {
-    console.log('serializeUser: ' + user.id);
-    done(null, user.id);
-});
-
-passport.deserializeUser(function(id, done) {
-    console.log('deserializeUser: ', id);
-    Users.find(id, function(user){
-        console.log(user);
-        done(null, user);
-    });
-});
+var parties_routes = require('./routes/parties');
+var users_routes = require('./routes/users');
+var passport = require('passport');
 
 var app = express();
 
@@ -69,6 +36,68 @@ app.use(method_override('X-HTTP-Method-Override'));
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Authentication and ORM
+var orm_db = require('./orm');
+var LocalStrategy = require('passport-local').Strategy;
+
+orm_db.on('connect', function(err) {
+    if (err) {
+        console.log('ORM MySQL connection failed...');
+        throw err;
+    }
+    else {
+        console.log('ORM MySQL connection established.');
+    }
+
+    //Set up ORM models
+    orm_db.load('./orm_models/__models__', function(err) {
+        if (err) {
+            console.log('ORM model setup failed...');
+            throw err;
+        }
+        else {
+            console.log('ORM models ready.');
+        }
+
+        //Name models
+        var User = orm_db.models.user;
+
+        //Set up authentication strategy once ORM models are set up
+        passport.use(new LocalStrategy(
+            function(username, password, done) {
+                User.one({ 'username': username }, function(err, user) {
+                    if (err) {
+                        done(null, false, { message: 'Server error.' });
+                    }
+                    if (!user) {
+                        done(null, false, { message: 'Incorrect username.' });
+                        console.log("Incorrect username");
+                    }
+                    if (user.password != password) {
+                        done(null, false, { message: 'Incorrect password.' });
+                        console.log("Incorrect password");
+                    }
+                    done(null, user);
+                });
+            }
+        ));
+
+        passport.serializeUser(function(user, done) {
+            console.log('serializeUser: ' + user.id);
+            done(null, user.id);
+        });
+
+        passport.deserializeUser(function(id, done) {
+            console.log('deserializeUser: ', id);
+            User.one({ 'id': id }, function(err, user){
+                console.log(user);
+                done(null, user);
+            });
+        });
+    });
+});
+
+
 //Helpers
 app.use(function(req, res, next) {
     res.locals.current_user = req.user; //Current user
@@ -77,8 +106,8 @@ app.use(function(req, res, next) {
 });
 
 app.use('/', routes);
-app.use('/parties', parties);
-app.use('/users', users);
+app.use('/parties', parties_routes);
+app.use('/users', users_routes);
 
 /* POST login */
 app.post('/login',
@@ -86,10 +115,7 @@ app.post('/login',
         successRedirect: '/',
         failureRedirect: '/register_login',
         //failureFlash: true
-    }),
-    function(req, res) {
-        res.redirect('/');
-    }
+    })
 );
 
 /* POST logout */
@@ -132,4 +158,5 @@ app.use(function(err, req, res, next) {
 });
 
 
-module.exports = app;
+module.exports.app = app;
+module.exports.orm_db = orm_db;
