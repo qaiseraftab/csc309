@@ -59,6 +59,9 @@ orm_db.on('connect', function(err) {
             console.log('ORM models ready.');
         }
 
+        //Associate models
+        (require('./orm_models/__associations__'))(orm_db.models);
+
         //Name models
         var User = orm_db.models.user;
 
