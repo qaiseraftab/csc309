@@ -10,7 +10,7 @@ module.exports = {
 				id + ' having hits > 0 order by hits desc limit ' + num;
 		*/
 
-		var strQuery = "select *, ((p.location like \"%?%\") + (p.capacity like \"%?%\") + \
+		var strQuery = "select *, ((p.address like \"%?%\") + (p.capacity like \"%?%\") + \
 				(p.name like \"%?%\") + (p.description like \"%?%\")) as hits \
 				from parties p where p.id != ? \
 				having hits > 0 order by hits desc limit ?";
