@@ -15,19 +15,19 @@ module.exports = function(models) {
 	//Parties
 	models.party.hasOne('host', models.user, {}, {
 		field: 'host',
-		reverse: 'hosted_parties'
+		reverse: 'hostedParties'
 	});
 	models.party.hasMany('attendees', models.user, {}, {
 		mergeTable: 'attends',
 		mergeId: 'party',
 		mergeAssocId: 'guest',
-		reverse: 'attended_parties'
+		reverse: 'attendedParties'
 	});
 	models.party.hasMany('raters', models.user, { 'rating': 'integer', 'comment': String }, {
 		mergeTable: 'ratings',
 		mergeId: 'rated_for',
 		mergeAssocId: 'rated_by',
-		reverse: 'rated_parties'
+		reverse: 'ratedParties'
 	});
 	models.party.hasMany('album_uploads', models.upload, {}, {
 		mergeTable: 'party_album',
@@ -44,7 +44,7 @@ module.exports = function(models) {
 	//Ratings
 	models.rating.hasOne('rater', models.user, {}, {
 		field: 'rated_by',
-		reverse: 'given_ratings'
+		reverse: 'givenRatings'
 	});
 	models.rating.hasOne('party', models.party, {}, {
 		field: 'rated_for',
