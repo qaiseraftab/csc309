@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var Users = require('../models/users.js');
+var Q = require('q');
 
 var default_fragment = "profile";
 
@@ -26,8 +27,18 @@ router.get('/:id(\\d+)', function(req, res) {
 /* GET profile fragment */
 router.get('/:id(\\d+)/profile', function(req, res) {
 	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
-		res.render('users/profile_frag', {
-			user: user
+		var hosted_parties, attended_parties;
+
+		user.getHostedParties(function(err, hp) {
+			hosted_parties = hp.length;
+			user.getAttendedParties(function(err, ap) {
+				attended_parties = ap.length;
+				res.render('users/profile_frag', {
+					user: user,
+					parties_created: hosted_parties,
+					parties_attended: attended_parties
+				});
+			});
 		});
 	});
 });
