@@ -1,0 +1,79 @@
+﻿<%- include ../template/header %>
+	<link rel="stylesheet" href="/styles/homepage.css">
+	<link rel="stylesheet" href="/styles/hostparty.css">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="/google_maps_api/google_maps_api.js"></script>
+<%- include ../template/nav %>
+	<label class="feat-head"><h2>Host a new Party</h2></label>
+    <form class="host" role="form" action="/parties/create" method="post" enctype="multiform/form-data">
+        <span>
+            <label class="pad10">Party Name: </label><input type="text" name="pname" class="box1" required placeholder="Enter party name"><br><br>
+        </span>
+		
+		<!-- MAP SECTION -->
+		<span style="float:left; padding-left:55%;"><div id="map-canvas">
+		</div></span>
+		<!-- MAP SECTION -->
+		<input type="hidden" name="longitude" id ="longitude">
+		<input type = "hidden" name = "latitude" id = "latitude">
+        <span style="padding-bottom:5px;">
+            <label class="pad10">Province: </label>
+            <select class="fr" id="province" name="prov" onChange = "clearCity(); codeAddress()" style="margin-bottom:8px; padding-bottom:1px; padding-top:1px;" >
+                <option value="none">Select Province</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="YT">Yukon</option>
+            </select>
+            <br>
+        </span>
+		<span>
+			<label class="pad10">City: </label><input type="text" name="city" id="city" onChange = "codeAddress()" class="box2" required placeholder="Enter City"><br><br>
+		</span>
+        <span>
+            <label class="pad10">Location: </label><input type="text" name="address" id="location" onChange = "codeAddress()" class="box1" required placeholder="Enter the address of the party"><br><br>
+        </span>
+        <span style = "padding-bottom:4px">
+            <label class="pad10">Date: </label><input type="date" name="date" placeholder="mm/dd/yyyy" style="margin-bottom:8px; "><br>
+        </span>
+        <span>
+            <label class="pad10">Capacity: </label><input type="text" name="capacity" required placeholder="Capacity">
+			<label><input name="private" type="checkbox" value=1>Private?</label><br><br>
+        </span>
+        <span style="clear:both">
+            <label class="pad10">Description: </label>
+            <span style="padding-left:20px">
+                <textarea rows="8" name="description" class="box1 ta" placeholder="None"></textarea>
+            </span>
+        </span>
+        <div style="clear:both">
+            <br>
+            <span>
+                <label><input name="food" type="checkbox" value=1>Food/Drinks Provided</label>
+            </span>
+            <span>
+                <label><input name="alcohol" type="checkbox" value=1>Alcohol</label>
+            </span>
+            <span>
+                <label><input name="parking" type="checkbox" value=1>Parking</label>
+            </span>
+            <span>
+                <label><input name="mature" type="checkbox" value=1>18+</label>
+            </span>
+            <span>
+                <label><input name="streaming" type="checkbox" value=1>Live Stream?</label>
+            </span>
+        </div>
+        <br>
+        <button type="submit" class="button" >Submit</button>
+    </form>
+<%- include ../template/footer %>

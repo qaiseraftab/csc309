@@ -1,0 +1,55 @@
+﻿<%- include template/header %>
+	<link rel="stylesheet" href="/styles/LogIn.css" >
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="/google_maps_api/google_maps_api.js"></script>
+<%- include template/nav %>
+	<div class="LogInBox" id="LogIn"> 
+		<h3>Log-In</h3>
+		<form action="/login" method="post">
+			<input type="text" name="username"  placeholder="E-mail" required>
+			<input type="password" name="password" placeholder="Password" required>
+			<input type="submit" value="Login" class="login-button button" style="width: 100%; cursor: pointer; font-size: 1em;">
+			<a href="#" style="margin-top: 0.4em; display: inline-block;">Forgot your password?</a>
+		</form>
+	</div>
+	<div class="LogInBoxOR">OR</div>
+	<div class = "LogInBox" id = "Registration"> 
+	<h3>Register</h3>
+		<form action="/users/register" method="post" enctype="multiform/form-data">
+			<input type="text" name="email" placeholder = "E-mail" required>
+			<input type="text" name="username" placeholder = "Desired User Name" required>
+			<input type="password" name="pwd" placeholder = "Password" required>
+			<input type="password" name="re_pwd" placeholder = "Confirm Password" required> 
+			<input type="text" name="first_name" placeholder = "First Name" required>
+			<input type="text" name="last_name" placeholder = "Last Name" required>
+			<select name="province" id="province" onChange = "clearCity(); codeAddress()" required style="width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;">
+                <option value="none">Select Province</option>
+                <option value="AB">Alberta</option>
+                <option value="BC">British Columbia</option>
+                <option value="MB">Manitoba</option>
+                <option value="NB">New Brunswick</option>
+                <option value="NL">Newfoundland and Labrador</option>
+                <option value="NS">Nova Scotia</option>
+                <option value="ON">Ontario</option>
+                <option value="PE">Prince Edward Island</option>
+                <option value="QC">Quebec</option>
+                <option value="SK">Saskatchewan</option>
+                <option value="NT">Northwest Territories</option>
+                <option value="NU">Nunavut</option>
+                <option value="YT">Yukon</option>
+            </select>
+			<input type="text" name="city" id="city" placeholder = "City" onChange = "codeAddress()" required>
+			<input type="text" name="location" id="location" placeholder = "Street Address" onChange = "codeAddress()" required>
+			
+			<div id="map-canvas"></div>
+			<div id = "map-spacing"></div>
+			
+			<input type="hidden" name="longitude" id ="longitude">
+			<input type = "hidden" name = "latitude" id = "latitude">
+			
+			<button type="submit" class="login-button button" style="width: 100%; cursor: pointer; font-size: 1em;">Register</button>
+		</form>
+
+		
+	</div>
+<%- include template/footer %>

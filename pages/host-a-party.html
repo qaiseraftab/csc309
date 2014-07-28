@@ -6,6 +6,8 @@
 	<link rel="stylesheet" href="../styles/main.css">
 	<link rel="stylesheet" href="../styles/homepage.css">
 	<link rel="stylesheet" href="../styles/hostparty.css">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="../javascript/google_maps_api.js"></script>
 
 	<title>House Party Finder</title>
 </head>
@@ -41,34 +43,45 @@
 	</ul></nav>
 	<div id="content"> <!-- Main content -->
 		<label class="feat-head"><h2>Host a new Party</h2></label>
-        <form class="host" role="form">
+        <form class="host" role="form" style="position:relative;">
             <span>
                 <label class="pad10">Party Name: </label><input type="text" class="box1" required placeholder="Enter party name"><br><br>
             </span>
-            <span>
-                <label class="pad10">Location: </label><input type="text" class="box1" required placeholder="Enter the address of the party"><br><br>
-            </span>
-            <span>
-                <label class="pad10">City: </label><input type="text" class="box2" required placeholder="Enter City">
-                <label class="padprov">Province: </label>
-				<select class="fr">
+			
+			<!-- MAP SECTION -->
+			<span style="float:left; padding-left:55%;"><div id="map-canvas">
+			</div></span>
+            <!-- MAP SECTION -->
+
+			<div id='country' value="Canada"></div>
+  		    <span>
+                <label class="padprov" >Province: </label>
+				<select style ="padding-bottom:1px;" class="fr" id="province" onChange = "clearCity(); codeAddress()">
                     <option value="none">Select Province</option>
-                    <option value="AB">Alberta</option>
-                    <option value="BC">British Columbia</option>
-                    <option value="MB">Manitoba</option>
-                    <option value="NB">New Brunswick</option>
-                    <option value="NL">Newfoundland and Labrador</option>
-                    <option value="NS">Nova Scotia</option>
-                    <option value="ON">Ontario</option>
-                    <option value="PE">Prince Edward Island</option>
-                    <option value="QC">Quebec</option>
-                    <option value="SK">Saskatchewan</option>
-                    <option value="NT">Northwest Territories</option>
-                    <option value="NU">Nunavut</option>
-                    <option value="YT">Yukon</option>
+                    <option value="Alberta">Alberta</option>
+                    <option value="British Columbia">British Columbia</option>
+                    <option value="Manitoba">Manitoba</option>
+                    <option value="New Brunswick">New Brunswick</option>
+                    <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+                    <option value="Nova Scotia">Nova Scotia</option>
+                    <option value="Ontario">Ontario</option>
+                    <option value="Prince Edward Island">Prince Edward Island</option>
+                    <option value="Quebec">Quebec</option>
+                    <option value="Saskatchewan">Saskatchewan</option>
+                    <option value="Northwest Territories">Northwest Territories</option>
+                    <option value="Nunavut">Nunavut</option>
+                    <option value="Yukon">Yukon</option>
                 </select>
-                <br><br>
+                <br>
+			</span>
+			<span>
+				<div style="height:4px;"></div>
+				<label class="pad10">City: </label><input type="text" class="box2" id="city" onChange = "codeAddress()" required placeholder="Enter City"><br><br>
+			</span>
+			<span>
+                <label class="pad10">Location: </label><input type="text" class="box1" id="location" onChange = "codeAddress()" required placeholder="Enter the address of the party"><br><br>
             </span>
+			
             <span>
                 <label class="pad10">Date: </label><input type="date" placeholder="mm/dd/yyyy" class="box3"><br><br>
             </span>
@@ -103,6 +116,7 @@
             <br>
 			<button type="submit" class="button" formaction="individual-party-page.html">Submit</button>
         </form>
+		
 	</div> <!-- End main content -->
 
 	<div class="clear"></div>

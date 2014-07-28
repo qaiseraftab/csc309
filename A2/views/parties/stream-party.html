@@ -1,0 +1,56 @@
+﻿<%- include ../template/header %>
+
+<%- include ../template/nav %>
+<div>
+<% if(!correct) { %>
+    <p id="not-supported" style="display:none">Sorry your browser does not support getUserMedia or it is disabled</p>
+    <button id="start">Start streaming</button><br>
+    <video id="live" width="320" height="240" autoplay style="display: inline;background-color:black"></video>
+    <canvas width="320" id="canvas" height="240" style="display:none"></canvas>
+    <!-- canvas element is there but is hidden. We want to display the video without delay, therefore video directly from webcam
+    	is displayed. 'display:none' -->
+<% } else { %>
+    <h1 id="incorrect-user">CANNOT ACCESS PAGE INCORRECT USER</h1>
+<% } %>
+</div>
+<script type="text/javascript">
+	var video = $("#live").get()[0];
+	var canvas = $("#canvas");
+	var ctx = canvas.get()[0].getContext('2d');
+
+	navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia || navigator.oGetUserMedia;
+
+	window.URL = window.URL || window.webkitURL || window.mozURL || window.msURL; 
+	if (navigator.getUserMedia) {    
+		document.getElementById('start').addEventListener('click', function(){
+			navigator.getUserMedia({video: true}, handleVideo, videoError);
+
+			function handleVideo(stream) {
+				video.src = window.URL.createObjectURL(stream);
+			}
+
+			function videoError(e) {
+
+			}
+
+			var ws = new WebSocket("ws://localhost:8082/1");
+
+			ws.onopen = function () {
+				console.log("Openened connection to websocket");
+				//ws.send("hello");
+				timer = setInterval(function () {
+					ctx.drawImage(video, 0, 0, 320, 240);
+					var data = canvas.get()[0].toDataURL('image/jpeg', 1.0);
+					newblob = dataURItoBlob(data);
+					ws.send(newblob);
+					}, 100); 
+				/*currently the timer delay is set to 100ms. If it is increased, 
+				video will be slow (images sent at greater time intervals). Increase it if the network is slow*/
+			}
+		});
+	} else {
+		document.getElementById('not-supported').removeAttribute('style');
+		document.getElementById('start').setAttribute('disabled', 'disabled');
+	}	        
+</script>	
+<%- include ../template/footer %>

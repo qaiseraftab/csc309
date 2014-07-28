@@ -1,0 +1,149 @@
+<%- include ../template/header %>
+	<link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
+ 	<script src="https://maps.googleapis.com/maps/api/js"></script>
+    <script>
+      function initialize() {
+        var map_canvas = document.getElementById('map_canvas');
+        var map_options = {
+          center: new google.maps.LatLng(44.5403, -78.5463),
+          zoom: 8,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(map_canvas, map_options)
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+    
+	<!-- jQuery -->
+	<script>
+		$(document).ready(function(){
+			$("#party-completed").on("click", function(e){
+				$.ajax({
+					url:'/parties/completed',
+					type: "POST",
+					data: {page: window.location.pathname.replace("/parties/", "")}
+				});
+				e.preventDefault();
+				$(".completed").css("background-color", "red");
+				$('.completed').html("This party has been completed!");
+				$("#party-completed").attr('disabled', true);
+				$('#party-completed').html("Finished!");
+				$('#party-completed').removeClass('button').addClass('button-completed');
+			});
+		});
+	</script>
+	<!-- Fotorama -->
+	<link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
+	<script src="../fotorama-4.5.1/fotorama.js"></script>
+<%- include ../template/nav %>
+	<section class="party-info" >
+		<div class="name-host-pic-status">
+			<div class="name-host-pic">
+				<img src="/images/homepage-images/1_copy(1).JPG" />
+				<h1 name="pname"><%= pname %></h1>
+				<h2>Hosted by <%= host %></h2>
+				<h2 name="date">Date: <%= date %></h2>
+			</div>
+			<% if(ended == 0) { %>
+				<h3 class="completed">This party has not been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button" type="submit">Completed?</button>
+				<!-- </form>-->
+			<% } else { %>
+				<h3 class="completed" style="background-color: red">This party has been completed!</h3>
+				<!-- <form action="/parties/completed" method="post"> -->
+					<button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
+				<!-- </form>-->
+			<% } %>
+		</div>
+		<div class="album">
+			<h2>Party Album</h2>
+			<!-- Fotorama -->
+			<div class="fotorama">
+			 	<img src="/images/party/1.jpg">
+			 	<img src="/images/party/2.jpg">
+			 	<img src="/images/party/3.jpg">
+			 	<img src="/images/party/4.jpg">
+			</div>
+		</div>
+		<div class="party-description">
+			<h2>Party Description</h2>
+			<div class="clear"></div>
+			<div class="party-description-text">
+				<p name="party-description"><%= description %></p>
+				<p name="location">Address: <%= location %></p>
+				<p name="capacity">Capacity: <%= capacity %> <br />
+				 Things to bring: None- All materials provided <br />
+				 Food Provided: YES
+				</p>
+			</div>
+			<div id="map_canvas"></div>
+		</div>
+		<div class="live-stream">
+			<h2>Live Streaming</h2>
+			<div>
+			   <img alt="Smiley face" id="image" height="240" width="320" > 
+			</div>
+		</div>					
+		
+		
+	</section>
+	<section class="side-bar" >
+		<div class="party-rating">
+			<img src="/images/Anonymous_one_star_rating.png">
+			<p>(13 Ratings)</p>
+		</div>
+		<div class="similar-parties">
+			<h2>Similar Parties</h2>
+			<% if(parties.length == 0) { %>
+				<div class="div-similar-party">
+					<h3>Sorry no similar parties!</h3>
+				</div>
+			<% } else { %>
+				<% for(var i = 0; i < parties.length; i++) { %>
+					<a href="<%= parties[i][5] %>">
+						<div class="div-similar-party">
+							<img src="/images/homepage-images/1_copy(1).JPG">
+							<div class="div-similar-party-description">
+								<p><%= parties[i][0] %></p>
+								<p class="party-date"><%= parties[i][1] %></p>
+								<img src="/images/Anonymous_one_star_rating.png" >
+								<p><%= parties[i][3] %></p>
+								<div class="clear"></div>
+								<p>
+									<% if(parties[i][4].length >= 16) { %>
+										<%= parties[i][4].substring(0, 16) + "..." %>
+									<% } else { %>
+										<%= parties[i][4] %>
+									<% } %>							
+								</p>		
+							</div>				
+						</div>
+					</a>
+				<% } %>
+			<% } %>
+		</div>
+	
+	</section>
+<script type="text/javascript">
+	var socket = new WebSocket('ws://127.0.0.1:8084/1');
+	socket.binaryType = 'arraybuffer';
+
+	try {
+	    	socket.onopen = function() {}
+
+	    	socket.onmessage = function(msg) {
+			var arrayBuffer = msg.data;
+			var bytes = new Uint8Array(arrayBuffer);
+
+			var image = document.getElementById('image');
+			image.src = 'data:image/jpeg;base64,'+encode(bytes);
+	    	}
+
+		socket.onclose = function(){}
+	} catch(exception) {
+	    alert('Error:'+exception);
+	}
+ 	
+</script>			
+<%- include ../template/footer %>
