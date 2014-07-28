@@ -45,15 +45,21 @@ router.get('/:id(\\d+)/profile', function(req, res) {
 
 /* GET activity fragment */
 router.get('/:id(\\d+)/activity', function(req, res) {
-	res.render('users/activity_frag', {
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
+		res.render('users/activity_frag', {
 
+		});
 	});
 });
 
 /* GET subscribers fragment */
 router.get('/:id(\\d+)/subscribers', function(req, res) {
-	res.render('users/subscribers_frag', {
-
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
+		user.getSubscribers(function(err, subscribers) {
+			res.render('users/subscribers_frag', {
+				subscribers: subscribers
+			});
+		});
 	});
 });
 

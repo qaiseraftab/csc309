@@ -26,82 +26,31 @@
 	}
 </style>
 
-<div class="subscriber-entry">
-	<img src="/images/homepage-images/1_copy(1).JPG">
-	<div class="entry-description">
-		<div class="title-block">
-			<a href="#">LuluCupcakes</a>
-		</div>
-		<div class="rating-block">
-			<img src="/images/Anonymous_one_star_rating.png" width="120">
-			<span>(5)</span>
-		</div>
-		<div class="clear"></div>
-		<p>
-			Joined: 2014-01-05<br>
-			Parties hosted: 5<br>
-			Parties joined: 5
-		</p>
-		<p><a href="#">View details</a></p>		
-	</div>				
-</div>
+<% if (subscribers.length == 0) { %>
+	<p>This user has no subscribers.</p>
 
-<div class="subscriber-entry">
-	<img src="/images/homepage-images/1_copy(1).JPG">
-	<div class="entry-description">
-		<div class="title-block">
-			<a href="#">LuluCupcakes</a>
+<% } else { %>
+	<%
+		var user;
+		for (var i = 0; i < subscribers.length; i++) {
+			user = subscribers[i];
+	%>
+		<div class="subscriber-entry">
+			<img src="/images/homepage-images/1_copy(1).JPG">
+			<div class="entry-description">
+				<div class="title-block">
+					<a href="#"><%= user.username %></a>
+				</div>
+				<div class="rating-block">
+					<img src="/images/Anonymous_one_star_rating.png" width="120">
+					<span>(N)</span>
+				</div>
+				<div class="clear"></div>
+				<p>
+					Joined: <%= user.join_date %>
+				</p>
+				<p><a href="/users/<%= user.id %>">View details</a></p>		
+			</div>				
 		</div>
-		<div class="rating-block">
-			<img src="/images/Anonymous_one_star_rating.png" width="120">
-			<span>(5)</span>
-		</div>
-		<div class="clear"></div>
-		<p>
-			Joined: 2014-01-05<br>
-			Parties hosted: 5<br>
-			Parties joined: 5
-		</p>
-		<p><a href="#">View details</a></p>		
-	</div>				
-</div>
-
-<div class="subscriber-entry">
-	<img src="/images/homepage-images/1_copy(1).JPG">
-	<div class="entry-description">
-		<div class="title-block">
-			<a href="#">LuluCupcakes</a>
-		</div>
-		<div class="rating-block">
-			<img src="/images/Anonymous_one_star_rating.png" width="120">
-			<span>(5)</span>
-		</div>
-		<div class="clear"></div>
-		<p>
-			Joined: 2014-01-05<br>
-			Parties hosted: 5<br>
-			Parties joined: 5
-		</p>
-		<p><a href="#">View details</a></p>		
-	</div>				
-</div>
-
-<div class="subscriber-entry">
-	<img src="/images/homepage-images/1_copy(1).JPG">
-	<div class="entry-description">
-		<div class="title-block">
-			<a href="#">LuluCupcakes</a>
-		</div>
-		<div class="rating-block">
-			<img src="/images/Anonymous_one_star_rating.png" width="120">
-			<span>(5)</span>
-		</div>
-		<div class="clear"></div>
-		<p>
-			Joined: 2014-01-05<br>
-			Parties hosted: 5<br>
-			Parties joined: 5
-		</p>
-		<p><a href="#">View details</a></p>		
-	</div>				
-</div>
+	<% } %>
+<% } %>
