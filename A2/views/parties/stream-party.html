@@ -2,7 +2,7 @@
 
 <%- include ../template/nav %>
 <div>
-<% if(correct) { %>
+<% if(!correct) { %>
     <p id="not-supported" style="display:none">Sorry your browser does not support getUserMedia or it is disabled</p>
     <button id="start">Start streaming</button><br>
     <video id="live" width="320" height="240" autoplay style="display: inline;background-color:black"></video>
