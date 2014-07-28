@@ -17,6 +17,22 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `activities`
+--
+
+CREATE TABLE `activities` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` int(11) unsigned NOT NULL,
+  `record_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `type` varchar(16) NOT NULL,
+  `resource_id` int(11) unsigned NOT NULL,
+  `description` varchar(128) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `attends`
 --
 
@@ -152,6 +168,7 @@ CREATE TABLE `uploads` (
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
   `username` varchar(64) NOT NULL,
   `first_name` varchar(16) NOT NULL,
   `last_name` varchar(32) NOT NULL,
@@ -183,6 +200,12 @@ CREATE TABLE `user_album` (
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `activities`
+--
+ALTER TABLE `activities`
+  ADD CONSTRAINT `activities_ibfk_1` FOREIGN KEY (`user`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `attends`
