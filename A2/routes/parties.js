@@ -53,7 +53,19 @@ router.get('/my-parties', function(req, res) {
 
 /* GET stream party page */
 router.get('/stream-party/:id(\\d+)', function(req, res) {
-	res.render('parties/stream-party');
+	if(req.user) { 
+		if(req.user.id == req.params.id) {
+			res.render('parties/stream-party', {
+				correct : 1			
+			});
+		} else {
+			res.render('parties/stream-party', {
+				correct : 0
+			});
+		}
+	} else {
+		res.render('/redirect');
+	}
 });
 
 /* GET party search engine results */
