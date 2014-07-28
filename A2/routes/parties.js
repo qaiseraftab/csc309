@@ -38,6 +38,16 @@ router.get('/streaming', function(req, res) {
 	res.render('parties/streaming');
 });
 
+/* GET user parties */
+router.get('/my-parties', function(req, res) {
+	res.render('parties/my-parties');
+});
+
+/* GET stream party page */
+router.get('/stream-party', function(req, res) {
+	res.render('parties/stream-party');
+});
+
 /* GET party search engine results */
 router.get('/search_results', function(req, res) {
 	if(req.query.search == "") {
@@ -66,7 +76,8 @@ router.get('/:id(\\d+)', function(req, res) {
 				location: party.location,
 				capacity: party.capacity,
 				ended: 0,
-				parties: result
+				parties: result,
+				id: req.param('id')
 			});
 		});
 	});

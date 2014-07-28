@@ -81,8 +81,9 @@
 		</div>
 		<div class="live-stream">
 			<h2>Live Streaming</h2>
-			<img src="/images/download.jpg">
-		
+			<div>
+			   <img alt="Smiley face" id="image" height="240" width="320" > 
+			</div>
 		</div>					
 		
 		
@@ -123,5 +124,26 @@
 			<% } %>
 		</div>
 	
-	</section>			
+	</section>
+<script type="text/javascript">
+	var socket = new WebSocket('ws://127.0.0.1:8084/1');
+	socket.binaryType = 'arraybuffer';
+
+	try {
+	    	socket.onopen = function() {}
+
+	    	socket.onmessage = function(msg) {
+			var arrayBuffer = msg.data;
+			var bytes = new Uint8Array(arrayBuffer);
+
+			var image = document.getElementById('image');
+			image.src = 'data:image/jpeg;base64,'+encode(bytes);
+	    	}
+
+		socket.onclose = function(){}
+	} catch(exception) {
+	    alert('Error:'+exception);
+	}
+ 	
+</script>			
 <%- include ../template/footer %>
