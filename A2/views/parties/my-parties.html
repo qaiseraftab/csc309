@@ -2,5 +2,11 @@
 	<link rel="stylesheet" href="/styles/hostparty.css">
 <%- include ../template/nav %>
 <label class="feat-head"><h2>My Parties</h2></label><br>
-<li>Date: September 21, 2013 French Tarot Meet and Greet <a href="/parties/individual-party-page">View Party</a>/<a href="/parties/stream-party">Stream Party</a>
+<% if(parties.length == 0) { %>
+	<h1>Sorry no parties found!</h1>
+<% } else { %>
+	<% for(var i = 0; i < parties.length; i++) { %>
+		<li>Date: <%= parties[i][0] %> <%= parties[i][1] %> <a href="/parties/<%= parties[i][2] %>">View Party</a>/<a href="/parties/stream-party/<%= parties[i][2] %>">Stream Party</a>
+	<% } %>
+<% } %>
 <%- include ../template/footer %>

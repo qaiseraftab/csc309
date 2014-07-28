@@ -46,5 +46,22 @@ module.exports = {
 			if (err) throw err;
 			callback(result);
 		});					
+	},
+	user: function(id, callback) {
+		var query = "SELECT * FROM parties WHERE host = ?";
+		var result = [];
+		mysql_conn.query(query, [id], function(err, rows, fields) {
+			console.log(rows);
+			if (err) throw err;
+			var result = [];
+			for (i=0; i < rows.length; i++) {
+				var data = [];
+				data.push(rows[i].start_date);				
+				data.push(rows[i].name);
+				data.push(rows[i].id);
+				result.push(data);
+			}
+			callback(result);
+		});
 	}
 };

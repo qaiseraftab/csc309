@@ -40,11 +40,19 @@ router.get('/streaming', function(req, res) {
 
 /* GET user parties */
 router.get('/my-parties', function(req, res) {
-	res.render('parties/my-parties');
+	if(req.user) {	
+		Parties.user(req.user.id, function(result) {
+			res.render('parties/my-parties', { 
+				parties : result	
+			});
+		});
+	} else {
+		res.redirect("/redirect");	
+	}
 });
 
 /* GET stream party page */
-router.get('/stream-party', function(req, res) {
+router.get('/stream-party/:id(\\d+)', function(req, res) {
 	res.render('parties/stream-party');
 });
 
