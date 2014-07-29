@@ -2,6 +2,7 @@
 var router = express.Router();
 var Parties = require('../models/parties.js');
 var Search = require('../models/search.js');
+var mysql_conn = require('../models/__mysql_connector__.js');
 var fs = require('fs');
 //Parties
 
@@ -156,6 +157,7 @@ router.get('/:id(\\d+)', function(req, res) {
 				correct_user = 0;
 			}
 			res.render('parties/show', {
+				party_id: party.id,
 				pname: party.name,
 				host: party.u_username,
 				date: party.start_date,
@@ -178,6 +180,15 @@ router.get('/:id(\\d+)', function(req, res) {
 			});					
 			//return file_names;
 		});
+	});
+});
+
+/* POST rate */
+router.post('/:id(\\d+)/rate', function(req, res) {
+	var sql = "INSERT INTO ratings (rated_by, rated_for, rating) VALUES (?, ?, ?)";
+
+	mysql_conn.query(sql, [req.user.id, req.params.id, req.body.rating], function(err, results) {
+		res.redirect('/parties/' + req.params.id);
 	});
 });
 
