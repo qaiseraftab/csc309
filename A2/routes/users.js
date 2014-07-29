@@ -30,9 +30,9 @@ router.get('/:id(\\d+)/profile', function(req, res) {
 		var hosted_parties, attended_parties;
 
 		user.getHostedParties(function(err, hp) {
-			hosted_parties = hp.length;
+			hosted_parties = (hp === undefined) ? [] : hp.length;
 			user.getAttendedParties(function(err, ap) {
-				attended_parties = ap.length;
+				attended_parties = (ap === undefined) ? [] : ap.length;
 				res.render('users/profile_frag', {
 					user: user,
 					parties_created: hosted_parties,
@@ -46,8 +46,10 @@ router.get('/:id(\\d+)/profile', function(req, res) {
 /* GET activity fragment */
 router.get('/:id(\\d+)/activity', function(req, res) {
 	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
-		res.render('users/activity_frag', {
-
+		user.getAttendedParties(function(err, ap) {
+			res.render('users/activity_frag', {
+				attended_parties: ap
+			});
 		});
 	});
 });
@@ -65,8 +67,12 @@ router.get('/:id(\\d+)/subscribers', function(req, res) {
 
 /* GET portfolio fragment */
 router.get('/:id(\\d+)/portfolio', function(req, res) {
-	res.render('users/portfolio_frag', {
-
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
+		user.getHostedParties(function(err, hp) {
+			res.render('users/portfolio_frag', {
+				hosted_parties: hp
+			});
+		});
 	});
 });
 

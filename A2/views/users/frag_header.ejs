@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+		<link rel="stylesheet" href="/styles/reset.css">
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
+		<!-- Raty -->
+		<link href="/raty/jquery.raty.css" rel="stylesheet">
+		<script src="/raty/jquery.raty.js"></script>
+		<script>
+			function raty_update() {
+				$('.rating').html("").raty({
+					score: function() {
+						return $(this).attr('data-score');
+					},
+					readOnly: function() {
+						return $(this).hasClass('read-only');
+					}
+				});
+			}
+			$(function() {
+				raty_update();
+			});
+		</script>
+	</head>
+	<body>
+
+	

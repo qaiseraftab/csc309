@@ -17,7 +17,9 @@ module.exports = function(db, cb) {
 		'food_provided': { type: 'boolean' },
 		'alcohol': { type: 'boolean' },
 		'parking': { type: 'boolean' },
-		'adult_only': { type: 'boolean' }
+		'adult_only': { type: 'boolean' },
+		'rating': { type: 'number' },
+		'rating_count': { type: 'integer' }
 	},
 	{
 		'collection': 'parties'

@@ -86,9 +86,10 @@ router.get('/my-parties', function(req, res) {
 /* GET stream party page */
 router.get('/stream-party/:id(\\d+)', function(req, res) {
 	if(req.user) { 
-		if(req.user.id == req.params.id) {
+		if(req.user.id == req.params.id) { 
 			res.render('parties/stream-party', {
-				correct : 1			
+				correct : 1,
+				hostid : req.user.id		
 			});
 		} else {
 			res.render('parties/stream-party', {
@@ -97,7 +98,7 @@ router.get('/stream-party/:id(\\d+)', function(req, res) {
 		}
 	} else {
 		res.render('/redirect');
-	}
+	} 
 });
 
 /* GET party search engine results */
@@ -129,7 +130,7 @@ router.get('/:id(\\d+)', function(req, res) {
 				capacity: party.capacity,
 				ended: 0,
 				parties: result,
-				id: req.param('id')
+				hostid: req.param('id')
 			});
 		});
 	});
