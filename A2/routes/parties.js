@@ -49,7 +49,7 @@ router.post('/create', function(req, res, cb) {
 			file_names = [];
 		}
 		for (var i = 1; i <= num_files.length; i++) {
-			fs.rename("../public/temp_uploads/" + num_files[i-1], new_dir + "/" + (i + (file_names.length)) + "." + num_files[i-1].split('.').pop(), function(err) {
+			fs.rename("../public/temp_uploads/" + num_files[i-1], new_dir + "/" + (id + "_" + i) + "." + num_files[i-1].split('.').pop(), function(err) {
 				if (err) throw err;
 			});
 		}

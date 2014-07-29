@@ -34,12 +34,12 @@ module.exports = {
 		console.log(s_date);
 
 		var query_params = [
-			params.pname, 
+			params.pname,
 			user, //TODO: Find way to determine host ID 
 			params.capacity, 
 			params.address,
 			params.city,
-			params.prov,
+			params.province,
 			params.longitude,
 			params.latitude,
 			s_date,
@@ -60,28 +60,42 @@ module.exports = {
 		}
 		if (params.uploaded_values != undefined) {
 			var upload_extensions = params.uploaded_values.toString().split(',');
-			var upload_query = "INSERT INTO uploads (extension, owner) VALUES (?,?)";
-			var album_query = "INSERT INTO user_album (owner, picture) VALUES(?,?) ON DUPLICATE KEY UPDATE picture = picture +" + upload_extensions.length;
+			var upload_query = "INSERT INTO uploads (extension, owner, picture_name) VALUES (?,?,?)";
 		}
+		var this_pid;
+		
+		function getPid(sql, callback) {
+			mysql_conn.query(sql, function(error, results, fields) {
+				if (error) {
+				}
+				if (results.length > 0) {
+					console.log(results);
+					callback(results);
+				}
+			});
+		} 
+		
+		getPid("SELECT MAX(id) AS pid FROM parties", function(results) {
+			if (results != undefined)
+				this_pid = results[0].pid;
+			else this_pid = 0;
+		});
 		
 		mysql_conn.query(query, query_params, function(err, result) {
 			if (err) throw err;
+			
 			if (params.uploaded_values != undefined) {
-				mysql_conn.query(album_query, [user, upload_extensions.length], function(err, result) {
-					if (err) throw err;
-					for (var i = 0; i < upload_extensions.length; i++) {
-						var upload_query_params = [upload_extensions[i].split('.').pop(), user]
-						mysql_conn.query(upload_query, upload_query_params, function(err, result) {
-							if (err) {
-								console.log(err.message);
-							}
-						}.bind(mysql_conn, i));
-					}
-				});
+				for (var i = 0; i < upload_extensions.length; i++) {
+					var upload_query_params = [upload_extensions[i].split('.').pop(), user, (this_pid + 1) + "_" + (i + 1)]
+					mysql_conn.query(upload_query, upload_query_params, function(err, result) {
+						if (err) {
+							console.log(err.message);
+						}
+					}.bind(mysql_conn, i));
+				}
 			}
 			callback(result.insertId);
 		});
-
 	},
 	
 	completed: function(id, callback) {
@@ -91,6 +105,8 @@ module.exports = {
 			callback(result);
 		});					
 	},
+	
+	
 	
 	user: function(id, callback) {
 		var query = "SELECT * FROM parties WHERE host = ?";
