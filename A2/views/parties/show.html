@@ -1,7 +1,25 @@
 <%- include ../template/header %>
 	<link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
  	<script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script>
+    <!-- Raty -->
+	<link href="/raty/jquery.raty.css" rel="stylesheet">
+	<script src="/raty/jquery.raty.js"></script>
+	<script>
+		function raty_update() {
+			$('.rating').html("").raty({
+				score: function() {
+					return $(this).attr('data-score');
+				},
+				readOnly: function() {
+					return $(this).hasClass('read-only');
+				}
+			});
+		}
+		$(function() {
+			raty_update();
+		});
+	</script>
+	<script>
       function initialize() {
         var map_canvas = document.getElementById('map_canvas');
         var map_options = {
@@ -99,8 +117,8 @@
 	</section>
 	<section class="side-bar" >
 		<div class="party-rating">
-			<img src="/images/Anonymous_one_star_rating.png">
-			<p>(13 Ratings)</p>
+			<div class = "rating read-only" data-score="<%= rating %>"><%= rating %></div>
+			<p>(<%=rating_count%> Ratings)</p>
 		</div>
 		<div class="similar-parties">
 			<h2>Similar Parties</h2>

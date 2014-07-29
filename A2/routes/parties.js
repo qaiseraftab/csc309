@@ -171,7 +171,9 @@ router.get('/:id(\\d+)', function(req, res) {
 				parties: result,
 				hostid: req.param('id'),
 				images: imagess,
-				correct_user: correct_user
+				correct_user: correct_user,
+				rating: party.rating,
+				rating_count: party.rating_count
 			});					
 			//return file_names;
 		});
