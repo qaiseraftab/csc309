@@ -162,10 +162,10 @@ router.get('/:id(\\d+)', function(req, res) {
 			}
 			res.render('parties/show', {
 				pname: party.name,
-				host: party.username,
+				host: party.u_username,
 				date: party.start_date,
 				description: party.description,
-				location: party.location,
+				location: party.address + " " + party.city + ", " + party.province,
 				capacity: party.capacity,
 				ended: 0,
 				parties: result,
@@ -173,7 +173,9 @@ router.get('/:id(\\d+)', function(req, res) {
 				images: imagess,
 				correct_user: correct_user,
 				rating: party.rating,
-				rating_count: party.rating_count
+				rating_count: party.rating_count,
+				latitude: party.latitude,
+				longitude: party.longitude
 			});					
 			//return file_names;
 		});
