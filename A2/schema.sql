@@ -8,7 +8,7 @@
 -- PHP Version: 5.5.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET time_zone = "-05:00";
 
 --
 -- Database: `house_party_finder`
@@ -19,6 +19,12 @@ SET time_zone = "+00:00";
 --
 -- Table structure for table `activities`
 --
+
+
+CREATE DATABASE house_party_finder;
+
+USE house_party_finder;
+
 
 CREATE TABLE `activities` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
