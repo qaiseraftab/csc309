@@ -47,6 +47,7 @@ socketServer.broadcast = function(data, opts) {
 	}
 };
 /*Recieve images from party host*/
+var Multiplexer = require('websocket-multiplexer');
 var http = require("http");
 var connect = require("connect");
 var serveStatic=require('serve-static');
@@ -56,20 +57,37 @@ var server;
 var wsServer;
 var serve=serveStatic('public');
    
-    server = http.createServer(serve);
-    wsServer = new WebSocketServer({
+server = http.createServer(serve);
+wsServer = new WebSocketServer({
     server: server
 });
 
+/* Channels attempt
+wsServer.on('connection', function (ws) {
+
+    var multiplex = new Multiplexer({ socket: ws });
+    var channel = multiplex.channel('14');
+    console.log("connection established ");
+    //channel.on("message",function(message, flags) {
+    channel.addEventListener('message', function (message) {
+	//var message = evt.data;
+    	console.log('+: Received message: ' + message);
+    	//ws.send(message, flags);
+	channel.send(message, {binary:true});
+    	//socketServer.broadcast(message, {binary:true});
+    });
+}); */
+
 wsServer.on("connection", function(ws) {
     console.log("connection established ");
-ws.on("message", function(message, flags) {
-    //console.log("message received:");
-    //ws.send(message, flags);
-    socketServer.broadcast(message, {binary:true});
+    ws.on("message", function(message, flags) {
+    	//console.log("message received:");
+    	//ws.send(message, flags);
+    	socketServer.broadcast(message, {binary:true});
     });
 });
+
 server.listen(STREAM_PORT);
 
-console.log('Listening for video from host on http://127.0.0.1:'+STREAM_PORT+'/<secret>/<width>/<height>');
+console.log('Listening for video from host on http://127.0.0.1:'+STREAM_PORT);
 console.log('Awaiting WebSocket connections on ws://127.0.0.1:'+WEBSOCKET_PORT+'/');

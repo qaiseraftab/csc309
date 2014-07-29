@@ -24,5 +24,6 @@
     "ws": "0.4.31",
     "connect": "^3.1.0",
     "serve-static": "^1.4.0",
+    "websocket-multiplexer":"0.0.6"
   }
 }
