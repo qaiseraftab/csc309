@@ -1,9 +1,10 @@
+<%- include ./frag_header %>
 <style>
 	.subscriber-entry {
 		display: inline-block;
-		margin: 0.4em;
-		padding: 0.4em;
-		border-radius: 0.4em;
+		margin: 0.6em;
+		padding: 0.6em;
+		border-radius: 0.6em;
 		background-color: white;
 		width: 27.5%;
 	}
@@ -17,6 +18,10 @@
 		display: block;
 		margin-left: 112px;
 		width: auto;
+	}
+
+	.subscriber-entry p {
+		margin-top: 0.6em;
 	}
 
 	/* ignore below, erase */
@@ -39,11 +44,11 @@
 			<img src="/images/homepage-images/1_copy(1).JPG">
 			<div class="entry-description">
 				<div class="title-block">
-					<a href="#"><%= user.username %></a>
+					<a href="/users/<%= user.id %>"><%= user.username %></a>
 				</div>
 				<div class="rating-block">
-					<img src="/images/Anonymous_one_star_rating.png" width="120">
-					<span>(N)</span>
+					<span class="rating read-only" data-score="<%= user.rating %>"><%= user.rating %></span>
+					<span>(<%= user.rating_count %>)</span>
 				</div>
 				<div class="clear"></div>
 				<p>
@@ -54,3 +59,4 @@
 		</div>
 	<% } %>
 <% } %>
+<%- include ./frag_footer %>
