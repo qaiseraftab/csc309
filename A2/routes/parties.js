@@ -160,7 +160,7 @@ router.get('/:id(\\d+)', function(req, res) {
 				host: party.u_username,
 				date: party.start_date,
 				description: party.description,
-				location: party.address + " " + party.city + ", " + party.province,
+				location: party.address + ", " + party.city + ", " + party.province,
 				capacity: party.capacity,
 				ended: party.ended,
 				parties: result,
