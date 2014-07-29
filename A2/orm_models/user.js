@@ -6,7 +6,9 @@ module.exports = function(db, cb) {
 		'join_date': { type: 'date' },
 		'address': { type: 'text' },
 		'latitude': { type: 'number' },
-		'longitude': { type: 'number' }
+		'longitude': { type: 'number' },
+		'rating': { type: 'number' },
+		'rating_count': { type: 'integer' }
 	},
 	{
 		'collection': 'users'
