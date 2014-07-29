@@ -94,17 +94,6 @@ DELIMITER ;
 
 -- --------------------------------------------------------
 
---
--- Table structure for table `party_album`
---
-
-CREATE TABLE `party_album` (
-  `owner` int(11) unsigned NOT NULL,
-  `picture` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`owner`,`picture`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
 
 --
 -- Table structure for table `ratings`
@@ -156,6 +145,7 @@ CREATE TABLE `uploads` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `posted_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `owner` int(11) unsigned NOT NULL,
+  `picture_name` varchar(8) NOT NULL,
   `extension` varchar(4) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
@@ -186,16 +176,6 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
-
---
--- Table structure for table `user_album`
---
-
-CREATE TABLE `user_album` (
-  `owner` int(11) unsigned NOT NULL,
-  `picture` int(11) unsigned NOT NULL,
-  PRIMARY KEY (`owner`,`picture`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Constraints for dumped tables
