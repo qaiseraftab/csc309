@@ -126,10 +126,8 @@ router.get('/:id(\\d+)', function(req, res) {
 		console.log(party);
 		Search.find(party.name, 4, req.param('id') , function(result) {
 			var photo_dir = __dirname + '/../public/uploads/'+party.host;
-			console.log(photo_dir);
-			var imagess = [];
+			var images = [];
 			var file_names = fs.readdirSync(photo_dir);
-			console.log(1);
 			/*fs.readdir(photo_dir, function(err, files) {
 				console.log(1);
 				if (!err) { 
@@ -138,18 +136,15 @@ router.get('/:id(\\d+)', function(req, res) {
 				}
 				else console.log(err);
 			});*/
-			console.log(2);
-			console.log(file_names);
 			if (file_names != undefined) {
 				var patt = new RegExp(req.param('id')+"_");
 				for(var i=0; i < file_names.length; i++) {
 					console.log(file_names[i]);
 					if(patt.test(file_names[i])) {
-						imagess.push(file_names[i]);					
+						images.push(file_names[i]);					
 					}				
 				}			
 			}
-			console.log(imagess);
 			var correct_user;
 			if(req.user) {
 				if (req.user.id == party.host) {
@@ -167,11 +162,15 @@ router.get('/:id(\\d+)', function(req, res) {
 				description: party.description,
 				location: party.address + " " + party.city + ", " + party.province,
 				capacity: party.capacity,
-				ended: 0,
+				ended: party.ended,
 				parties: result,
 				hostid: req.param('id'),
-				images: imagess,
+				images: images,
 				correct_user: correct_user,
+				food_provided: party.food_provided,
+				alcohol: party.alcohol,
+				parking: party.parking,
+				adult_only: party.adult_only,
 				rating: party.rating,
 				rating_count: party.rating_count,
 				latitude: party.latitude,
