@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<script src="encode.js"></script>
+</head>
+
+<body>
+
+<div>
+    
+   <img alt="Smiley face" id="image" height="240" width="320" > 
+   </div>
+ 
+ <script type="text/javascript">
+	var socket = new WebSocket('ws://192.168.0.12:8084');
+	socket.binaryType = 'arraybuffer';
+
+try {
+    socket.onopen = function() {
+      
+    }
+
+    socket.onmessage = function(msg) {
+        var arrayBuffer = msg.data;
+        var bytes = new Uint8Array(arrayBuffer);
+
+        var image = document.getElementById('image');
+        image.src = 'data:image/jpeg;base64,'+encode(bytes);
+    }
+
+    socket.onclose = function(){
+     }
+} catch(exception) {
+    alert('Error:'+exception);
+}
+ 	
+  </script>
+
+
+</body>
+
+</html>
