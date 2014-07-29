@@ -15,16 +15,16 @@ module.exports = {
 		var patt = new RegExp("12:[0-5][0-9]");
 		if(AmPm == "12.00") {
 			if(patt.test(time)) {
-				var s_date = params.date + " " + params.time + ":00"; 
+				var s_date = params.date.replace(/\//g, "-") + " " + params.time + ":00"; 
 			} else {
 				var newtime = (Number(params.time.replace(":", ".")) + Number(AmPm)).toFixed(2).replace(".", ":");
-				var s_date = params.date + " " + newtime  + ":00";
+				var s_date = params.date.replace(/\//g, "-") + " " + newtime  + ":00";
 			}
 		} else {
 			if(time == "12:00") {
-				var s_date = params.date + " 00:00:00";
+				var s_date = params.date.replace(/\//g, "-") + " 00:00:00";
 			} else {
-				var s_date = params.date + " " + params.time + ":00";
+				var s_date = params.date.replace(/\//g, "-") + " " + params.time + ":00";
 			}
 		}
 		var query = "INSERT INTO parties (name, host, capacity, address, city, province, latitude, longitude, start_date, description, streaming, private, food_provided, alcohol, parking, adult_only) VALUES (?,?,?,?,?,?,?,?,STR_TO_DATE(?,'%m-%d-%Y %H:%i:%s'),?,?, ?, ?, ?, ?, ?)";
