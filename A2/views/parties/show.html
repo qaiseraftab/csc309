@@ -39,7 +39,11 @@
 	<section class="party-info" >
 		<div class="name-host-pic-status">
 			<div class="name-host-pic">
-				<img src="/images/homepage-images/1_copy(1).JPG" />
+				<% if(images.length > 0) { %>
+					<img src="/uploads/1/<%= images[0] %>">
+				<% } else { %>
+					<img src="/images/homepage-images/1_copy(1).JPG" />
+				<% } %>
 				<h1 name="pname"><%= pname %></h1>
 				<h2>Hosted by <%= host %></h2>
 				<h2 name="date">Date: <%= date %></h2>
@@ -47,24 +51,29 @@
 			<% if(ended == 0) { %>
 				<h3 class="completed">This party has not been completed!</h3>
 				<!-- <form action="/parties/completed" method="post"> -->
+				<% if(correct_user) { %>
 					<button id="party-completed" class="button" type="submit">Completed?</button>
 				<!-- </form>-->
+				<% } %>
 			<% } else { %>
 				<h3 class="completed" style="background-color: red">This party has been completed!</h3>
 				<!-- <form action="/parties/completed" method="post"> -->
+				<% if(correct_user) { %>
 					<button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
+				<% } %>
 				<!-- </form>-->
 			<% } %>
 		</div>
 		<div class="album">
-			<h2>Party Album</h2>
-			<!-- Fotorama -->
-			<div class="fotorama">
-			 	<img src="/images/party/1.jpg">
-			 	<img src="/images/party/2.jpg">
-			 	<img src="/images/party/3.jpg">
-			 	<img src="/images/party/4.jpg">
-			</div>
+			<% if(images.length > 0) { %>
+				<h2>Party Album</h2>
+				<!-- Fotorama -->
+				<div class="fotorama">
+					<% for(var i = 0; i < images.length; i++) { %>
+				 		<img src="/uploads/1/<%= images[i] %>">
+					<% } %>
+				</div>
+			<% } %>
 		</div>
 		<div class="party-description">
 			<h2>Party Description</h2>
@@ -103,7 +112,7 @@
 				<% for(var i = 0; i < parties.length; i++) { %>
 					<a href="<%= parties[i][5] %>">
 						<div class="div-similar-party">
-							<img src="/images/homepage-images/1_copy(1).JPG">
+							<img src="/uploads/<%= parties[i][6] %>/1.JPG">
 							<div class="div-similar-party-description">
 								<p><%= parties[i][0] %></p>
 								<p class="party-date"><%= parties[i][1] %></p>
