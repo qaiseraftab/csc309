@@ -106,10 +106,28 @@
 			<div class="clear"></div>
 			<div class="party-description-text">
 				<p name="party-description"><%= description %></p>
-				<p name="location">Address: <%= location %></p>
-				<p name="capacity">Capacity: <%= capacity %> <br />
-				 Things to bring: None- All materials provided <br />
-				 Food Provided: YES
+				<p name="location">Address: <%= location %></p>	
+				<p name="capacity">Capacity: <%= capacity %> <br /><br />
+				<% if(food_provided) { %>
+				 	<p>Food Provided: YES</p>
+				<% } else { %>
+					<p>Food Provided: NO</p>
+				<% } %>
+				<% if(alcohol) { %>
+				 	<p>Alcohol Provided: YES</p>
+				<% } else { %>
+					<p>Alcohol Provided: NO</p>
+				<% } %>
+				<% if(parking) { %>
+				 	<p>Parking Provided: YES</p>
+				<% } else { %>
+					<p>Parking Provided: NO</p>
+				<% } %>
+				<% if(adult_only) { %>
+				 	<p>Adults Only: YES</p>
+				<% } else { %>
+					<p>Adults Only: NO</p>
+				<% } %>
 				</p>
 			</div>
 			<div id="map_canvas"></div>
