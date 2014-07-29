@@ -68,8 +68,11 @@ orm_db.on('connect', function(err) {
 
         //Set up authentication strategy once ORM models are set up
         passport.use(new LocalStrategy(
-            function(username, password, done) {
-                User.one({ 'username': username }, function(err, user) {
+            {
+                usernameField: 'email'
+            },
+            function(email, password, done) {
+                User.one({ 'email': email }, function(err, user) {
                     if (err) {
                         done(null, false, { message: 'Server error.' });
                     }
