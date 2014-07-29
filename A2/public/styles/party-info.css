@@ -122,6 +122,7 @@
 	text-align:left;
 }
 .live-stream img{
+	height:100%;
 	width:100%;
 }
 .side-bar{

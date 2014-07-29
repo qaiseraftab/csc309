@@ -2,7 +2,7 @@
 
 <%- include ../template/nav %>
 <div>
-<% if(correct) { %>
+<% if(!correct) { %>
     <p id="not-supported" style="display:none">Sorry your browser does not support getUserMedia or it is disabled</p>
     <button id="start">Start streaming</button><br>
     <video id="live" width="320" height="240" autoplay style="display: inline;background-color:black"></video>
@@ -42,8 +42,13 @@
 
 			}
 
-			var ws = new WebSocket("ws://localhost:8082/<%= hostid %>");
-
+			var ws = new WebSocket("ws://localhost:8082/");
+			/* Channel attempt
+			var multiplexer = new Multiplexer({socket : ws });
+			var channel = multiplexer.channel('<%= hostid %>');
+			
+			channel.onopen = function () {
+			*/
 			ws.onopen = function () {
 				console.log("Openened connection to websocket");
 				//ws.send("hello");

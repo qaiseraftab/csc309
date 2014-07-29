@@ -89,15 +89,16 @@ router.get('/stream-party/:id(\\d+)', function(req, res) {
 		if(req.user.id == req.params.id) { 
 			res.render('parties/stream-party', {
 				correct : 1,
-				hostid : req.user.id		
+				hostid : req.params.id	
 			});
 		} else {
 			res.render('parties/stream-party', {
-				correct : 0
+				correct : 0,
+				hostid : req.params.id
 			});
 		}
 	} else {
-		res.render('/redirect');
+		res.render('redirect');
 	} 
 });
 

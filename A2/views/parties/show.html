@@ -81,8 +81,8 @@
 		</div>
 		<div class="live-stream">
 			<h2>Live Streaming</h2>
-			<div>
-			   <img alt="Stream is DISABLED for this party. Sorry!" id="image" height="240" width="320" > 
+			<div style="background-color:black">
+			   <img alt="Smiley face" id="image" height="240" width="320" > 
 			</div>
 		</div>					
 		
@@ -153,20 +153,24 @@
 	    }
 	    return output;
 	}
-	var socket = new WebSocket('ws://127.0.0.1:8084/<%= hostid %>');
+	var socket = new WebSocket('ws://127.0.0.1:8084/');
 	socket.binaryType = 'arraybuffer';
 
+	/* Channel attempt
+	var multiplexer = new Multiplexer({socket : socket });
+	var channel = multiplexer.channel('<%= hostid %>');
+	*/
+	
 	try {
-	    	socket.onopen = function() {}
-
+    	 	socket.onopen = function() {} 
+	 	/*channel.onmessage = function(msg) { */
 	    	socket.onmessage = function(msg) {
 			var arrayBuffer = msg.data;
 			var bytes = new Uint8Array(arrayBuffer);
 
 			var image = document.getElementById('image');
 			image.src = 'data:image/jpeg;base64,'+encode(bytes);
-	    	}
-
+	    	} 
 		socket.onclose = function(){}
 	} catch(exception) {
 	    alert('Error:'+exception);
