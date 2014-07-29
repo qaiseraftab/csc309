@@ -18,7 +18,7 @@
 		<input type = "hidden" name = "latitude" id = "latitude">
         <span style="padding-bottom:5px;">
             <label class="pad10">Province: </label>
-            <select class="fr" id="province" name="prov" onChange = "clearCity(); codeAddress()" style="margin-bottom:8px; padding-bottom:1px; padding-top:1px;" >
+            <select class="fr" id="province" name="province" onChange = "clearCity(); codeAddress()" style="margin-bottom:8px; padding-bottom:1px; padding-top:1px;" >
                 <option value="none">Select Province</option>
                 <option value="AB">Alberta</option>
                 <option value="BC">British Columbia</option>
@@ -43,7 +43,12 @@
             <label class="pad10">Location: </label><input type="text" name="address" id="location" onChange = "codeAddress()" class="box1" required placeholder="Enter the address of the party"><br><br>
         </span>
         <span style = "padding-bottom:4px">
-            <label class="pad10">Date: </label><input type="date" name="date" placeholder="mm/dd/yyyy" style="margin-bottom:8px; "><br>
+            <label class="pad10">Date: </label><input type="date" name="date" placeholder="mm-dd-yyyy" style="margin-bottom:8px; "><br>
+        </span>
+	<span style = "padding-bottom:4px">
+            <label class="pad10">Time: </label><input type="text" name="time" pattern="(1[0-2]|0[0-9]):[0-5][0-9]" placeholder="##:##" style="margin-bottom:8px; ">
+		<input type="radio" name="AmPm" value="00.00" required>AM
+		<input type="radio" name="AmPm" value="12.00" required>PM<br>
         </span>
         <span>
             <label class="pad10">Capacity: </label><input type="text" name="capacity" required placeholder="Capacity">
@@ -76,4 +81,4 @@
         <br>
         <button type="submit" class="button" >Submit</button>
     </form>
-<%- include ../template/footer %>
+<%- include ../template/footer %>mm-dd-yyyy
