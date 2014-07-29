@@ -30,8 +30,12 @@
 		margin: 0.2em 0;
 	}
 
-	.activity-entry p {
+	.activity-entry p, p.no-result {
 		margin-top: 0.6em;
+	}
+
+	p.no-result {
+		margin: 0.6em;
 	}
 
 	.clear {
@@ -40,7 +44,7 @@
 </style>
 
 <% if (hosted_parties.length == 0) { %>
-	<p>This user has yet to hold a party.<p>
+	<p class="no-result">This user has yet to hold a party.<p>
 <% } else { %>
 	<ul>
 		<% 
@@ -52,7 +56,7 @@
 				<img src="/images/homepage-images/1_copy(1).JPG">
 				<div class="entry-description">
 					<div class="title-block">
-						<a href="/parties/<%= party.id %>"><%= party.name %></a> (<%= party.start_date %>)
+						<a href="/parties/<%= party.id %>" target="_parent"><%= party.name %></a> (<%= party.start_date %>)
 					</div>
 					<div class="rating-block">
 						<span class="rating read-only" data-score="<%= hosted_parties[i].rating %>"><%= party.rating %></span>
@@ -63,7 +67,7 @@
 						Location: <%= party.address %>, <%= party.city %>, <%= party.province %><br>
 						Description: <%= party.description %>
 					</p>
-					<p><a href="/parties/<%= party.id %>">View details</a></p>		
+					<p><a href="/parties/<%= party.id %>" target="_parent">View details</a></p>		
 				</div>				
 			</li>
 		<% } %>
