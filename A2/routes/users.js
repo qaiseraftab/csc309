@@ -65,8 +65,12 @@ router.get('/:id(\\d+)/subscribers', function(req, res) {
 
 /* GET portfolio fragment */
 router.get('/:id(\\d+)/portfolio', function(req, res) {
-	res.render('users/portfolio_frag', {
-
+	req.orm_db.models.user.one({ 'id' : req.param('id')}, function(err, user) {
+		user.getHostedParties(function(err, hp) {
+			res.render('users/portfolio_frag', {
+				hosted_parties: hp
+			});
+		});
 	});
 });
 
