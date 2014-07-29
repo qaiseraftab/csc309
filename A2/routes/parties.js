@@ -1,7 +1,8 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var Parties = require('../models/parties.js');
 var Search = require('../models/search.js');
+var fs = require('fs');
 //Parties
 
 /* GET featured parties */
@@ -19,8 +20,39 @@ router.get('/new', function(req, res) {
 });
 
 /* POST create party --- from Richard */
-router.post('/create', function(req, res) {
+router.post('/create', function(req, res, cb) {
+	var num_files;
+	fs.readdir('../public/temp_uploads', function(err, files) {
+		if (!err) {
+			num_files = files;
+			return num_files;
+		}
+		else console.log(err);
+	});
 	Parties.create(req.body, req.user.id, function(id) {
+		var new_dir = '../public/uploads/'+req.user.id;
+		fs.mkdir(new_dir, function(err) {
+			if (err) {
+				if (err.code == 'EEXIST') cb (null);
+				else cb(err);
+			} else cb(null);
+		});
+		var file_names;
+		fs.readdir(new_dir, function(err, files) {
+			if (!err) { 
+				file_names = files;
+				return file_names;
+			}
+			else console.log(err);
+		});
+		if (file_names == undefined) {
+			file_names = [];
+		}
+		for (var i = 1; i <= num_files.length; i++) {
+			fs.rename("../public/temp_uploads/" + num_files[i-1], new_dir + "/" + (i + (file_names.length)) + "." + num_files[i-1].split('.').pop(), function(err) {
+				if (err) throw err;
+			});
+		}
 		res.redirect("/parties/" + id);
 	});
 });

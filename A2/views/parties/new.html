@@ -5,7 +5,7 @@
 	<script src="/google_maps_api/google_maps_api.js"></script>
 <%- include ../template/nav %>
 	<label class="feat-head"><h2>Host a new Party</h2></label>
-    <form class="host" role="form" action="/parties/create" method="post" enctype="multiform/form-data">
+    <form class="host" role="form" action="/parties/create" method="post" enctype="multipart/form-data">
         <span>
             <label class="pad10">Party Name: </label><input type="text" name="pname" class="box1" required placeholder="Enter party name"><br><br>
         </span>
@@ -74,6 +74,23 @@
             </span>
         </div>
         <br>
+		<label class="pad10">Upload Pictures: </label><br>
+		<input type="file" name="uploaded" id="uploaded" onChange="getName();" multiple></input>
+		<input type="hidden" name = "uploaded_values" id = "uploaded_values"></input>
+		<script>
+			function getName() {
+				var file_names = document.getElementById("uploaded").files;
+				var one_line = "";
+				for (var i = 0; i < file_names.length; i++){
+					if (i != file_names.length - 1) {
+						one_line += (file_names[i].name + ",");
+					} else {
+						one_line += file_names[i].name;
+					}
+				}
+				document.getElementById("uploaded_values").value = one_line;
+			}
+		</script>
         <button type="submit" class="button" >Submit</button>
     </form>
 <%- include ../template/footer %>

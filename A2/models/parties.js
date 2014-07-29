@@ -10,12 +10,14 @@ module.exports = {
 	},
 	create: function(params, user, callback) {
 		//Insert into parties table --- from Richard
-		var query = "INSERT INTO parties (name, host, capacity, address, latitude, longitude, start_date, description, streaming, private, food_provided, alcohol, parking, adult_only) VALUES (?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?)";
+		var query = "INSERT INTO parties (name, host, capacity, address, city, province, latitude, longitude, start_date, description, streaming, private, food_provided, alcohol, parking, adult_only) VALUES (?,?,?,?,?,?,?,?,?,?,?, ?, ?, ?, ?, ?)";
 		var query_params = [
 			params.pname, 
 			user, //TODO: Find way to determine host ID 
 			params.capacity, 
-			params.address + ", " + params.city + ", " + params.province,
+			params.address,
+			params.city,
+			params.prov,
 			params.longitude,
 			params.latitude,
 			params.date,
@@ -34,12 +36,32 @@ module.exports = {
 				query_params[i] = 0;
 			}
 		}
-
+		if (params.uploaded_values != undefined) {
+			var upload_extensions = params.uploaded_values.toString().split(',');
+			var upload_query = "INSERT INTO uploads (extension, owner) VALUES (?,?)";
+			var album_query = "INSERT INTO user_album (owner, picture) VALUES(?,?) ON DUPLICATE KEY UPDATE picture = picture +" + upload_extensions.length;
+		}
+		
 		mysql_conn.query(query, query_params, function(err, result) {
 			if (err) throw err;
+			if (params.uploaded_values != undefined) {
+				mysql_conn.query(album_query, [user, upload_extensions.length], function(err, result) {
+					if (err) throw err;
+					for (var i = 0; i < upload_extensions.length; i++) {
+						var upload_query_params = [upload_extensions[i].split('.').pop(), user]
+						mysql_conn.query(upload_query, upload_query_params, function(err, result) {
+							if (err) {
+								console.log(err.message);
+							}
+						}.bind(mysql_conn, i));
+					}
+				});
+			}
 			callback(result.insertId);
 		});
+
 	},
+	
 	completed: function(id, callback) {
 		var query = "UPDATE parties SET ended = 1 WHERE id = ?";
 		mysql_conn.query(query, id, function(err, result) {
@@ -47,6 +69,7 @@ module.exports = {
 			callback(result);
 		});					
 	},
+	
 	user: function(id, callback) {
 		var query = "SELECT * FROM parties WHERE host = ?";
 		var result = [];

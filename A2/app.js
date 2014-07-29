@@ -13,7 +13,6 @@ var parties_routes = require('./routes/parties');
 var users_routes = require('./routes/users');
 var passport = require('passport');
 var multer = require('multer');
-
 var app = express();
 
 // view engine setup
@@ -26,7 +25,7 @@ app.use(favicon());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
-app.use(multer({ dest: './upload_temp/'}));
+app.use(multer({ dest:  path.join(__dirname, 'public/temp_uploads')}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
