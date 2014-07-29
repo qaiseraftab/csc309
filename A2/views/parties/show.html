@@ -12,6 +12,13 @@
 				},
 				readOnly: function() {
 					return $(this).hasClass('read-only');
+				},
+				click: function(score) {
+					if ($(this).hasClass('rating-submitter')) {
+						var form = $("form#" + $(this).attr("form-id"));
+						form.find("input[name=rating]").val(score);
+						form.submit();
+					}
 				}
 			});
 		}
@@ -143,8 +150,11 @@
 	</section>
 	<section class="side-bar" >
 		<div class="party-rating">
-			<div class = "rating read-only" data-score="<%= rating %>"><%= rating %></div>
+			<div class = "rating rating-submitter" data-score="<%= rating %>" form-id="rating-form"><%= rating %></div>
 			<p>(<%=rating_count%> Ratings)</p>
+			<form action="/parties/<%= party_id %>/rate" method="post" id="rating-form">
+				<input type="hidden" name="rating" value="0">
+			</form>
 		</div>
 		<div class="similar-parties">
 			<h2>Similar Parties</h2>
