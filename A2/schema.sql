@@ -159,10 +159,10 @@ CREATE TABLE `uploads` (
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
-  `username` varchar(64) NOT NULL,
+  `username` varchar(64) NOT NULL UNIQUE,
   `first_name` varchar(16) NOT NULL,
   `last_name` varchar(32) NOT NULL,
-  `email` varchar(32) NOT NULL,
+  `email` varchar(32) NOT NULL UNIQUE,
   `password` varchar(128) NOT NULL,
   `join_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `address` varchar(256) NOT NULL,
