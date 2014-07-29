@@ -8,7 +8,20 @@ var default_fragment = "profile";
 /* POST register user */
 router.post('/register', function(req, res) {
 	Users.register(req.body, function(id) {
-		res.redirect("/terms-of-use");
+		req.orm_db.models.user.one({ 'id' : id }, function(err, u) {
+			if (u) {
+				req.login(u, function(err) {
+					if (err) {
+					  console.log(err);
+					}
+					return res.redirect('/users/' + id);
+				});
+			}
+			else {
+				res.redirect('/');
+			}
+		});
+		
 	});
 });
 

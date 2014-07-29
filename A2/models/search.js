@@ -27,6 +27,7 @@ module.exports = {
 				data.push(rows[i].capacity.toString());
 				data.push(rows[i].description);
 				data.push(rows[i].id);
+				data.push(rows[i].host);
 				result.push(data);
 			}
 			callback(result);

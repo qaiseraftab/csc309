@@ -22,15 +22,18 @@ router.get('/new', function(req, res) {
 /* POST create party --- from Richard */
 router.post('/create', function(req, res, cb) {
 	var num_files;
-	fs.readdir('../public/temp_uploads', function(err, files) {
+	fs.readdir(__dirname + '/../public/temp_uploads', function(err, files) {
 		if (!err) {
 			num_files = files;
 			return num_files;
 		}
 		else console.log(err);
 	});
+	if (num_files == undefined) {
+		num_files = [];
+	}
 	Parties.create(req.body, req.user.id, function(id) {
-		var new_dir = '../public/uploads/'+req.user.id;
+		var new_dir = __dirname + '/../public/uploads/'+req.user.id;
 		fs.mkdir(new_dir, function(err) {
 			if (err) {
 				if (err.code == 'EEXIST') cb (null);
@@ -49,7 +52,7 @@ router.post('/create', function(req, res, cb) {
 			file_names = [];
 		}
 		for (var i = 1; i <= num_files.length; i++) {
-			fs.rename("../public/temp_uploads/" + num_files[i-1], new_dir + "/" + (id + "_" + i) + "." + num_files[i-1].split('.').pop(), function(err) {
+			fs.rename(__dirname + "/../public/temp_uploads/" + num_files[i-1], new_dir + "/" + (id + "_" + i) + "." + num_files[i-1].split('.').pop(), function(err) {
 				if (err) throw err;
 			});
 		}
@@ -122,6 +125,41 @@ router.get('/:id(\\d+)', function(req, res) {
 	Parties.find(req.param('id'), function(party) {
 		console.log(party);
 		Search.find(party.name, 4, req.param('id') , function(result) {
+			var photo_dir = __dirname + '/../public/uploads/'+party.host;
+			console.log(photo_dir);
+			var imagess = [];
+			var file_names = fs.readdirSync(photo_dir);
+			console.log(1);
+			/*fs.readdir(photo_dir, function(err, files) {
+				console.log(1);
+				if (!err) { 
+					file_names = files;
+					return file_names
+				}
+				else console.log(err);
+			});*/
+			console.log(2);
+			console.log(file_names);
+			if (file_names != undefined) {
+				var patt = new RegExp(req.param('id')+"_");
+				for(var i=0; i < file_names.length; i++) {
+					console.log(file_names[i]);
+					if(patt.test(file_names[i])) {
+						imagess.push(file_names[i]);					
+					}				
+				}			
+			}
+			console.log(imagess);
+			var correct_user;
+			if(req.user) {
+				if (req.user.id == party.host) {
+					correct_user = 1;
+				} else {
+					correct_user = 0;
+				}
+			} else {
+				correct_user = 0;
+			}
 			res.render('parties/show', {
 				pname: party.name,
 				host: party.username,
@@ -131,8 +169,11 @@ router.get('/:id(\\d+)', function(req, res) {
 				capacity: party.capacity,
 				ended: 0,
 				parties: result,
-				hostid: req.param('id')
-			});
+				hostid: req.param('id'),
+				images: imagess,
+				correct_user: correct_user
+			});					
+			//return file_names;
 		});
 	});
 });

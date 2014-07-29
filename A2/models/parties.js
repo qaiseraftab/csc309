@@ -30,8 +30,8 @@ module.exports = {
 			}
 		}
 		var query = "INSERT INTO parties (name, host, capacity, address, city, province, latitude, longitude, start_date, description, streaming, private, food_provided, alcohol, parking, adult_only) VALUES (?,?,?,?,?,?,?,?,STR_TO_DATE(?,'%m-%d-%Y %H:%i:%s'),?,?, ?, ?, ?, ?, ?)";
-		console.log(query);
-		console.log(s_date);
+		//console.log(query);
+		//console.log(s_date);
 
 		var query_params = [
 			params.pname,
@@ -54,7 +54,7 @@ module.exports = {
 
 		for (var i = 0; i < query_params.length; i++) {
 			if (query_params[i] == null) {
-				console.log(query_params[i] + ", " + i);
+				//console.log(query_params[i] + ", " + i);
 				query_params[i] = 0;
 			}
 		}
@@ -112,7 +112,7 @@ module.exports = {
 		var query = "SELECT * FROM parties WHERE host = ?";
 		var result = [];
 		mysql_conn.query(query, [id], function(err, rows, fields) {
-			console.log(rows);
+			//console.log(rows);
 			if (err) throw err;
 			var result = [];
 			for (i=0; i < rows.length; i++) {
