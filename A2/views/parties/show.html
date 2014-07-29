@@ -21,14 +21,22 @@
 	</script>
 	<script>
       function initialize() {
+		var marker;
         var map_canvas = document.getElementById('map_canvas');
+		var pos = new google.maps.LatLng(<%-latitude%>, <%-longitude%>);
         var map_options = {
-          center: new google.maps.LatLng(<%=latitude%>, <%=longitude%>),
-          zoom: 8,
+          center: pos,
+          zoom: 10,
           mapTypeId: google.maps.MapTypeId.ROADMAP
-        }
+        };
         var map = new google.maps.Map(map_canvas, map_options)
-      }
+		marker = new google.maps.Marker({
+			position: pos,
+			map:map,
+			title: "Party Address"
+		});
+		//marker.setPosition(results[0].geometry.location);
+	  }
       google.maps.event.addDomListener(window, 'load', initialize);
     </script>
     
