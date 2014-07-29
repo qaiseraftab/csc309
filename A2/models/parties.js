@@ -2,9 +2,10 @@ var mysql_conn = require('./__mysql_connector__');
 
 module.exports = {
 	find: function(id, callback) {
-		var query = "SELECT * FROM parties p, users u WHERE p.id = ? AND p.host = u.id LIMIT 1";
+		var query = "SELECT * FROM parties p INNER JOIN (SELECT u.id as u_id, u.username as u_username FROM users u) u ON p.host = u.u_id WHERE p.id = ? LIMIT 1";
 		mysql_conn.query(query, [id], function(err, rows) {
 			if (err) throw err;
+			console.log(rows[0]);
 			callback(rows[0]);
 		});
 	},
@@ -39,7 +40,7 @@ module.exports = {
 			params.capacity, 
 			params.address,
 			params.city,
-			params.prov,
+			params.province,
 			params.longitude,
 			params.latitude,
 			s_date,

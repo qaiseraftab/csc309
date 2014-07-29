@@ -23,7 +23,7 @@ module.exports = {
 				var data = [];
 				data.push(rows[i].name);
 				data.push(rows[i].start_date);
-				data.push(rows[i].location);
+				data.push(rows[i].address + " " + rows[i].city + "," + rows[i].province);
 				data.push(rows[i].capacity.toString());
 				data.push(rows[i].description);
 				data.push(rows[i].id);
