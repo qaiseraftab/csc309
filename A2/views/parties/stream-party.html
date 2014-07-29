@@ -42,7 +42,7 @@
 
 			}
 
-			var ws = new WebSocket("ws://localhost:8082/1");
+			var ws = new WebSocket("ws://localhost:8082/<%= hostid %>");
 
 			ws.onopen = function () {
 				console.log("Openened connection to websocket");
