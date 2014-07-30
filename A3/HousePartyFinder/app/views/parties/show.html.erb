@@ -1,0 +1,99 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @party.name %>
+</p>
+
+<p>
+  <strong>Capacity:</strong>
+  <%= @party.capacity %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @party.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @party.city %>
+</p>
+
+<p>
+  <strong>Province:</strong>
+  <%= @party.province %>
+</p>
+
+<p>
+  <strong>Latitude:</strong>
+  <%= @party.latitude %>
+</p>
+
+<p>
+  <strong>Longitude:</strong>
+  <%= @party.longitude %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @party.description %>
+</p>
+
+<p>
+  <strong>Posted date:</strong>
+  <%= @party.posted_date %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @party.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @party.end_date %>
+</p>
+
+<p>
+  <strong>Ended:</strong>
+  <%= @party.ended %>
+</p>
+
+<p>
+  <strong>Featured until:</strong>
+  <%= @party.featured_until %>
+</p>
+
+<p>
+  <strong>Streaming:</strong>
+  <%= @party.streaming %>
+</p>
+
+<p>
+  <strong>Private:</strong>
+  <%= @party.private %>
+</p>
+
+<p>
+  <strong>Food provided:</strong>
+  <%= @party.food_provided %>
+</p>
+
+<p>
+  <strong>Alcohol:</strong>
+  <%= @party.alcohol %>
+</p>
+
+<p>
+  <strong>Parking:</strong>
+  <%= @party.parking %>
+</p>
+
+<p>
+  <strong>Adult only:</strong>
+  <%= @party.adult_only %>
+</p>
+
+<%= link_to 'Edit', edit_party_path(@party) %> |
+<%= link_to 'Back', parties_path %>

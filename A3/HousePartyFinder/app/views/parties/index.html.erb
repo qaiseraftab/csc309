@@ -1,0 +1,61 @@
+<h1>Listing parties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Capacity</th>
+      <th>Address</th>
+      <th>City</th>
+      <th>Province</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+      <th>Description</th>
+      <th>Posted date</th>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Ended</th>
+      <th>Featured until</th>
+      <th>Streaming</th>
+      <th>Private</th>
+      <th>Food provided</th>
+      <th>Alcohol</th>
+      <th>Parking</th>
+      <th>Adult only</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @parties.each do |party| %>
+      <tr>
+        <td><%= party.name %></td>
+        <td><%= party.capacity %></td>
+        <td><%= party.address %></td>
+        <td><%= party.city %></td>
+        <td><%= party.province %></td>
+        <td><%= party.latitude %></td>
+        <td><%= party.longitude %></td>
+        <td><%= party.description %></td>
+        <td><%= party.posted_date %></td>
+        <td><%= party.start_date %></td>
+        <td><%= party.end_date %></td>
+        <td><%= party.ended %></td>
+        <td><%= party.featured_until %></td>
+        <td><%= party.streaming %></td>
+        <td><%= party.private %></td>
+        <td><%= party.food_provided %></td>
+        <td><%= party.alcohol %></td>
+        <td><%= party.parking %></td>
+        <td><%= party.adult_only %></td>
+        <td><%= link_to 'Show', party %></td>
+        <td><%= link_to 'Edit', edit_party_path(party) %></td>
+        <td><%= link_to 'Destroy', party, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Party', new_party_path %>
