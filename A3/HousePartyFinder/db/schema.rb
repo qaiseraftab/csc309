@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140731053829) do
+ActiveRecord::Schema.define(version: 20140731061800) do
 
   create_table "parties", force: true do |t|
     t.string   "name"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(version: 20140731053829) do
     t.boolean  "adult_only"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "host_id"
   end
+
+  add_index "parties", ["host_id"], name: "index_parties_on_host_id"
 
   create_table "ratings", force: true do |t|
     t.integer  "user_id"
