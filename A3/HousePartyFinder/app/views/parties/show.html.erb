@@ -76,7 +76,7 @@
       <div class="name-host-pic">
         <img src="/images/homepage-images/1_copy(1).JPG" />
         <h1 name="pname"><%= @party.name %></h1>
-        <h2>Hosted by WAAHOO</h2>
+        <h2>Hosted by <%= @party.host.username %></h2>
         <h2 name="date">Date: <%= @party.start_date.strftime("%F %r") %></h2>
       </div>
       <% if @party.ended %>
@@ -119,8 +119,8 @@
   </section>
   <section class="side-bar" >
     <div class="party-rating">
-      <div class = "rating rating-submitter" data-score="<%= 3.45 %>" form-id="rating-form"><%= 3.44 %></div>
-      <p>(<%= 4 %> Ratings)</p>
+      <div class = "rating rating-submitter" data-score="<%= @party.rating_score %>" form-id="rating-form"></div>
+      <p>(<%= pluralize(@party.rating_count, "Rating") %>)</p>
       <form action="/parties/<%= @party.id %>/rate" method="post" id="rating-form">
         <input type="hidden" name="rating" value="0">
       </form>

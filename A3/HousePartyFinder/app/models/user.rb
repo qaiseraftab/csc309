@@ -13,4 +13,12 @@ class User < ActiveRecord::Base
   has_many :hosted_parties, :class_name => 'Party', :foreign_key => 'host_id'
   has_many :attendances
   has_many :attended_parties, :through => :attendances, :source => :party
+
+  def rating_score
+  	User.where({ id: self.id }).joins(:hosted_parties).joins(:ratings).average(:score)
+  end
+
+  def rating_count
+  	User.where({ id: self.id }).joins(:hosted_parties).joins(:ratings).count
+  end
 end
