@@ -1,99 +1,132 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+  <link rel="stylesheet" type="text/css" href="/styles/party-info.css" >
+      <!-- Raty -->
+    <link href="/raty/jquery.raty.css" rel="stylesheet">
+    <script src="/raty/jquery.raty.js"></script>
+    <script>
+      function raty_update() {
+        $('.rating').html("").raty({
+          score: function() {
+            return $(this).attr('data-score');
+          },
+          readOnly: function() {
+            return $(this).hasClass('read-only');
+          },
+          click: function(score) {
+            if ($(this).hasClass('rating-submitter')) {
+              var form = $("form#" + $(this).attr("form-id"));
+              form.find("input[name=rating]").val(score);
+              form.submit();
+            }
+          }
+        });
+      }
+      $(function() {
+        raty_update();
+      });
+    </script>
+    <script>
+        function initialize() {
+      var marker;
+          var map_canvas = document.getElementById('map_canvas');
+      var pos = new google.maps.LatLng(<%== @party.latitude %>, <%== @party.longitude %>);
+          var map_options = {
+            center: pos,
+            zoom: 14,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(map_canvas, map_options)
+      marker = new google.maps.Marker({
+        position: pos,
+        map:map,
+        title: "Party Address"
+      });
+      //marker.setPosition(results[0].geometry.location);
+      }
+        google.maps.event.addDomListener(window, 'load', initialize);
+      </script>
+      
+    <!-- jQuery -->
+    <script>
+      $(document).ready(function(){
+        $("#party-completed").on("click", function(e){
+          $.ajax({
+            url:'/parties/completed',
+            type: "POST",
+            data: {page: window.location.pathname.replace("/parties/", "")}
+          });
+          e.preventDefault();
+          $(".completed").css("background-color", "red");
+          $('.completed').html("This party has been completed!");
+          $("#party-completed").attr('disabled', true);
+          $('#party-completed').html("Finished!");
+          $('#party-completed').removeClass('button').addClass('button-completed');
+        });
+      });
+    </script>
+    <!-- Fotorama -->
+    <link href="../fotorama-4.5.1/fotorama.css" rel="stylesheet">
+    <script src="../fotorama-4.5.1/fotorama.js"></script>
+<% end %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @party.name %>
-</p>
+<% content_for :title, @party.name %>
 
-<p>
-  <strong>Capacity:</strong>
-  <%= @party.capacity %>
-</p>
+<section class="party-info" >
+    <div class="name-host-pic-status">
+      <div class="name-host-pic">
+        <img src="/images/homepage-images/1_copy(1).JPG" />
+        <h1 name="pname"><%= @party.name %></h1>
+        <h2>Hosted by WAAHOO</h2>
+        <h2 name="date">Date: <%= @party.start_date.strftime("%F %r") %></h2>
+      </div>
+      <% if @party.ended %>
+        <h3 class="completed" style="background-color: red">This party has been completed!</h3>
+        <button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
+    <% else %>
+        <h3 class="completed">This party has not been completed!</h3>
+        <button id="party-completed" class="button" type="submit">Completed?</button>
+    <% end %>
+    </div>
+    <div class="album">
+        <h2>Party Album</h2>
+        <!-- Fotorama -->
+        <div class="fotorama">
+            <img src="/images/homepage-images/1_copy(1).JPG">
+        </div>
+    </div>
 
-<p>
-  <strong>Address:</strong>
-  <%= @party.address %>
-</p>
-
-<p>
-  <strong>City:</strong>
-  <%= @party.city %>
-</p>
-
-<p>
-  <strong>Province:</strong>
-  <%= @party.province %>
-</p>
-
-<p>
-  <strong>Latitude:</strong>
-  <%= @party.latitude %>
-</p>
-
-<p>
-  <strong>Longitude:</strong>
-  <%= @party.longitude %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @party.description %>
-</p>
-
-<p>
-  <strong>Posted date:</strong>
-  <%= @party.posted_date %>
-</p>
-
-<p>
-  <strong>Start date:</strong>
-  <%= @party.start_date %>
-</p>
-
-<p>
-  <strong>End date:</strong>
-  <%= @party.end_date %>
-</p>
-
-<p>
-  <strong>Ended:</strong>
-  <%= @party.ended %>
-</p>
-
-<p>
-  <strong>Featured until:</strong>
-  <%= @party.featured_until %>
-</p>
-
-<p>
-  <strong>Streaming:</strong>
-  <%= @party.streaming %>
-</p>
-
-<p>
-  <strong>Private:</strong>
-  <%= @party.private %>
-</p>
-
-<p>
-  <strong>Food provided:</strong>
-  <%= @party.food_provided %>
-</p>
-
-<p>
-  <strong>Alcohol:</strong>
-  <%= @party.alcohol %>
-</p>
-
-<p>
-  <strong>Parking:</strong>
-  <%= @party.parking %>
-</p>
-
-<p>
-  <strong>Adult only:</strong>
-  <%= @party.adult_only %>
-</p>
-
-<%= link_to 'Edit', edit_party_path(@party) %> |
-<%= link_to 'Back', parties_path %>
+    <div class="party-description">
+      <h2>Party Description</h2>
+      <div class="clear"></div>
+      <div class="party-description-text">
+        <p name="party-description"><%= @party.description %></p>
+        <p name="location">Address: <%= @party.address + ", " + @party.city + ", " + @party.province %></p> 
+        <p name="capacity">Capacity: <%= @party.capacity %> <br />
+        <p>Food Provided: <%= @party.food_provided ? "YES" : "NO" %></p>
+        <p>Alcohol Provided: <%= @party.alcohol ? "YES" : "NO" %></p>
+        <p>Parking Provided: <%= @party.parking ? "YES" : "NO" %></p>
+        <p>Adults Only: <%= @party.adult_only ? "YES" : "NO" %></p>
+        </p>
+      </div>
+      <div id="map_canvas"></div>
+    </div>
+    <div class="live-stream">
+      <h2>Live Streaming</h2>
+      <div style="background-color:black">
+         <img alt="Smiley face" id="image" height="240" width="320" > 
+      </div>
+    </div>          
+  </section>
+  <section class="side-bar" >
+    <div class="party-rating">
+      <div class = "rating rating-submitter" data-score="<%= 3.45 %>" form-id="rating-form"><%= 3.44 %></div>
+      <p>(<%= 4 %> Ratings)</p>
+      <form action="/parties/<%= @party.id %>/rate" method="post" id="rating-form">
+        <input type="hidden" name="rating" value="0">
+      </form>
+    </div>
+    <div class="similar-parties">
+      <h2>Similar Parties</h2>
+    </div>
+  
+  </section>
