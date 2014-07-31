@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   has_many :out_subscriptions, :class_name => 'Subscription', :foreign_key => 'subscriber_id'
   has_many :out_subscribers, :through => :out_subscriptions, :source => :user
   has_many :hosted_parties, :class_name => 'Party', :foreign_key => 'host_id'
+  has_many :attendances
+  has_many :attended_parties, :through => :attendances, :source => :party
 end
