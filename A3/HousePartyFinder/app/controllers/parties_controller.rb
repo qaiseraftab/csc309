@@ -1,5 +1,5 @@
 class PartiesController < ApplicationController
-  before_action :set_party, only: [:show, :edit, :update, :destroy]
+  before_action :set_party, only: [:show, :edit, :update, :destroy, :rate]
 
   # GET /parties
   def index
@@ -45,6 +45,23 @@ class PartiesController < ApplicationController
     redirect_to parties_url, notice: 'Party was successfully destroyed.'
   end
 
+  # POST /parties/1/rate
+  def rate
+    @rating = Rating.new(rating_params)
+    @rating.user = current_user
+    @rating.party = @party
+
+    if @rating.save
+      respond_to do |format|
+        format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { ok: false } }
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_party
@@ -54,5 +71,9 @@ class PartiesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def party_params
       params.require(:party).permit(:name, :capacity, :address, :city, :province, :latitude, :longitude, :description, :posted_date, :start_date, :end_date, :ended, :featured_until, :streaming, :private, :food_provided, :alcohol, :parking, :adult_only)
+    end
+
+    def rating_params
+      params.require(:rating).permit(:score, :comment)
     end
 end

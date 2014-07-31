@@ -15,8 +15,16 @@
           click: function(score) {
             if ($(this).hasClass('rating-submitter')) {
               var form = $("form#" + $(this).attr("form-id"));
-              form.find("input[name=rating]").val(score);
-              form.submit();
+              form.find("input[name=rating\\[score\\]]").val(score);
+              form.trigger('submit.rails');
+              $("#rating-form").on('ajax:success', function(event, data, status, xhr) {
+                if (data.ok) {
+                  $('.rating-submitter').raty('set', {
+                    score: data.score
+                  });
+                  $('.rating-count-text').html(data.count + ((data.count == 1) ? " Rating" : " Ratings"));
+                }
+              });
             }
           }
         });
@@ -120,10 +128,10 @@
   <section class="side-bar" >
     <div class="party-rating">
       <div class = "rating rating-submitter" data-score="<%= @party.rating_score %>" form-id="rating-form"></div>
-      <p>(<%= pluralize(@party.rating_count, "Rating") %>)</p>
-      <form action="/parties/<%= @party.id %>/rate" method="post" id="rating-form">
-        <input type="hidden" name="rating" value="0">
-      </form>
+      <p>(<span class="rating-count-text"><%= pluralize(@party.rating_count, "Rating") %></span>)</p>
+      <%= form_for :rating, url: "/parties/#{@party.id}/rate", html: { id: "rating-form" }, remote: true do |f| %>
+        <%= f.hidden_field :score %>
+      <% end %>
     </div>
     <div class="similar-parties">
       <h2>Similar Parties</h2>
