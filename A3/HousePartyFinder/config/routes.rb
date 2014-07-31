@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
+  get 'register_login' => 'static_pages#register_login'
 
   devise_for :users
   resources :parties

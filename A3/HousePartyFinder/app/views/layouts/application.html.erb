@@ -8,6 +8,8 @@
 	<%= csrf_meta_tags %>
 	<link rel="stylesheet" href="/styles/reset.css">
 	<link rel="stylesheet" href="/styles/main.css">
+	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+	<script src="/google_maps_api/google_maps_api.js"></script>
 	<%= yield :head %>
 
 	<title>House Party Finder<%= content_for?(:title) ? (" --- " + yield(:title)) : "" %></title>
@@ -29,8 +31,7 @@
 						<li>Signed in as <%= link_to current_user.username, edit_user_registration_path %></li>
 						<li><%= link_to "Logout", destroy_user_session_path, method: :delete, class: "login-button button" %></li>
 					<% else %>
-						<%= link_to "Login", new_user_session_path, class: "button" %> 
-						<%= link_to "Sign up", new_user_registration_path, class: "button" %>
+						<%= link_to "Login or Register", "/register_login", class: "button" %>
 					<% end %>
 				</ul>
 			</div>
