@@ -6,4 +6,8 @@ class User < ActiveRecord::Base
 
   has_many :ratings
   has_many :rated_parties, :through => :ratings, :source => :party
+  has_many :subscriptions
+  has_many :subscribers, :through => :subscriptions, :source => :subscriber
+  has_many :out_subscriptions, :class_name => 'Subscription', :foreign_key => 'subscriber_id'
+  has_many :out_subscribers, :through => :out_subscriptions, :source => :user
 end
