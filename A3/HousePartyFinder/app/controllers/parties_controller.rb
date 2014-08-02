@@ -1,5 +1,5 @@
 class PartiesController < ApplicationController
-  before_action :set_party, only: [:show, :edit, :update, :destroy, :rate]
+  before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
 
   # GET /parties
   def index
@@ -54,6 +54,20 @@ class PartiesController < ApplicationController
     if @rating.save
       respond_to do |format|
         format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
+      end
+    else
+      respond_to do |format|
+        format.json { render json: { ok: false } }
+      end
+    end
+  end
+
+  # POST /parties/1/complete
+  def complete
+    @party.ended = true
+    if (current_user == @party.host) && @party.save
+      respond_to do |format|
+        format.json { render json: { ok: true, ended: @party.ended } }
       end
     else
       respond_to do |format|

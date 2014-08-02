@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   devise_for :users
   resources :parties
   post '/parties/:id/rate' => 'parties#rate'
+  patch '/parties/:id/complete' => 'parties#complete'
   resources :users
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -57,19 +57,23 @@
     <!-- jQuery -->
     <script>
       $(document).ready(function(){
-        $("#party-completed").on("click", function(e){
-          $.ajax({
-            url:'/parties/completed',
-            type: "POST",
-            data: {page: window.location.pathname.replace("/parties/", "")}
-          });
-          e.preventDefault();
-          $(".completed").css("background-color", "red");
-          $('.completed').html("This party has been completed!");
-          $("#party-completed").attr('disabled', true);
-          $('#party-completed').html("Finished!");
-          $('#party-completed').removeClass('button').addClass('button-completed');
+        // $("#party-completed").on("click", function(e) {
+        //   $.ajax({
+        //     url:'/parties/completed',
+        //     type: "POST",
+        //     data: {page: window.location.pathname.replace("/parties/", "")}
+        //   });
+        //   e.preventDefault();
+        $("#complete-form").on('ajax:success', function(event, data, status, xhr) {
+          if (data.ok && data.ended) {
+            $(".completed").css("background-color", "red");
+            $('.completed').html("This party has been completed!");
+            $("#party-completed").attr('disabled', true);
+            $('#party-completed').attr("value", "Finished!");
+            $('#party-completed').removeClass('button').addClass('button-disabled');
+          }
         });
+        // });
       });
     </script>
     <!-- Fotorama -->
@@ -92,7 +96,9 @@
         <button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
     <% else %>
         <h3 class="completed">This party has not been completed!</h3>
-        <button id="party-completed" class="button" type="submit">Completed?</button>
+        <%= form_for @party, url: "/parties/#{@party.id}/complete", html: { id: "complete-form" }, remote: true do |f| %>
+            <%= f.submit "Complete", id: "party-completed", class: "button" %>
+        <% end %>
     <% end %>
     </div>
     <div class="album">

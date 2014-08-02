@@ -21,4 +21,8 @@ class User < ActiveRecord::Base
   def rating_count
   	User.where({ id: self.id }).joins(:hosted_parties).joins(:ratings).count
   end
+
+  def join_date
+    self.created_at
+  end
 end
