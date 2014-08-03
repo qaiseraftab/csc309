@@ -6,7 +6,12 @@ Rails.application.routes.draw do
   resources :parties
   post '/parties/:id/rate' => 'parties#rate'
   patch '/parties/:id/complete' => 'parties#complete'
-  resources :users
+  resources :users do
+    get 'profile' => 'users#profile', :as => :profile
+    get 'activity' => 'users#activity', :as => :activity
+    get 'subscribers' => 'users#subscribers', :as => :subscribers
+    get 'portfolio' => 'users#portfolio', :as => :portfolio
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

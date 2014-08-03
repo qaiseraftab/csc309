@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_fragment_user, only: [:profile, :activity, :subscribers, :portfolio]
+  layout "user_fragment", only: [:profile, :activity, :subscribers, :portfolio]
 
   # GET /users
   def index
@@ -45,10 +47,29 @@ class UsersController < ApplicationController
     redirect_to users_url, notice: 'User was successfully destroyed.'
   end
 
+  # GET /users/1/profile
+  def profile
+  end
+
+  # GET /users/1/activity
+  def activity
+  end
+
+  # GET /users/1/subscribers
+  def subscribers
+  end
+
+  # GET /users/1/portfolio
+  def portfolio
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+    def set_fragment_user
+      @user = User.find(params[:user_id])
     end
 
     # Only allow a trusted parameter "white list" through.

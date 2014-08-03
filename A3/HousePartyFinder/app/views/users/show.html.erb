@@ -1,54 +1,99 @@
-<p id="notice"><%= notice %></p>
+<% content_for :head do %>
+  <!-- Fotorama -->
+  <link href="/fotorama-4.5.1/fotorama.css" rel="stylesheet">
+  <script src="/fotorama-4.5.1/fotorama.js"></script>
+  <!-- Raty -->
+  <link href="/raty/jquery.raty.css" rel="stylesheet">
+  <script src="/raty/jquery.raty.js"></script>
+  <script>
+    function raty_update() {
+      $('.rating').html("").raty({
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        readOnly: function() {
+          return $(this).hasClass('read-only');
+        }
+      });
+    }
+    $(function() {
+      raty_update();
+    });
+  </script>
+  <!-- Page style -->
+  <style>
+    #user-page .user-name, #user-page .user-rating {
+      margin-top: 1.4em;
+    }
 
-<p>
-  <strong>Username:</strong>
-  <%= @user.username %>
-</p>
+    #user-page .user-name {
+      float: left;
+    }
 
-<p>
-  <strong>First name:</strong>
-  <%= @user.first_name %>
-</p>
+    #user-page .user-name > img, #user-page .user-name > h1 {
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-<p>
-  <strong>Last name:</strong>
-  <%= @user.last_name %>
-</p>
+    #user-page .user-rating {
+      float: right;
+    }
 
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
-</p>
+    #user-page .user-rating > img, #user-page .user-rating > p {
+      display: inline-block;
+      vertical-align: middle;
+    }
 
-<p>
-  <strong>Join date:</strong>
-  <%= @user.join_date %>
-</p>
+    .user-nav {
+      display: block;
+      margin-top: 1.4em;
+    }
 
-<p>
-  <strong>Address:</strong>
-  <%= @user.address %>
-</p>
+    .user-nav > li {
+      display: inline-block;
+    }
 
-<p>
-  <strong>City:</strong>
-  <%= @user.city %>
-</p>
+    .user-nav > li a {
+      display: block;
+      background-color: navy;
+      color: white;
+      text-decoration: none;
+      padding: 0.4em;
+      border: 2px navy solid;
+    }
 
-<p>
-  <strong>Province:</strong>
-  <%= @user.province %>
-</p>
+    #dynamic-box {
+      display: block;
+      width: 100%;
+      border: 2px navy solid;
+      height: 480px;
+    }
+  </style>
+<% end %>
 
-<p>
-  <strong>Latitude:</strong>
-  <%= @user.latitude %>
-</p>
+<% content_for :title, "User: #{@user.username}" %>
 
-<p>
-  <strong>Longitude:</strong>
-  <%= @user.longitude %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div id="user-page">
+  <div class="fotorama" data-width="100%" data-height="128" data-loop="true" data-autoplay="true" data-nav="thumbs" data-navposition="top">
+    <img src="/images/party/1.jpg">
+    <img src="/images/party/2.jpg">
+    <img src="/images/party/3.jpg">
+    <img src="/images/party/4.jpg">
+  </div>
+  <div class="user-name">
+    <img src="/images/faces/dickson.jpg" width="64" height="64">
+    <h1><%= @user.username %></h1>
+  </div>
+  <div class="user-rating">
+    <div class="rating read-only" data-score="<%= @user.rating_score %>"><%= @user.rating_score %></div> 
+    <p>(<%= pluralize(@user.rating_count, "Ratings") %>)</p>
+  </div>
+  <div class="clear"></div>
+  <ul class="user-nav">
+    <li><a href="/users/<%= @user.id %>/profile" class="dynamic-load" target="dynamic-box">Profile</a></li>
+    <li><a href="/users/<%= @user.id %>/activity" class="dynamic-load" target="dynamic-box">Activity</a></li>
+    <li><a href="/users/<%= @user.id %>/subscribers" class="dynamic-load" target="dynamic-box">Subscribers</a></li>
+    <li><a href="/users/<%= @user.id %>/portfolio" class="dynamic-load" target="dynamic-box">Portfolio</a></li>
+  </ul>
+  <iframe name="dynamic-box" src="/users/<%= @user.id %>/<%= params[:frag] || 'profile' %>" id="dynamic-box"></iframe>
+</div>
