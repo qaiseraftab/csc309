@@ -11,15 +11,16 @@ class User < ActiveRecord::Base
   has_many :out_subscriptions, :class_name => 'Subscription', :foreign_key => 'subscriber_id'
   has_many :out_subscribers, :through => :out_subscriptions, :source => :user
   has_many :hosted_parties, :class_name => 'Party', :foreign_key => 'host_id'
+  has_many :received_ratings, :through => :hosted_parties, :source => :ratings
   has_many :attendances
   has_many :attended_parties, :through => :attendances, :source => :party
 
   def rating_score
-  	User.where({ id: self.id }).joins(:hosted_parties).joins(:ratings).average(:score)
+  	User.where({ id: self.id }).joins(:received_ratings).average(:score)
   end
 
   def rating_count
-  	User.where({ id: self.id }).joins(:hosted_parties).joins(:ratings).count
+  	User.where({ id: self.id }).joins(:received_ratings).count
   end
 
   def join_date
