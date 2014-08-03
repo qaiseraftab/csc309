@@ -5,14 +5,23 @@ var latitude;
 var longitude;
 function initialize() {
   geocoder = new google.maps.Geocoder();
-  var latlng = new google.maps.LatLng(0, 160);
   latitude = document.getElementById('latitude');
+  var lat = parseFloat(latitude.value) || 0;
   longitude = document.getElementById('longitude');
+  var lng = parseFloat(longitude.value) || 160;
+  var latlng = new google.maps.LatLng(lat, lng);
   var mapOptions = {
 	zoom: 0,
 	center: latlng
   }
   map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+  if (!isNaN(parseFloat(latitude.value)) && !isNaN(parseFloat(longitude.value))) {
+  	map.setZoom(15);
+  	marker = new google.maps.Marker({
+  		map: map,
+  		position: latlng
+  	});
+  }
 }
 
 function clearCity () {

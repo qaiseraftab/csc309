@@ -2,6 +2,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :set_fragment_user, only: [:profile, :activity, :subscribers, :portfolio]
   layout "user_fragment", only: [:profile, :activity, :subscribers, :portfolio]
+  before_action :owner_only, only: [:edit, :update, :destroy]
 
   # GET /users
   def index
@@ -70,6 +71,13 @@ class UsersController < ApplicationController
     end
     def set_fragment_user
       @user = User.find(params[:user_id])
+    end
+
+    # Restrict to owner only
+    def owner_only
+      unless @user == current_user
+        redirect_to root_url, notice: "You must be logged in as that user to make this change."
+      end
     end
 
     # Only allow a trusted parameter "white list" through.

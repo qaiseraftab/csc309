@@ -1,6 +1,109 @@
-<h1>Editing user</h1>
+<% content_for :head do %>
+	<link rel="stylesheet" href="/styles/homepage.css">
+	<script>
+		$(function() {
 
-<%= render 'form' %>
+		});
+	</script>
+	<style>
+		#form-block {
+			display: block;
+			float: left;
+			width: 50%;
+			margin-right: 1em;
+			margin-top: 1em;
+		}
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+		#form-block input[type=text] {
+			width: 100%;
+		}
+
+		#map-canvas {
+			width: 300px;
+			height: 300px;
+			float: right;
+			margin-right: 2em;
+			margin-top: 1em;
+		}
+
+		@media (max-width:1000px) {
+			#form-block {
+				width: 95%;
+			}
+
+			#map-canvas {
+				margin-right: 0;
+				float: left;
+			}
+		}
+
+		.field {
+			margin-bottom: 0.7em;
+		}
+	</style>
+<% end %>
+
+<% content_for :title, "Account Settings" %>
+
+<div class="featured-heading">
+	<h2>Updating Your Profile</h2>
+</div>
+
+<div id="form-block">
+	<%= form_for(@user) do |f| %>
+		<div class="field">
+			<%= f.label :first_name %><br>
+			<%= f.text_field :first_name %>
+		</div>
+		<div class="field">
+			<%= f.label :last_name %><br>
+			<%= f.text_field :last_name %>
+		</div>
+		<div class="field">
+			<%= f.label :email %><br>
+			<%= f.text_field :email %>
+		</div>
+		<div class="field">
+			<%= f.label :province %><br>
+			<%= f.select :province, [
+						["-- Select province --", "none"],
+						["Alberta", "AB"],
+						["British Columbia", "BC"],
+						["Manitoba", "MB"],
+						["New Brunswick", "NB"],
+						["Newfoundland and Labrador", "NL"],
+						["Nova Scotia", "NS"],
+						["Ontario", "ON"],
+						["Prince Edward Island", "PE"],
+						["Quebec", "QC"],
+						["Saskatchewan", "SK"],
+						["Northwest Territories", "NT"],
+						["Nunavut", "NU"],
+						["Yukon", "YT"]
+					], {}, id: "province", onChange: "clearCity(); codeAddress()" %>
+		</div>
+		<div class="field">
+			<%= f.label :city %><br>
+			<%= f.text_field :city,
+				id: "city", onChange: "codeAddress()" %>
+		</div>
+		<div class="field">
+			<%= f.label :address %><br>
+			<%= f.text_field :address,
+				id: "location", onChange: "codeAddress()" %>
+		</div>
+
+		<%= f.hidden_field :latitude, id: "latitude" %>
+		<%= f.hidden_field :longitude, id: "longitude" %>
+
+		<div class="actions">
+			<%= f.submit "Update", :class => "button" %>
+		</div>
+	<% end %>
+</div>
+
+<div id="map-canvas"</div>
+
+<div class="clear"></div>
+
+<%= link_to 'Return to Profile', @user %>
