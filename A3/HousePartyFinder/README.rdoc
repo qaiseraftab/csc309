@@ -1,28 +1,47 @@
-== README
+House Party Finder --- Installation Instructions
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+---
 
-Things you may want to cover:
+1. Open a console window. Do not cd to the HousePartyFinder directory yet.
 
-* Ruby version
+2. Install ImageMagick at http://www.imagemagick.org/script/binary-releases.php
 
-* System dependencies
+3. Install rvm:
 
-* Configuration
+\curl -sSL https://get.rvm.io | bash -s stable
 
-* Database creation
+4 Set the permissions for ~/.rvm to 775:
 
-* Database initialization
+sudo chmod -R 775 ~/.rvm
 
-* How to run the test suite
+5 Install Ruby 1.9.3:
 
-* Services (job queues, cache servers, search engines, etc.)
+sudo rvm install 1.9.3
 
-* Deployment instructions
+6 Create a new gemset under Ruby 1.9.3:
 
-* ...
+rvm use 1.9.3
+rvm gemset create house_party_finder
+rvm gemset use house_party_finder
 
+7. Install Rails 4.1.0:
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+sudo gem install rails 4.1.0
+
+8. Close and re-open the console window.
+
+9. cd into the HousePartyFinder directory.
+
+10. Run bundler:
+
+bundle install
+
+11. Initialize the database:
+
+rake db:migrate
+
+12. You may now start the server:
+
+rails s
+
+13. Visit localhost:3000 to verify the functionality of the server.
