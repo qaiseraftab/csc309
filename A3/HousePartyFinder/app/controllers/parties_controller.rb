@@ -1,5 +1,6 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
+  before_action :set_fragment_party, only: [:attend, :unattend]
 
   # GET /parties
   def index
@@ -76,10 +77,31 @@ class PartiesController < ApplicationController
     end
   end
 
+  # POST /parties/1/attend
+  def attend
+    unless @party.host == current_user || @party.attendees.include?(current_user)
+      @party.attendees << current_user
+      @party.save
+    end
+    redirect_to :back
+  end
+
+  # POST /parties/1/unattend
+  def unattend
+    if @party.attendees.include?(current_user)
+      @party.attendees.delete(current_user)
+      @party.save
+    end
+    redirect_to :back
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_party
       @party = Party.find(params[:id])
+    end
+    def set_fragment_party
+      @party = Party.find(params[:party_id])
     end
 
     # Only allow a trusted parameter "white list" through.

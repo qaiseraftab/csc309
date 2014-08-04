@@ -7,7 +7,10 @@ Rails.application.routes.draw do
   get 'about_us' => 'static_pages#about_us'
 
   devise_for :users
-  resources :parties
+  resources :parties do
+    post 'attend' => 'parties#attend', :as => :attend
+    post 'unattend' => 'parties#unattend', :as => :unattend
+  end
   post '/parties/:id/rate' => 'parties#rate'
   patch '/parties/:id/complete' => 'parties#complete'
   resources :users do
