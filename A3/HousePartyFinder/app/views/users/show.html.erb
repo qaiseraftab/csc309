@@ -87,6 +87,15 @@
   <div class="user-rating">
     <div class="rating read-only" data-score="<%= @user.rating_score %>"><%= @user.rating_score %></div> 
     <p>(<%= pluralize(@user.rating_count, "Ratings") %>)</p>
+    <% if signed_in? && current_user != @user %>
+      <br><br><p>
+        <% if @user.subscribers.include?(current_user) %>
+          <%= link_to "Unsubscribe", user_unsubscribe_path(@user), :method => :post, :class => "button" %>
+        <% else %>
+          <%= link_to "Subscribe", user_subscribe_path(@user), :method => :post, :class => "button" %>
+        <% end %>
+      </p>
+    <% end %>
   </div>
   <div class="clear"></div>
   <ul class="user-nav">

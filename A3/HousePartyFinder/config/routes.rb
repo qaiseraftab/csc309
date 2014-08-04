@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     get 'activity' => 'users#activity', :as => :activity
     get 'subscribers' => 'users#subscribers', :as => :subscribers
     get 'portfolio' => 'users#portfolio', :as => :portfolio
+    post 'subscribe' => 'users#subscribe', :as => :subscribe
+    post 'unsubscribe' => 'users#unsubscribe', :as => :unsubscribe
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

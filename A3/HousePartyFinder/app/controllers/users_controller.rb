@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :set_fragment_user, only: [:profile, :activity, :subscribers, :portfolio]
+  before_action :set_fragment_user, only: [:profile, :activity, :subscribers, :portfolio, :subscribe, :unsubscribe]
   layout "user_fragment", only: [:profile, :activity, :subscribers, :portfolio]
   before_action :owner_only, only: [:edit, :update, :destroy]
 
@@ -62,6 +62,24 @@ class UsersController < ApplicationController
 
   # GET /users/1/portfolio
   def portfolio
+  end
+
+  # POST /users/1/subscribe
+  def subscribe
+    unless @user.subscribers.include?(current_user) || @user == current_user
+      @user.subscribers << current_user
+      @user.save
+    end
+    redirect_to :back
+  end
+
+  # POST /users/1/unsubscribe
+  def unsubscribe
+    if @user.subscribers.include?(current_user)
+      @user.subscribers.delete(current_user)
+      @user.save
+    end
+    redirect_to :back
   end
 
   private
