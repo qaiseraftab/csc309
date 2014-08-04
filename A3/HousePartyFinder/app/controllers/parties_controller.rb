@@ -23,6 +23,7 @@ class PartiesController < ApplicationController
   # POST /parties
   def create
     @party = Party.new(party_params)
+    @party.host = current_user
 
     if @party.save
       redirect_to @party, notice: 'Party was successfully created.'
@@ -106,7 +107,7 @@ class PartiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def party_params
-      params.require(:party).permit(:name, :capacity, :address, :city, :province, :latitude, :longitude, :description, :posted_date, :start_date, :end_date, :ended, :featured_until, :streaming, :private, :food_provided, :alcohol, :parking, :adult_only)
+      params.require(:party).permit(:name, :capacity, :address, :city, :province, :latitude, :longitude, :description, :posted_date, :start_date, :end_date, :ended, :featured_until, :streaming, :private, :food_provided, :alcohol, :parking, :adult_only, :avatar)
     end
 
     def rating_params

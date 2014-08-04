@@ -8,6 +8,12 @@
 		$('#datepick').datepick();
 	});
 	</script>
+	<style>
+		.middle-align-inline {
+			display: inline-block;
+			vertical-align: middle;
+		}
+	</style>
 <% end %>
 
 <% content_for :title, "Host a Party" %>
@@ -70,10 +76,23 @@
 		<br><br>
     </span>
     <span style="clear:both">
+    	<p>
+    		<span class="middle-align-inline">Preview image:</span>
+    		<%= image_tag @party.avatar.url(:thumbnail), :width => 100, :height => 100, :class => "middle-align-inline", :style => "margin-left: 1em;" %>
+    	</p>
+    	<br>
+    	<%= f.label "Change image", :for => :avatar, :class => "pad10" %>
+    	<span style="padding-left:20px">
+    		<%= f.file_field :avatar %>
+    	</span>
+    	<br><br>
+    </span>
+    <span style="clear:both">
     	<%= f.label "Description: ", :for => :description, :class => "pad10" %>
         <span style="padding-left:20px">
         	<%= f.text_area :description, :rows => 8, :class => "box1 ta" %>
         </span>
+        <br><br>
     </span>
     <div style="clear:both">
         <br>
