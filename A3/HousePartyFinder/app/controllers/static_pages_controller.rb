@@ -7,6 +7,18 @@ class StaticPagesController < ApplicationController
   def register_login
   end
 
+  def privacy_policy
+  end
+  
+  def terms_of_use
+  end
+  
+  def site_map
+  end
+  
+  def about_us
+  end
+
   private
 
   def unauthenticated_only

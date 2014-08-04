@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
   get 'register_login' => 'static_pages#register_login'
+  get 'privacy_policy' => 'static_pages#privacy_policy'
+  get 'terms_of_use' => 'static_pages#terms_of_use'
+  get 'site_map' => 'static_pages#site_map'
+  get 'about_us' => 'static_pages#about_us'
 
   devise_for :users
   resources :parties
