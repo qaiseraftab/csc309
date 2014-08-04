@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
   has_many :attendances
   has_many :attended_parties, :through => :attendances, :source => :party
 
+  has_attached_file :avatar, :url => '/system/uploads/avatar_:style_:id.:extension', :path => ":rails_root/public:url", :styles => { :medium => "240x240>", :thumbnail => "64x64>" }, :default_url => "/images/default-avatar.jpg"
+  validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   def rating_score
   	User.where({ id: self.id }).joins(:received_ratings).average(:score)
   end

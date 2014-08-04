@@ -40,6 +40,11 @@
 		.field {
 			margin-bottom: 0.7em;
 		}
+
+		.middle-align-inline {
+			display: inline-block;
+			vertical-align: middle;
+		}
 	</style>
 <% end %>
 
@@ -50,7 +55,20 @@
 </div>
 
 <div id="form-block">
-	<%= form_for(@user) do |f| %>
+
+	<% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	
+	<%= form_for(@user, :html => { :multipart => true }) do |f| %>
 		<div class="field">
 			<%= f.label :first_name %><br>
 			<%= f.text_field :first_name %>
@@ -95,6 +113,15 @@
 
 		<%= f.hidden_field :latitude, id: "latitude" %>
 		<%= f.hidden_field :longitude, id: "longitude" %>
+
+		<div class="field">
+			<span class="middle-align-inline">Current avatar: <%= image_tag @user.avatar.url(:thumbnail), :width => 64, :height => 64, :class => "middle-align-inline" %>
+		</div>
+		
+		<div class="field">
+			<%= f.label "Choose new avatar:", :for => :avatar %>
+			<%= f.file_field :avatar %>
+		</div>
 
 		<div class="actions">
 			<%= f.submit "Update", :class => "button" %>
