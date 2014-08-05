@@ -6,6 +6,8 @@ House Party Finder --- Installation Instructions
 
 2. Install ImageMagick at http://www.imagemagick.org/script/binary-releases.php
 
+2A (Mac Only): If you are on Mac OS X, you must also install xz from http://macpkg.sourceforge.net/
+
 3. Install rvm:
 
 \curl -sSL https://get.rvm.io | bash -s stable
@@ -45,3 +47,23 @@ rake db:migrate
 rails s
 
 13. Visit localhost:3000 to verify the functionality of the server.
+
+---
+
+Updating House Party Finder
+
+1. Open a console window and cd to the HousePartyFinder directory.
+
+2. Run bundler:
+
+bundle update
+
+3. Update the database:
+
+rake db:migrate
+
+4. If the server is not already started, you may now start the server:
+
+rails s
+
+5. Visit localhost:3000 to verify the functionality of the server.
