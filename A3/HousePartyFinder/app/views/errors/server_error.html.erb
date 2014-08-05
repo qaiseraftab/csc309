@@ -1,2 +1,9 @@
-<h1>Errors#server_error</h1>
-<p>Find me in app/views/errors/server_error.html.erb</p>
+<% content_for :head do %>
+	<link rel="stylesheet" href="/styles/homepage.css">
+<% end %>
+
+<% content_for :title, "Server Error!" %>
+<div>
+<h2>The server has experienced an error processing your request.</h2>
+<p>We recomended going to the <a href="/">home page</a> to find what you are looking for.</p>
+</div>
