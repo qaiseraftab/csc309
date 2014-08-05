@@ -49,7 +49,9 @@
 
 	<nav id="main-nav"><ul>
 		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
+		<% if current_user %>
 		<li><a href="/parties/new" class="button">Host a Party</a></li>
+		<% end %>
 		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
 		<% if current_user %>
 			<li><a href="/parties/my-parties" class="button">My parties</a></li>

@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get '/404', :to => 'errors#not_found'
+  get '/422', :to => 'errors#server_error'
+  get '/500', :to => 'errors#server_error'
+
   root 'static_pages#home'
   get 'register_login' => 'static_pages#register_login'
   get 'privacy_policy' => 'static_pages#privacy_policy'
@@ -22,7 +27,7 @@ Rails.application.routes.draw do
     post 'subscribe' => 'users#subscribe', :as => :subscribe
     post 'unsubscribe' => 'users#unsubscribe', :as => :unsubscribe
   end
-
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
