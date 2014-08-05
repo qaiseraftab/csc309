@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805002148) do
+ActiveRecord::Schema.define(version: 20140805004838) do
 
   create_table "album_attachments", force: true do |t|
     t.string   "access_token"
@@ -21,7 +21,10 @@ ActiveRecord::Schema.define(version: 20140805002148) do
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "party_id"
   end
+
+  add_index "album_attachments", ["party_id"], name: "index_album_attachments_on_party_id"
 
   create_table "attendances", force: true do |t|
     t.integer  "user_id"

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :parties do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
+    post 'attach' => 'parties#attach', :as => :attach
   end
   post '/parties/:id/rate' => 'parties#rate'
   patch '/parties/:id/complete' => 'parties#complete'

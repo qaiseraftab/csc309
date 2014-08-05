@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
-  before_action :set_fragment_party, only: [:attend, :unattend]
+  before_action :set_fragment_party, only: [:attend, :unattend, :attach]
 
   # GET /parties
   def index
@@ -96,6 +96,20 @@ class PartiesController < ApplicationController
     redirect_to :back
   end
 
+  # POST /parties/1/attach
+  def attach
+    if @party.host == current_user
+      @album_attachment = AlbumAttachment.new(album_attachment_params)
+      @album_attachment.party = @party
+
+      if @album_attachment.save
+        redirect_to :back
+      else
+        redirect_to root_url
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_party
@@ -112,5 +126,9 @@ class PartiesController < ApplicationController
 
     def rating_params
       params.require(:rating).permit(:score, :comment)
+    end
+
+    def album_attachment_params
+      params.require(:album_attachment).permit(:picture)
     end
 end

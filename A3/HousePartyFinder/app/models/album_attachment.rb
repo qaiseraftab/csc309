@@ -1,6 +1,7 @@
 class AlbumAttachment < ActiveRecord::Base
 	before_create :generate_access_token
 
+	belongs_to :party
 	has_attached_file :picture, :url => '/system/uploads/picture_:style_:access_token.:extension', :path => ":rails_root/public:url", :styles => { :medium => "320x240>", :thumbnail => "160x120>" }, :default_url => "/images/default-picture.jpg"
 	validates_attachment_content_type :picture, :content_type => /\Aimage\/.*\Z/
 

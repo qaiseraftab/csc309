@@ -114,8 +114,16 @@
         <h2>Party Album</h2>
         <!-- Fotorama -->
         <div class="fotorama">
-            <img src="/images/homepage-images/1_copy(1).JPG">
+            <%= @party.album_attachments.each do |album_attachment| %>
+              <%= image_tag album_attachment.picture.url %>
+            <% end %>
         </div>
+        <br>
+        <%= form_for :album_attachment, url: party_attach_path(@party), html: { multipart: true } do |f| %>
+          <%= f.label "Upload a picture:", :for => :picture %><br>
+          <%= f.file_field :picture %>
+          <%= f.submit "Upload", :class => "button" %>
+        <% end %>
     </div>
 
     <div class="party-description">
