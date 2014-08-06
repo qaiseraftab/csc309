@@ -60,6 +60,8 @@ bundle update
 
 3. Update the database:
 
+rake db:drop
+rake db:create
 rake db:migrate
 
 4. If the server is not already started, you may now start the server:
