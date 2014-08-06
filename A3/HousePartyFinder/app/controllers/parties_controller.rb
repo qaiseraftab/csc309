@@ -7,7 +7,7 @@ class PartiesController < ApplicationController
   # GET /parties
   def index
     @q = Party.ransack(params[:q])
-    @parties = @q.result(distinct: true)
+    @parties = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
   end
 
   # GET /parties/1
