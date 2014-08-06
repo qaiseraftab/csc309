@@ -41,7 +41,7 @@ GEM
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
     erubis (2.7.0)
-    excon (0.39.2)
+    excon (0.39.3)
     execjs (2.2.1)
     fog (1.23.0)
       fog-brightbox
@@ -93,6 +93,8 @@ GEM
       activesupport (>= 3.0.0)
       cocaine (~> 0.5.3)
       mime-types
+    polyamorous (1.0.0)
+      activerecord (>= 3.0)
     polyglot (0.3.5)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -113,6 +115,12 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.3.2)
+    ransack (1.2.3)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.0.0)
     rdoc (4.1.1)
       json (~> 1.4)
     sass (3.2.19)
@@ -148,6 +156,7 @@ GEM
       json (>= 1.8.0)
     warden (1.2.3)
       rack (>= 1.0)
+    will_paginate (3.0.7)
 
 PLATFORMS
   ruby
@@ -159,8 +168,10 @@ DEPENDENCIES
   jquery-rails
   paperclip (~> 4.1)
   rails (= 4.1.4)
+  ransack (~> 1.2.3)
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
   sqlite3
   uglifier (>= 1.3.0)
+  will_paginate (~> 3.0)
