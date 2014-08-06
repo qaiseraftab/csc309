@@ -41,4 +41,4 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise', "3.2.4"
 gem 'paperclip', '~> 4.1'
 gem 'fog', '~> 1.23.0'
-
+gem 'ransack', '~> 1.2.3'
