@@ -1,44 +1,47 @@
-<h2>Sign up</h2>
+<% content_for :head do %>
+	<link rel="stylesheet" href="/styles/LogIn.css" >
+<% end %>
+
+<% content_for :title, "Register" %>
+
+<h2 class="sign_in">Register</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <%= f.text_field :email, :placeholder => "Email" %><br />
+  <%= f.text_field :username, :placeholder => "Desired User Name" %><br />
+  <%= f.text_field :first_name, :placeholder => "First Name" %><br />
+  <%= f.text_field :last_name, :placeholder => "Last Name" %><br />
+  <%= f.select :province, [
+			  ["-- Select province --", "none"],
+			  ["Alberta", "AB"],
+			  ["British Columbia", "BC"],
+			  ["Manitoba", "MB"],
+			  ["New Brunswick", "NB"],
+			  ["Newfoundland and Labrador", "NL"],
+			  ["Nova Scotia", "NS"],
+			  ["Ontario", "ON"],
+			  ["Prince Edward Island", "PE"],
+		   	  ["Quebec", "QC"],
+			  ["Saskatchewan", "SK"],
+			  ["Northwest Territories", "NT"],
+			  ["Nunavut", "NU"],
+			  ["Yukon", "YT"]
+		  ], {}, id: "province", onChange: "clearCity(); codeAddress()",
+		  style: "width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;" %><br />
+  <%= f.text_field :city, :placeholder => "City",
+		  id: "city", onChange: "codeAddress()" %><br />
+  <%= f.text_field :address, :placeholder => "Street Address",
+		  id: "location", onChange: "codeAddress()" %><br />
+  <%= f.password_field :password, :placeholder => "Password", autocomplete: "off" %><br />
+  <%= f.password_field :password_confirmation, :placeholder => "Password Confirmation", autocomplete: "off" %><br />
 
-  <div><%= f.label :username %><br />
-  	<%= f.text_field :username, :placeholder => "Desired User Name" %></div>
-
-  <div><%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
-
-  <div><%= f.label :first_name %><br />
-  	<%= f.text_field :first_name, :placeholder => "First Name" %></div>
-
-  <div><%= f.label :last_name %><br />
-  	<%= f.text_field :last_name, :placeholder => "Last Name" %></div>
-  
-  <div><%= f.label :province %><br />
-  	<%= f.select :province, [
-  			["Alberta", "AB"],
-  			["British Columbia", "BC"],
-  			["Manitoba", "MB"],
-  			["New Brunswick", "NB"],
-  			["Newfoundland and Labrador", "NL"],
-  			["Nova Scotia", "NS"],
-  			["Ontario", "ON"],
-  			["Prince Edward Island", "PE"],
-  			["Quebec", "QC"],
-  			["Saskatchewan", "SK"],
-  			["Northwest Territories", "NT"],
-  			["Nunavut", "NU"],
-  			["Yukon", "YT"]
-  		], :placeholder => "Last Name" %></div>
-
-  <div><%= f.submit "Sign up" %></div>
+  <div id="map-canvas"></div>
+  <div id="map-spacing"></div>
+  <%= f.submit "Register", class: "login-button button", style: "width: 100%; cursor: pointer; font-size: 1em;" %>
+  <%= f.hidden_field :longitude, id: "longitude" %>
+  <%= f.hidden_field :latitude, id: "latitude" %>
 <% end %>
 
 <%= render "devise/shared/links" %>

@@ -1,5 +1,17 @@
 /**LogInCSS**/
 
+.sign_in {
+	background-color:#054387;
+	color:white;
+	/*margin:0 0 2% 0;*/
+	padding:.2em .2em;
+	font-family:"Myriad Pro";
+	font-size:1.5em;
+	margin-bottom: 0.3em;
+	font-weight:normal;
+	text-align:left;
+}
+
 .centered {
 	text-align: center;
 }

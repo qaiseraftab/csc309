@@ -1,4 +1,10 @@
-<h2>Sign in</h2>
+<% content_for :head do %>
+	<link rel="stylesheet" href="/styles/LogIn.css" >
+<% end %>
+
+<% content_for :title, "Login Failed" %>
+
+<h2 class="sign_in">Sign in</h2>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div><%= f.label :username %><br />
