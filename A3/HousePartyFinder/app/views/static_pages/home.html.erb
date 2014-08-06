@@ -7,65 +7,55 @@
 <div class="featured-heading">
 	<h2>Sponsored</h2>
 </div>
-<ul class="featured-list"> <!--unordered list for top 4 divs  -->	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/1.JPG" >
-		<h4>Crazy Twenties</h4>
-		<p>Toronto Downtown</p>
-		<p>Attending: 20</p>
-	</div></li>
 
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/2.JPG" >
-		<h4>Fun Night</h4>
-		<p>North York</p>
-		<p>Attending: 15</p>
-	</div></li>
-	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/3.JPG" >
-		<h4>College Reunion</h4>
-		<p>Richmond hill</p>
-		<p>Attending: 23</p>
-	</div></li>
-	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/4.JPG" >
-		<h4>Game Night</h4>
-		<p>Brampton</p>
-		<p>Attending: 8</p>
-	</div></li>
-</ul>
-
+<% if @sponsored_parties.empty? %>
+	<p class = "featured-no-result">&nbsp;&nbsp;No parties are currently being Sponsored.</p><br>
+<%else%>
+	<ul class="featured-list">
+		<% @sponsored_parties.each do |party| %>
+			<li><a href="/parties/#{party.id}"><div class="featured-div">
+				<%= image_tag party.avatar.url(:thumbnail) %>
+				<h4><%= party.name %></h4>
+				<p><%= party.city %>, <%= party.province %></p>
+				<p>Attendance: <%= party.attendees.count %>/<%= party.capacity %></p>
+			</div></a></li>
+		<% end %>
+	</ul>
+	<p>
+		<%= will_paginate %>
+	</p>
+<% end %>
 <div class="featured-heading">				
 	<h2>Hot Parties</h2>
 </div>
-<ul class="featured-list">
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/5.JPG" >
-		<h4>Poker Party</h4>
-		<p>Richmond Hill</p>
-		<p>Attending: 65</p>
-	</div></li>
-	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/6.JPG" >
-		<h4>Movie and Dinner</h4>
-		<p>Toronto Downtown</p>
-		<p>Attending: 12</p>
-	</div></li>
-	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/7.JPG" >
-		<h4>Outdoor Hangout</h4>
-		<p>Missisauga</p>
-		<p>Attending: 19</p>
-	</div></li>
-	
-	<li><div class="featured-div">
-		<img src="/images/homepage-images/8.JPG" >
-		<h4>Music and Dance</h4>
-		<p>Toronto Downtown</p>
-		<p>Attending: 32</p>
-	</div></li>
-</ul>
+
+
+	<ul class="featured-list">
+		<li><div class="featured-div">
+			<img src="/images/homepage-images/5.JPG" >
+			<h4>Poker Party</h4>
+			<p>Richmond Hill</p>
+			<p>Attending: 65</p>
+		</div></li>
+		
+		<li><div class="featured-div">
+			<img src="/images/homepage-images/6.JPG" >
+			<h4>Movie and Dinner</h4>
+			<p>Toronto Downtown</p>
+			<p>Attending: 12</p>
+		</div></li>
+		
+		<li><div class="featured-div">
+			<img src="/images/homepage-images/7.JPG" >
+			<h4>Outdoor Hangout</h4>
+			<p>Missisauga</p>
+			<p>Attending: 19</p>
+		</div></li>
+		
+		<li><div class="featured-div">
+			<img src="/images/homepage-images/8.JPG" >
+			<h4>Music and Dance</h4>
+			<p>Toronto Downtown</p>
+			<p>Attending: 32</p>
+		</div></li>
+	</ul>
