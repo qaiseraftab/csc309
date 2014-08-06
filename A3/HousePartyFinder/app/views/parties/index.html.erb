@@ -1,61 +1,35 @@
-<h1>Listing parties</h1>
+<% content_for :head do %>
+  <link rel="stylesheet" type="text/css" href="/styles/LogIn.css" >
+  <link rel="stylesheet" type="text/css" href="/styles/SearchResult.css" >
+<% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Capacity</th>
-      <th>Address</th>
-      <th>City</th>
-      <th>Province</th>
-      <th>Latitude</th>
-      <th>Longitude</th>
-      <th>Description</th>
-      <th>Posted date</th>
-      <th>Start date</th>
-      <th>End date</th>
-      <th>Ended</th>
-      <th>Featured until</th>
-      <th>Streaming</th>
-      <th>Private</th>
-      <th>Food provided</th>
-      <th>Alcohol</th>
-      <th>Parking</th>
-      <th>Adult only</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
+<% content_for :title, "Searching for #{params[:q]}" %>
 
-  <tbody>
-    <% @parties.each do |party| %>
-      <tr>
-        <td><%= party.name %></td>
-        <td><%= party.capacity %></td>
-        <td><%= party.address %></td>
-        <td><%= party.city %></td>
-        <td><%= party.province %></td>
-        <td><%= party.latitude %></td>
-        <td><%= party.longitude %></td>
-        <td><%= party.description %></td>
-        <td><%= party.posted_date %></td>
-        <td><%= party.start_date %></td>
-        <td><%= party.end_date %></td>
-        <td><%= party.ended %></td>
-        <td><%= party.featured_until %></td>
-        <td><%= party.streaming %></td>
-        <td><%= party.private %></td>
-        <td><%= party.food_provided %></td>
-        <td><%= party.alcohol %></td>
-        <td><%= party.parking %></td>
-        <td><%= party.adult_only %></td>
-        <td><%= link_to 'Show', party %></td>
-        <td><%= link_to 'Edit', edit_party_path(party) %></td>
-        <td><%= link_to 'Destroy', party, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Party', new_party_path %>
+<% if @parties == [] %>
+  <p>No parties are found for "<%= params[:q][:name_cont] %>".</p>
+<% else %>
+  <% @parties.each do |party| %>
+    <div class="search-table-first">
+        <a href="<%= party_path(party) %>">
+          <div class="search-row">
+            <%= image_tag party.avatar.url(:thumbnail), :width => 100, :height => 100, :class => "preview-image" %>
+            <div class="party-info">
+              <div class="party-info-text">
+                <div class="party-info-text-left">
+                  <h4 class="party-title"> Party Title: <%= party.name %> </h4>
+                  <div class="date">Date: <span class="date-answer"><%= party.start_date.strftime("%F %r") %></span></div>
+                </div>
+                <div class="party-info-text-right">
+                  <div class="location">Location: <span class = "location-answer"><%= party.address + ', ' + party.city + ', ' + party.province %></span></div>
+                  <div class="attending">Attendance: <span class = "attending-answer"><%= party.attendees.count %>/<%= party.capacity %></span></div>
+                </div>
+              </div>
+              <p class="party-desc">
+                <%= truncate party.description, :length => 460, :separator => /\w/, :omission => "&hellip;" %>
+              </p>          
+            </div>
+          </div>
+        </a>
+      </div>
+  <% end %>
+<% end %>

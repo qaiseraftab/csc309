@@ -6,7 +6,8 @@ class PartiesController < ApplicationController
 
   # GET /parties
   def index
-    @parties = Party.all
+    @q = Party.ransack(params[:q])
+    @parties = @q.result(distinct: true)
   end
 
   # GET /parties/1
