@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   get 'about_us' => 'static_pages#about_us'
 
   devise_for :users
+  
+  get '/parties/featured' => 'parties#featured'
   resources :parties do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
@@ -19,6 +21,7 @@ Rails.application.routes.draw do
   end
   post '/parties/:id/rate' => 'parties#rate'
   patch '/parties/:id/complete' => 'parties#complete'
+  
   resources :users do
     get 'profile' => 'users#profile', :as => :profile
     get 'activity' => 'users#activity', :as => :activity

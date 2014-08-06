@@ -10,6 +10,11 @@ class PartiesController < ApplicationController
     @parties = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
   end
 
+  # GET /parties/featured
+  def featured
+    @parties = Party.where('featured_until > ?', Date.today).paginate(:page => params[:page], :per_page => 12)
+  end
+
   # GET /parties/1
   def show
   end
