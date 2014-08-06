@@ -1,8 +1,8 @@
 class PartiesController < ApplicationController
-  before_action :set_user, only: [:new, :edit, :update, :destroy, :rate, :complete]
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
   before_action :set_fragment_party, only: [:attend, :unattend, :attach]
-  before_filter :owner_only, only: [:new, :edit, :update, :destroy, :rate, :complete]
+  before_filter :logged_in_only, except: [:new, :show]
+  before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete]
 
   # GET /parties
   def index
@@ -135,13 +135,16 @@ class PartiesController < ApplicationController
       params.require(:album_attachment).permit(:picture)
     end
 
-    def set_user
-      @user = User.find(params[:id])
+    # Must be logged in
+    def logged_in_only
+      unless signed_in?
+        redirect_to '/register_login', notice: "You must be logged in to use this functionality."
+      end
     end
 
     # Restrict to owner only
     def owner_only
-      unless @user == current_user
+      unless @party.host == current_user
         redirect_to root_url, notice: "You must be logged in as that user to make this change."
       end
     end
