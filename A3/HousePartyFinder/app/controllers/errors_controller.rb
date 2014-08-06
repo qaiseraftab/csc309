@@ -6,4 +6,8 @@ class ErrorsController < ApplicationController
   def server_error
     render :status => 500, :formats => [:html]
   end
+
+  def rejected
+    render :status => 422, :formats => [:html]
+  end
 end

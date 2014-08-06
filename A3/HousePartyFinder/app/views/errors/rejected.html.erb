@@ -50,16 +50,16 @@
   }
   </style>
 
-
 <% end %>
 
-<% content_for :title, "We're sorry, but something went wrong (500)" %>
+<% content_for :title, "The change you wanted was rejected (422)" %>
 
-<!-- This file lives in public/500.html -->
+<!-- This file lives in public/422.html -->
 <div class="dialog">
   <div>
-    <h1>We're sorry, but something went wrong.</h1>
+    <h1>The change you wanted was rejected.</h1>
+    <p>Maybe you tried to change something you didn't have access to.</p>
   </div>
-  <p>If you are the application owner check the logs for more information. </br>
+  <p>If you are the application owner check the logs for more information.<br/>
   We recomended going to the <a href="/">home page</a> to find what you are looking for.</p>
 </div>
