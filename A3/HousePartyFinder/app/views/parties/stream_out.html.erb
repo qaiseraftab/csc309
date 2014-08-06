@@ -1,9 +1,12 @@
+<% content_for :head do %>
+	<script src="http://localhost:9292/faye/client.js"></script>
+<% end %>
+
 <img alt="Smiley face" id="image" height="240" width="320" >
 
-<%= subscribe_to "/parties/#{@party.id}" %>
-
 <script type="text/javascript">
-	PrivatePub.subscribe("/parties/<%= @party.id %>", function(data, channel) {
-		image.src = data.c;
+	var client = new Faye.Client('http://localhost:9292/faye');
+	var subscription = client.subscribe("/parties/<%= @party.id %>", function(message) {
+		image.src = message.c;
 	});
 </script>	
