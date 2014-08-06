@@ -18,7 +18,7 @@ sudo chmod -R 775 ~/.rvm
 
 5 Install Ruby 1.9.3:
 
-sudo rvm install 1.9.3
+rvm install 1.9.3
 
 6 Create a new gemset under Ruby 1.9.3:
 
@@ -34,8 +34,9 @@ sudo gem install rails 4.1.0
 
 9. cd into the HousePartyFinder directory.
 
-10. Run bundler:
+10. Install and run bundler:
 
+sudo gem install bundler
 bundle install
 
 11. Initialize the database:
