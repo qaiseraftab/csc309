@@ -4,6 +4,8 @@ class PartiesController < ApplicationController
   before_filter :logged_in_only, except: [:show]
   before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete, :stream_in]
 
+  layout 'streaming_fragment', only: [:stream_in, :stream_out]
+
   # GET /parties
   def index
     @q = Party.ransack(params[:q])
