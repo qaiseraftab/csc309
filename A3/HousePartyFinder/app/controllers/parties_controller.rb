@@ -137,12 +137,6 @@ class PartiesController < ApplicationController
   def stream_out
   end
 
-  # GET /parties/1/stream
-  def stream
-    PrivatePub.publish_to("/parties/#{params[:party_id]}", c: params[:c])
-    render nothing: true
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_party

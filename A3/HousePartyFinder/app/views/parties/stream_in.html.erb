@@ -11,10 +11,6 @@
     <canvas width="320" id="canvas" height="240" style="display:none"></canvas>
 </div>
 
-<%= form_tag party_stream_path(@party), id: 'STREAMER', remote: true do %>
-	<%= hidden_field_tag :c %>
-<% end %>
-
 <script type="text/javascript">
 	function dataURItoBlob(dataURI) {
 	    var binary = atob(dataURI.split(',')[1]);
