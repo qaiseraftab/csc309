@@ -20,6 +20,9 @@ Rails.application.routes.draw do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
     post 'attach' => 'parties#attach', :as => :attach
+    post 'stream' => 'parties#stream', :as => :stream
+    get 'stream_in' => 'parties#stream_in', :as => :stream_in
+    get 'stream_out' => 'parties#stream_out', :as => :stream_out
   end
   post '/parties/:id/rate' => 'parties#rate'
   patch '/parties/:id/complete' => 'parties#complete'

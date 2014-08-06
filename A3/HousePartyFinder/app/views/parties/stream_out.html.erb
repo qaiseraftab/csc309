@@ -1,0 +1,9 @@
+<img alt="Smiley face" id="image" height="240" width="320" >
+
+<%= subscribe_to "/parties/#{@party.id}" %>
+
+<script type="text/javascript">
+	PrivatePub.subscribe("/parties/<%= @party.id %>", function(data, channel) {
+		image.src = data.c;
+	});
+</script>	
