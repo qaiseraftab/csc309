@@ -1,0 +1,27 @@
+<% content_for :head do %>
+	<link rel="stylesheet" href="/styles/homepage.css" >
+<% end %>
+
+<% content_for :title, "My active parties" %>
+
+<div class="featured-heading">
+	<h2>My active parties</h2>
+</div>
+
+<% if @parties.empty? %>
+	<p class="featured-no-result">You have no upcoming parties. <%= link_to "Start one!", new_party_path %></p>
+<% else %>
+	<ul class="featured-list">
+		<% @parties.each do |party| %>
+			<li><a href="/parties/#{party.id}"><div class="featured-div">
+				<%= image_tag party.avatar.url(:thumbnail) %>
+				<h4><%= party.name %></h4>
+				<p><%= party.city %>, <%= party.province %></p>
+				<p>Attendance: <%= party.attendees.count %>/<%= party.capacity %></p>
+			</div></a></li>
+		<% end %>
+	</ul>
+	<p>
+		<%= will_paginate %>
+	</p>
+<% end %>

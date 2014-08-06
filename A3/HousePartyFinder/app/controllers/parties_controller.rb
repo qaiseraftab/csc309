@@ -1,7 +1,7 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
   before_action :set_fragment_party, only: [:attend, :unattend, :attach]
-  before_filter :logged_in_only, except: [:new, :show]
+  before_filter :logged_in_only, except: [:new, :show, :mine]
   before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete]
 
   # GET /parties
@@ -18,6 +18,11 @@ class PartiesController < ApplicationController
   # GET /parties/streaming
   def streaming
     @parties = Party.where(:streaming => true).paginate(:page => params[:page], :per_page => 12)
+  end
+
+  # GET /parties/my-parties
+  def mine
+    @parties = current_user.hosted_parties.where(:ended => [false, nil]).paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /parties/1

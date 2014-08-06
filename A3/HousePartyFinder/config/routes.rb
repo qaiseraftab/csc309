@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   
   get '/parties/featured' => 'parties#featured'
   get '/parties/streaming' => 'parties#streaming'
+  get '/parties/my-parties' => 'parties#mine'
   resources :parties do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
