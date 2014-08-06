@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140805004838) do
+ActiveRecord::Schema.define(version: 20140806201745) do
 
   create_table "album_attachments", force: true do |t|
     t.string   "access_token"
@@ -42,10 +42,10 @@ ActiveRecord::Schema.define(version: 20140805004838) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.text     "description"
-    t.datetime "posted_date"
+    t.datetime "posted_date",         default: '2014-08-06 22:10:51'
     t.datetime "start_date"
     t.datetime "end_date"
-    t.boolean  "ended"
+    t.boolean  "ended",               default: false
     t.datetime "featured_until"
     t.boolean  "streaming"
     t.boolean  "private"
