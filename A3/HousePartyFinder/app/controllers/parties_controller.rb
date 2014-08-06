@@ -15,6 +15,11 @@ class PartiesController < ApplicationController
     @parties = Party.where('featured_until > ?', Date.today).paginate(:page => params[:page], :per_page => 12)
   end
 
+  # GET /parties/streaming
+  def streaming
+    @parties = Party.where(:streaming => true).paginate(:page => params[:page], :per_page => 12)
+  end
+
   # GET /parties/1
   def show
   end

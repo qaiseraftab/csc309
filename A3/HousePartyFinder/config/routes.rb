@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   devise_for :users
   
   get '/parties/featured' => 'parties#featured'
+  get '/parties/streaming' => 'parties#streaming'
   resources :parties do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
