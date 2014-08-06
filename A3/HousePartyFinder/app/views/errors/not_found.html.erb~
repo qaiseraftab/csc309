@@ -1,9 +1,0 @@
-<% content_for :head do %>
-	<link rel="stylesheet" href="/styles/homepage.css">
-<% end %>
-
-<% content_for :title, "Not Found!" %>
-<div>
-<h2>Sorry, this page does not exist</h2>
-<p>We recomended going to the <a href="#">home page</a> to find what you are looking for.</p>
-</div>
