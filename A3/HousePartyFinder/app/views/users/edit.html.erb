@@ -57,16 +57,16 @@
 <div id="form-block">
 
 	<% if @user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+		<div id="error_explanation">
+			<h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
-      <ul>
-      <% @user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+			<ul>
+				<% @user.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
 	
 	<%= form_for(@user, :html => { :multipart => true }) do |f| %>
 		<div class="field">
@@ -129,8 +129,35 @@
 	<% end %>
 </div>
 
-<div id="map-canvas"</div>
+<div id="map-canvas"></div>
 
 <div class="clear"></div>
 
-<%= link_to 'Return to Profile', @user %>
+<div class="featured-heading">
+	<h2>Change Password</h2>
+</div>
+
+<div class="form-block">
+	<%= form_for(@user, url: user_registration_path, html: { method: :put }) do |f| %>
+
+		<div class="field">
+		  	<%= f.label :password %> (Leave blank for unchanged)<br>
+		    <%= f.password_field :password, autocomplete: "off" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :password_confirmation %><br>
+		    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+		</div>
+
+		<div class="field">
+			<%= f.label :current_password %> (Must be filled to change password)<br>
+		    <%= f.password_field :current_password, autocomplete: "off" %>
+		</div>
+
+		<div class="actions">
+			<%= f.submit "Update Password", :class => "button" %>
+		</div>
+	
+	<% end %>
+</div>

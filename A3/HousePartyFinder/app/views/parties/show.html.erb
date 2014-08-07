@@ -169,11 +169,13 @@
   </section>
   <section class="side-bar" >
     <div class="party-rating">
-      <div class = "rating rating-submitter" data-score="<%= @party.rating_score %>" form-id="rating-form"></div>
+      <div class = "rating<%= @allowed_to_rate ? ' rating-submitter' : ' read-only' %>" data-score="<%= @party.rating_score %>" form-id="rating-form"></div>
       <p>(<span class="rating-count-text"><%= pluralize(@party.rating_count, "Rating") %></span>)</p>
-      <%= form_for :rating, url: "/parties/#{@party.id}/rate", html: { id: "rating-form" }, remote: true do |f| %>
-        <%= f.hidden_field :score %>
-      <% end %>
+        <% if @allowed_to_rate %>
+          <%= form_for :rating, url: "/parties/#{@party.id}/rate", html: { id: "rating-form" }, remote: true do |f| %>
+            <%= f.hidden_field :score %>
+          <% end %>
+        <% end %>
     </div>
     <div class="similar-parties">
       <h2>Similar Parties</h2>

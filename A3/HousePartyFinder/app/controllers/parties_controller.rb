@@ -2,7 +2,7 @@ class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
   before_action :set_fragment_party, only: [:feature, :unfeature, :attend, :unattend, :attach, :stream_in, :stream_out]
   before_filter :logged_in_only, except: [:show, :index, :featured, :streaming]
-  before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete, :stream_in]
+  before_filter :owner_only, only: [:edit, :update, :destroy, :complete, :stream_in]
   before_filter :admin_only, only: [:feature, :unfeature]
   layout 'streaming_fragment', only: [:stream_in, :stream_out]
 
@@ -158,7 +158,7 @@ class PartiesController < ApplicationController
 
   # POST /parties/1/unfeature
   def unfeature
-     @party.featured_until = 1.day.ago
+     @party.featured_until = nil
      if @party.save
 	redirect_to :back
      else

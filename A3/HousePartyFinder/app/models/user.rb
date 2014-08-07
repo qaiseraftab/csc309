@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :rememberable, :trackable, :validatable
 
   has_many :ratings
   has_many :rated_parties, :through => :ratings, :source => :party
@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
 
   has_attached_file :avatar, :url => '/system/uploads/avatar_:style_:id.:extension', :path => ":rails_root/public:url", :styles => { :medium => "240x240>", :thumbnail => "64x64>" }, :default_url => "/images/default-avatar.jpg"
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
+  validates :username, :uniqueness => true, :presence => true
+  validates :first_name, :last_name, :address, :city, :province, :presence => true
+  validates :latitude, :longitude, :numericality => true
 
   def rating_score
   	User.where({ id: self.id }).joins(:received_ratings).average(:score)
