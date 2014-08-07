@@ -13,12 +13,12 @@
 <% else %>
 	<ul class="featured-list">
 		<% @parties.each do |party| %>
-			<li><a href="/parties/#{party.id}"><div class="featured-div">
+			<li><%= link_to party_url(party) do %><div class="featured-div">
 				<%= image_tag party.avatar.url(:thumbnail) %>
 				<h4><%= party.name %></h4>
 				<p><%= party.city %>, <%= party.province %></p>
 				<p>Attendance: <%= party.attendees.count %>/<%= party.capacity %></p>
-			</div></a></li>
+			</div><% end %></li>
 		<% end %>
 	</ul>
 	<p>
