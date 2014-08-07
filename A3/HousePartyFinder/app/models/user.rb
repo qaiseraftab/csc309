@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   validates :username, :uniqueness => true, :presence => true
-  validates :email, :uniqueness => true, :presence => true, :format => { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :first_name, :last_name, :address, :city, :province, :presence => true
   validates :latitude, :longitude, :numericality => true
 
