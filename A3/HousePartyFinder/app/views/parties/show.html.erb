@@ -112,7 +112,7 @@
         <% end %>
     <% end %>
     </div>
-    <% unless @party.album_attachments.empty? %>
+    <% unless @party.album_attachments.empty? && current_user != @party.host %>
     <div class="album">
         <h2>Party Album</h2>
         <!-- Fotorama -->
