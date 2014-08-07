@@ -105,8 +105,10 @@
         <button id="party-completed" class="button-disabled" type="submit" disabled>Finished!</button>
     <% else %>
         <h3 class="completed">This party has not been completed!</h3>
-        <%= form_for @party, url: "/parties/#{@party.id}/complete", html: { id: "complete-form" }, remote: true do |f| %>
-            <%= f.submit "Complete", id: "party-completed", class: "button" %>
+        <% if signed_in? && @party.host == current_user %>
+	  <%= form_for @party, url: "/parties/#{@party.id}/complete", html: { id: "complete-form" }, remote: true do |f| %>
+	      <%= f.submit "Complete", id: "party-completed", class: "button" %>
+	  <% end %>
         <% end %>
     <% end %>
     </div>
@@ -119,11 +121,13 @@
             <% end %>
         </div>
         <br>
-        <%= form_for :album_attachment, url: party_attach_path(@party), html: { multipart: true } do |f| %>
-          <%= f.label "Upload a picture:", :for => :picture %><br>
-          <%= f.file_field :picture %>
-          <%= f.submit "Upload", :class => "button" %>
-        <% end %>
+	  <% if signed_in? && @party.host == current_user %>
+	    <%= form_for :album_attachment, url: party_attach_path(@party), html: { multipart: true } do |f| %>
+	      <%= f.label "Upload a picture:", :for => :picture %><br>
+	      <%= f.file_field :picture %>
+	      <%= f.submit "Upload", :class => "button" %>
+	    <% end %>
+	  <% end %>
     </div>
 
     <div class="party-description">
