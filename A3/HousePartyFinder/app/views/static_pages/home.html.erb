@@ -9,7 +9,7 @@
 </div>
 
 <% if @sponsored_parties.empty? %>
-	<p class = "featured-no-result">&nbsp;&nbsp;No parties are currently being Sponsored.</p><br>
+	<p class = "featured-no-result">&nbsp;&nbsp;No parties are currently being sponsored.</p><br>
 <%else%>
 	<ul class="featured-list">
 		<% @sponsored_parties.each do |party| %>
@@ -29,7 +29,7 @@
 	<h2>Hot Parties</h2>
 </div>
 <% if @current_parties.empty? %>
-	<p class = "featured-no-result">&nbsp;&nbsp;No parties are currently being hosted.</p><br>
+	<p class = "featured-no-result">&nbsp;&nbsp;Noone is attending any of the parties at the moment.</p><br>
 <%else%>
 	<ul class="featured-list">
 		
