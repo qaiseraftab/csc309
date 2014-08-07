@@ -15,7 +15,6 @@
 		<% end -%>
 
 		<%= f.submit "Login", class: "login-button button", style: "width: 100%; cursor: pointer; font-size: 1em;" %>
-		<%= link_to "Forgot your password?", new_password_path(:user), style: "margin-top: 0.4em; display: inline-block;" %>
 	<% end %>
 </div>
 <div class="LogInBoxOR">OR</div>
@@ -42,7 +41,7 @@
 					["Nunavut", "NU"],
 					["Yukon", "YT"]
 				], {}, id: "province", onChange: "clearCity(); codeAddress()",
-				style: "width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;" %>
+				style: "width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;", required: "required" %>
 		<%= f.text_field :city, :placeholder => "City",
 				id: "city", onChange: "codeAddress()" %>
 		<%= f.text_field :address, :placeholder => "Street Address",

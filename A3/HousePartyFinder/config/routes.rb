@@ -11,7 +11,12 @@ Rails.application.routes.draw do
   get 'site_map' => 'static_pages#site_map'
   get 'about_us' => 'static_pages#about_us'
 
-  devise_for :users
+  devise_for :users do
+    resource :registration, :only => [:new, :create, :edit, :update],
+      as: :user_registration do
+        get :cancel
+      end
+  end
   
   get '/parties/featured' => 'parties#featured'
   get '/parties/streaming' => 'parties#streaming'
