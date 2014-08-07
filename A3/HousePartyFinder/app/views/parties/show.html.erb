@@ -168,6 +168,30 @@
     </div>
     <div class="similar-parties">
       <h2>Similar Parties</h2>
+
+      <% if @similar_parties.empty? %>
+        <div class="div-similar-party">
+          <h3>No similar parties.</h3>
+        </div>
+      <% else %>
+        <% @similar_parties.each do |party| %>
+          <%= link_to party_url(party) do %>
+            <div class="div-similar-party">
+              <%= image_tag party.avatar.url(:thumbnail), :width => 64, :height => 64 %>
+              <div class="div-similar-party-description">
+                <p><%= party.name %></p>
+                <p class="party-date"><%= party.start_date.strftime("%F") %></p>
+                <span class="rating read-only" data-score="<%= party.rating_score %>"><%= party.rating_score %></span>
+                <p style="display: inline;">(<%= party.rating_count %>)</p>
+                <div class="clear"></div>
+                <p>
+                  <%= truncate party.description, length: 30 %>           
+                </p>    
+              </div>        
+            </div>
+          <% end %>
+        <% end %>
+      <% end %>
     </div>
   
   </section>

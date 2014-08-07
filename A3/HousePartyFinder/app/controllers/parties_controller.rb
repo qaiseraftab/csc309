@@ -29,6 +29,7 @@ class PartiesController < ApplicationController
 
   # GET /parties/1
   def show
+    @similar_parties = @party.similar.where('start_date > ?', Date.today).limit(12)
   end
 
   # GET /parties/new
