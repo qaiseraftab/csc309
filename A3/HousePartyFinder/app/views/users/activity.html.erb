@@ -39,11 +39,11 @@
 	</style>
 <% end %>
 
-<% if @user.attended_parties.count == 0 %>
+<% if @attended_parties.count == 0 %>
 	<p class="no-result">This user has yet to attend a party.<p>
 <% else %>
 	<ul>
-		<% @user.attended_parties.each do |party| %>
+		<% @attended_parties.each do |party| %>
 			<li class="activity-entry">
 				<img src="/images/homepage-images/1_copy(1).JPG">
 				<div class="entry-description">
@@ -64,4 +64,5 @@
 			</li>
 		<% end %>
 	</ul>
+	<p><%= will_paginate @attended_parties %></p>
 <% end %>

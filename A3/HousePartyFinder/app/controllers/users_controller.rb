@@ -54,14 +54,17 @@ class UsersController < ApplicationController
 
   # GET /users/1/activity
   def activity
+    @attended_parties = @user.attended_parties.paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /users/1/subscribers
   def subscribers
+    @subscribers = @user.subscribers.paginate(:page => params[:page], :per_page => 24)
   end
 
   # GET /users/1/portfolio
   def portfolio
+    @hosted_parties = @user.hosted_parties.paginate(:page => params[:page], :per_page => 12)
   end
 
   # POST /users/1/subscribe

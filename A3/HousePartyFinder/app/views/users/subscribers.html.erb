@@ -32,11 +32,11 @@
 	</style>
 <% end %>
 
-<% if @user.subscribers.count == 0 %>
+<% if @subscribers.count == 0 %>
 	<p>This user has no subscribers.</p>
 <% else %>
 	<ul>
-		<% @user.subscribers.each do |subscriber| %>
+		<% @subscribers.each do |subscriber| %>
 			<li class="subscriber-entry">
 				<img src="/images/homepage-images/1_copy(1).JPG">
 				<div class="entry-description">
@@ -56,4 +56,5 @@
 			</li>
 		<% end %>
 	</ul>
+	<p><%= will_paginate @subscribers %></p>
 <% end %>
