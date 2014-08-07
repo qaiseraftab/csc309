@@ -75,7 +75,7 @@
 
 <div id="user-page">
   <div class="fotorama" data-width="100%" data-height="128" data-loop="true" data-autoplay="true" data-nav="thumbs" data-navposition="top">
-    <%= @user.album_attachments.each do |album_attachment| %>
+    <% @user.album_attachments.each do |album_attachment| %>
       <%= image_tag album_attachment.picture.url %>
     <% end %>
   </div>
