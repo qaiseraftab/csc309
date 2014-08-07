@@ -1,7 +1,7 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
   before_action :set_fragment_party, only: [:attend, :unattend, :attach]
-  before_filter :logged_in_only, except: [:show, :index]
+  before_filter :logged_in_only, except: [:show, :index, :featured, :streaming]
   before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete]
 
   # GET /parties
@@ -70,11 +70,17 @@ class PartiesController < ApplicationController
     @rating = Rating.new(rating_params)
     @rating.user = current_user
     @rating.party = @party
-
-    if @rating.save
-      respond_to do |format|
-        format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
-      end
+    
+    if @party.raters.include?(current_user)
+    	if @rating.save
+      	  respond_to do |format|
+            format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
+          end
+	else	
+      	  respond_to do |format|
+            format.json { render json: { ok: false } }
+      	  end
+    	end
     else
       respond_to do |format|
         format.json { render json: { ok: false } }
