@@ -143,9 +143,11 @@
     </div>
     <div class="live-stream">
       <h2>Live Streaming</h2>
-      <div style="background-color:black">
-         <img alt="Smiley face" id="image" height="240" width="320" > 
-      </div>
+      <% if current_user == @party.host %>
+        <iframe src="/parties/<%= @party.id %>/stream_in" style="width:320px; height:300px; overflow: hidden;"></iframe>
+      <% else %>
+        <iframe src="/parties/<%= @party.id %>/stream_out" style="width:320px; height:300px; overflow: hidden;"></iframe>
+      <% end %>
     </div>          
   </section>
   <section class="side-bar" >

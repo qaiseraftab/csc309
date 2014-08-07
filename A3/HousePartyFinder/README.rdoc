@@ -51,7 +51,7 @@ rake db:migrate
 
 12. You may now start the server:
 
-rails s
+rackup faye.ru -s thin -E production & rails s
 
 13. Visit localhost:3000 to verify the functionality of the server.
 

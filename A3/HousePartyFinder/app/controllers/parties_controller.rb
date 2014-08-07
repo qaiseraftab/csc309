@@ -1,8 +1,10 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
-  before_action :set_fragment_party, only: [:attend, :unattend, :attach]
+  before_action :set_fragment_party, only: [:attend, :unattend, :attach, :stream_in, :stream_out]
   before_filter :logged_in_only, except: [:show, :index, :featured, :streaming]
-  before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete]
+  before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete, :stream_in]
+
+  layout 'streaming_fragment', only: [:stream_in, :stream_out]
 
   # GET /parties
   def index
@@ -132,6 +134,15 @@ class PartiesController < ApplicationController
         redirect_to root_url
       end
     end
+  end
+
+
+  # GET /parties/1/stream_in
+  def stream_in
+  end
+
+  # GET /parties/1/stream_out
+  def stream_out
   end
 
   private
