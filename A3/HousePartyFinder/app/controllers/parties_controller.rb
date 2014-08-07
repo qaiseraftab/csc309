@@ -158,7 +158,7 @@ class PartiesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def party_params
-      params.require(:party).permit(:name, :capacity, :address, :city, :province, :latitude, :longitude, :description, :posted_date, :start_date, :end_date, :ended, :featured_until, :streaming, :private, :food_provided, :alcohol, :parking, :adult_only, :avatar)
+      params.require(:party).permit(:name, :capacity, :address, :city, :province, :latitude, :longitude, :description, :posted_date, :start_date, :end_date, :ended, :featured_until, :streaming, :food_provided, :alcohol, :parking, :adult_only, :avatar)
     end
 
     def rating_params
