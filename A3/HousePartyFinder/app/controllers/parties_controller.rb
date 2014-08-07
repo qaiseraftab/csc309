@@ -71,7 +71,7 @@ class PartiesController < ApplicationController
     @rating.user = current_user
     @rating.party = @party
     
-    if @party.raters.include?(current_user)
+    if !(@party.raters.include?(current_user))
     	if @rating.save
       	  respond_to do |format|
             format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
