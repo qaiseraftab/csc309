@@ -41,7 +41,7 @@
 					["Northwest Territories", "NT"],
 					["Nunavut", "NU"],
 					["Yukon", "YT"]
-				], {}, id: "province", onChange: "clearCity(); codeAddress()",
+				], {}, id: "province", required: "required", onChange: "clearCity(); codeAddress()",
 				style: "width:100%; padding-top:1px; padding-bottom:1px; margin-left:auto;" %>
 		<%= f.text_field :city, :placeholder => "City",
 				id: "city", onChange: "codeAddress()" %>
