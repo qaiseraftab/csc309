@@ -1,5 +1,5 @@
 <% content_for :head do %>
-	<script src="http://localhost:9292/faye/client.js"></script>
+	<script src="<%= FAYE_CONFIG['base_url'] %>/client.js"></script>
 <% end %>
 
 <% content_for :title, "Streaming for #{@party.name}" %>
@@ -41,7 +41,7 @@
 					}
 				);
 
-				var client = new Faye.Client('http://localhost:9292/faye');
+				var client = new Faye.Client('<%== FAYE_CONFIG['base_url'] %>');
 				timeout = setInterval(function() {
 					ctx.drawImage(video, 0, 0, 320, 240);
 					client.publish('/parties/<%= @party.id %>', { c: canvas.get()[0].toDataURL('image/jpeg', 1.0) });

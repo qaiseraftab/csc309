@@ -1,5 +1,5 @@
 <% content_for :head do %>
-	<script src="http://localhost:9292/faye/client.js"></script>
+	<script src="<%= FAYE_CONFIG['base_url'] %>/client.js"></script>
 <% end %>
 
 <img alt="Smiley face" id="image" height="240" width="320">
@@ -15,7 +15,7 @@
 			$(this).removeAttr('playing').html('Play stream');
 		}
 		else {
-			client = new Faye.Client('http://localhost:9292/faye');
+			client = new Faye.Client('<%== FAYE_CONFIG['base_url'] %>');
 			subscription = client.subscribe("/parties/<%= @party.id %>", function(message) {
 				image.src = message.c;
 			});
