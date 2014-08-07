@@ -112,11 +112,12 @@
         <% end %>
     <% end %>
     </div>
+    <% unless @party.album_attachments.empty? %>
     <div class="album">
         <h2>Party Album</h2>
         <!-- Fotorama -->
         <div class="fotorama">
-            <%= @party.album_attachments.each do |album_attachment| %>
+            <% @party.album_attachments.each do |album_attachment| %>
               <%= image_tag album_attachment.picture.url %>
             <% end %>
         </div>
@@ -129,7 +130,7 @@
 	    <% end %>
 	  <% end %>
     </div>
-
+    <% end %>
     <div class="party-description">
       <h2>Party Description</h2>
       <div class="clear"></div>
