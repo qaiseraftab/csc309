@@ -2,7 +2,7 @@ class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
   before_action :set_fragment_party, only: [:attend, :unattend, :attach, :stream_in, :stream_out]
   before_filter :logged_in_only, except: [:show, :index, :featured, :streaming]
-  before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete, :stream_in]
+  before_filter :owner_only, only: [:edit, :update, :destroy, :complete, :stream_in]
 
   layout 'streaming_fragment', only: [:stream_in, :stream_out]
 
@@ -29,6 +29,7 @@ class PartiesController < ApplicationController
 
   # GET /parties/1
   def show
+    @allowed_to_rate = @party.host != current_user && @party.attendees.include?(current_user) && !@party.raters.include?(current_user)
     @similar_parties = @party.similar.where('start_date > ?', Date.today).limit(12)
   end
 
@@ -74,12 +75,12 @@ class PartiesController < ApplicationController
     @rating.user = current_user
     @rating.party = @party
     
-    if !(@party.raters.include?(current_user))
+    if !(@party.raters.include?(current_user)) && @party.attendees.include?(current_user) && @party.host != current_user
     	if @rating.save
-      	  respond_to do |format|
-            format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
-          end
-	else	
+      	respond_to do |format|
+          format.json { render json: { ok: true, score: @party.rating_score, count: @party.rating_count } }
+        end
+      else	
       	  respond_to do |format|
             format.json { render json: { ok: false } }
       	  end
