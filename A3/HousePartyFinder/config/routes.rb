@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   resources :parties do
     post 'attend' => 'parties#attend', :as => :attend
     post 'unattend' => 'parties#unattend', :as => :unattend
+    post 'feature' => 'parties#feature', :as => :feature
+    post 'unfeature' => 'parties#unfeature', :as => :unfeature
     post 'attach' => 'parties#attach', :as => :attach
     get 'stream_in' => 'parties#stream_in', :as => :stream_in
     get 'stream_out' => 'parties#stream_out', :as => :stream_out

@@ -1,9 +1,9 @@
 class PartiesController < ApplicationController
   before_action :set_party, only: [:show, :edit, :update, :destroy, :rate, :complete]
-  before_action :set_fragment_party, only: [:attend, :unattend, :attach, :stream_in, :stream_out]
+  before_action :set_fragment_party, only: [:feature, :unfeature, :attend, :unattend, :attach, :stream_in, :stream_out]
   before_filter :logged_in_only, except: [:show, :index, :featured, :streaming]
   before_filter :owner_only, only: [:edit, :update, :destroy, :rate, :complete, :stream_in]
-
+  before_filter :admin_only, only: [:feature, :unfeature]
   layout 'streaming_fragment', only: [:stream_in, :stream_out]
 
   # GET /parties
@@ -146,6 +146,26 @@ class PartiesController < ApplicationController
   def stream_out
   end
 
+  # POST /parties/1/feature
+  def feature
+     @party.featured_until = 15.day.from_now
+     if @party.save
+	redirect_to :back
+     else
+	redirect_to root_url
+     end
+  end
+
+  # POST /parties/1/unfeature
+  def unfeature
+     @party.featured_until = 1.day.ago
+     if @party.save
+	redirect_to :back
+     else
+	redirect_to root_url
+     end
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_party
@@ -181,4 +201,11 @@ class PartiesController < ApplicationController
         redirect_to root_url, notice: "You must be logged in as that user to make this change."
       end
     end
+    
+    def admin_only
+      unless current_user.admin
+	redirect_to root_url, notice: "You must be an admin to make this change."
+      end
+    end
+    
 end

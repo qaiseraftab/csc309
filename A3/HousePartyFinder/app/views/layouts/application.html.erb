@@ -50,11 +50,18 @@
 	<nav id="main-nav"><ul>
 		<li><a href="/parties/featured" class="button">Featured Parties</a></li>
 		<% if current_user %>
-		<li><a href="/parties/new" class="button">Host a Party</a></li>
+		   <% if current_user.admin != true %>
+		      <li><a href="/parties/new" class="button">Host a Party</a></li>
+		   <% end %>
 		<% end %>
 		<li><a href="/parties/streaming" class="button">Live Streams</a></li>
 		<% if current_user %>
+		    <% if current_user.admin == true %>
+			<li><a href="/parties/my-parties" class="button">All on-going parties</a></li>
+		    <%else%>
 			<li><a href="/parties/my-parties" class="button">My parties</a></li>
+		    <% end %>
+			
 		<% end %>
 	</ul></nav>
 	
