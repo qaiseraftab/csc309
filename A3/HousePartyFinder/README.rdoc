@@ -51,7 +51,7 @@ rake db:migrate
 
 12. You may now start the server:
 
-rackup faye.ru -s thin -E production & rails s
+./start.sh
 
 13. Visit localhost:3000 to verify the functionality of the server.
 
@@ -61,16 +61,20 @@ Updating House Party Finder
 
 1. Open a console window and cd to the HousePartyFinder directory.
 
-2. Run bundler:
+2. Shut down the server:
+
+./stop.sh
+
+3. Run bundler:
 
 bundle update
 
-3. Update the database:
+4. Update the database:
 
 rake db:migrate
 
-4. If the server is not already started, you may now start the server:
+5. Start the server:
 
-rackup faye.ru -s thin -E production & rails s
+./start.sh
 
 5. Visit localhost:3000 to verify the functionality of the server.
