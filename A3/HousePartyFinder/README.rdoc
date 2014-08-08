@@ -43,11 +43,7 @@ bundle install
 
 11. Initialize the database:
 
-rake db:drop
-
-rake db:create
-
-rake db:migrate
+rake db:setup RAILS_ENV="production"
 
 12. You may now start the server:
 
