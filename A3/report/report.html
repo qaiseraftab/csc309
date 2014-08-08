@@ -100,32 +100,41 @@
 	
 	<h2 class="heading">Description of what has been done</h2>
 	<ul>
-		<li>users are able to register and login into their accounts</li>
-		<li>party hosts can upload information about parties</li>
-		<li>users can search parties</li>
-		<li>hosts can live stream their parties</li>
-		<li>users can see similar parties to the one they are looking at</li>
-		<li>addresses are verified with Google API</li>
-		<li>user can rate parties</li>
+		<li>Users are able to register and login into their accounts.</li>
+		<li>Party hosts can upload information about parties.</li>
+		<li>Users can search parties.</li>
+		<li>Hosts can live stream their parties.</li>
+		<li>Users can see similar parties to the one they are looking at.</li>
+		<li>Addresses are verified with Google API.</li>
+		<li>Users can rate parties.</li>
 		
 		
 	</ul>
 	
 	<h2 class="heading">Performance testing</h2>
 	<ul>
-		<li>tried using text compression to make the page size smaller to load the pages faster.</li>
+		<li>The server worked fine on Richard's laptop until around 5000 concurrent requests where it started to produce errors.</li>
+		<li>At 5000 the error percentage was about 9% and at 10000 the error percentage was about 40%. </li>
+		<li>The server error production was scaling exponentially and not linearly. We want to fix it so that it scaled linearly.</li>
+		<li>We tried using Rack::Deflater/gzip/racky-zippy to compress the files so that pages can load fast. 
+			However it wasn't compressing the files properly.</li>
+		<li>So then we tried load balancing the server with 5 differents port for our server Thin on Ruby on Rails but 
+			the requests kept coming back to localhost:3000.</li>
+		<li>In the end we were unable to fix the performance/scalability of the server to linear instead of exponential.</li>
+		<li>Error percentage at 5000 concurrent requests <br /><img src="performance/5000.png"/></li>
+		<li>Error percentage at 10000 concurrent requests <br /><img src="performance/5000.png"/></li>
 	</ul>
 	
 	<h2 style="clear:both" class="heading">Actions to secure the website</h2>
 	<ul>
-		<li>bcrypt hashing was used for passwords </li>
-		<li>users are restricted to access certain pages that they do not own</li>
-		<li>google API address verfication </li>
+		<li>Bcrypt hashing was used for passwords.</li>
+		<li>Users are restricted to access certain pages that they do not own.</li>
+		<li>Google API address verfication.</li>
 	</ul>
 	
-	<h2 style="clear:both" class="heading">flaws and limitations</h2>
+	<h2 style="clear:both" class="heading">Flaws and limitations</h2>
 	<ul>
-		<li>it is possible to hijack the stream of a user and we want to add a password to secure the stream (e.g.: http://127.0.0.1:8082/secret/)</li>
+		<li>It is possible to hijack the stream of a user and we want to add a password to secure the stream (e.g.: http://127.0.0.1:8082/secret/).</li>
 	
 	</ul>
 
