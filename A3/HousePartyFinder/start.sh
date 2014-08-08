@@ -1,4 +1,6 @@
 #!/bin/sh
 
 cd .
-rackup faye.ru -s thin -E production & echo "$!" >> ./tmp/pids/faye.pid & rails s & echo "$!" >> ./tmp/pids/rails.pid & exit 0
+
+rackup faye.ru -s thin -E production -D -P ./tmp/pids/faye.pid
+thin start -e production -d -P ./tmp/pids/rails.pid
