@@ -99,11 +99,17 @@
 		<%= link_to "Attend this party", party_attend_path(@party), :class => 'button', :method => :post %>
 	      <% end %>
             <% else %>
-	      <% if @party.featured_until <= Date.today || @party.featured_until == nil %>
+            
+	      <%if @party.featured_until == nil%>
+		<%= link_to "Feature this party", party_feature_path(@party), :class => 'button', :method => :post %>
+	      <% end %>
+	      <% if @party.featured_until != nil %>
+		<% if @party.featured_until <= Date.today %> 
 		  <%= link_to "Feature this party", party_feature_path(@party), :class => 'button', :method => :post %>
-	      
-	      <% else %>
+		
+		<% else %>
 		  <%= link_to "Unfeature this party", party_unfeature_path(@party), :class => 'button', :method => :post %>
+		<% end %>
 	      <% end %>
             <% end %>
           <% end %>
