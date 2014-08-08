@@ -51,6 +51,13 @@ rake db:setup RAILS_ENV="production"
 
 13. Visit localhost:3000 to verify the functionality of the server.
 
+14. Log in as the admin user using the following credentials:
+
+User Name: admin
+Password: admin123
+
+If successful, make sure to change the password on this user using the Settings link at the top-right corner.
+
 ---
 
 Updating House Party Finder
