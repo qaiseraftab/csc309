@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 20140807223639) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.text     "description"
-    t.datetime "posted_date",         default: '2014-08-06 21:57:13'
+    t.datetime "posted_date",         default: '2014-08-07 02:47:20'
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "ended",               default: false
