@@ -5,6 +5,11 @@
 	padding: 10px;
 }
 
+.search-table-first > a {
+	color: black;
+	text-decoration: none;
+}
+
 .search-table-after {
 	background-color: white;
 	padding-left: 10px;
