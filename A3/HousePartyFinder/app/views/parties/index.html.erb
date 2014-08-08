@@ -5,7 +5,9 @@
 
 <% content_for :title, "Searching for #{params[:q]}" %>
 
-<% if @parties == [] %>
+<% if @empty_query %>
+  <p>Please enter a search query.</p>
+<% elsif @parties == [] %>
   <p>No parties are found for "<%= params[:q][:name_cont] %>".</p>
 <% else %>
   <% @parties.each do |party| %>
