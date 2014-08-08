@@ -8,8 +8,11 @@ class PartiesController < ApplicationController
 
   # GET /parties
   def index
-    @q = Party.ransack(params[:q])
-    @parties = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
+    @empty_query = params[:q][:name_cont].blank?
+    unless @empty_query
+      @q = Party.ransack(params[:q])
+      @parties = @q.result(distinct: true).paginate(:page => params[:page], :per_page => 10)
+    end
   end
 
   # GET /parties/featured

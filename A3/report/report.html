@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Project Report</title>
+<style>
+.heading{
+	background-color:black;
+	color:white;
+	padding:5px 5px;
+}
+
+</style>
+</head>
+
+<body>
+    <h1 style="text-align:center;background-color:black;color:white;padding:10px 10px;">Project Report</h1>
+    
+    <h1 style="text-align:center">House Party Finder</h1>
+
+    <h3 class="heading">Problem statement </h3>
+        <p>Canada has a diverse community and few countries in the world have 
+            larger porportion of immigrants than Canada. By 2017, around 22% of population in Canada will be 
+            foreign born. It is becoming increasing hard for people to make friends and socialize. Facebook 
+            and other social media networks allow us to keep in touch with our friends but the goal of social media sites is not 
+            to help us make new friends.  
+            House Party Finder will allow hosts to advertise their house parties while people who want to
+            socialize will be able to find house parties. Unlike club events, there is no platform to advertise 
+            house parties. 
+        </p>
+    <h3 class="heading">The solution</h3>
+        <p>via house party finder website, party host will be able advertise their parties, upload pictures and live stream their
+            parties. Users will be able to search for parties in their area and rate the parties. Parties with very high ratings
+            will be showcased under 'featured parties' on homepage to give them more exposure.<br />
+            Using house party finder, people will be able to interact with others with similar interests and make new friends in the 
+            same city.    
+        </p>
+    
+    <h2 class="heading">Team Description</h2>
+    
+    <h3>Andrew (Moo Sun) Lee</h3>
+    <img src="faces/andrew.jpg" style="float: left; width: 150px; padding-right: 15px;" />
+    <p>I am 4th year student, studying Computer Science and English with a main focus on game design and UX.
+        In this project, I worked on UX design, databases and backend processing. 
+         <br /> <br />
+        In this course I learned many things, I started the course with knowledge in HTML5, MySQL, PHP, Javascript/JQuery and CSS. In the end 
+        I learned how to code better in HTML5, CSS, Javascript/JQuery, and learned how to use Nodejs, and Ruby.
+        It was also good to get a remind on how to use GIT again.
+
+
+    </p>
+    
+    <h3 style="clear:both"><br />Dickson Law</h3>
+    <img src="faces/dickson.jpg" style="float: right; width: 150px; padding-right: 15px;" />
+    <p>
+        I am 4th year computer science student, specializing in web development.
+        In this project, I worked on website prototyping, UX design and backend processing. I was also responsible for
+        integrating code (from other members), checking and fixing errors, and migrating the project to Ruby on Rails
+        for assignment 3.
+        <br /> <br />
+
+        Feedback: "During this course, I gained further experience working with Node.js in a web-based environment. I also
+        learned how to lead and assist development of a short-term project."
+    </p>
+
+    <h3 style="clear:both"><br />Qaiser Aftab</h3>
+    <img src="faces/qaiser-aftab.jpg" style="float: left; width: 150px; padding-right: 15px;" />
+    <p>
+        I am 4th year Electrical and Computer Engineering student. My interests include app development and entrepreneurship. 
+        In this project, I worked on idea generation, front end design and live streaming.
+        <br /><br />
+        In this course I learned new frameworks such as node.js, mongo db, HTML5 and CSS3 features. It was a great experience
+        to begin with an idea and build something useful.
+
+
+    </p>
+
+    <h3 style="clear:both"><br />Richard Luu</h3>
+    <img src="faces/richard.jpg" style="float: right; width: 150px; padding-right: 15px;" />
+    <p>
+        Richard Luu is a 2nd year student in the Computer Science Specialist program, entering 3rd year in the fall.
+        In this project, he worked on UX design, backend processing and error fixing. He was also largely responsible for
+        communicating and cordinating tasks among team members.
+
+        <br /> <br />
+        In this course I learned many things, I entered the course with knowledge in HTML5, MySQL and some CSS knowledge. In the end 
+        I learned how to code in HTML5, CSS, Javascript/JQuery, Nodejs, and Ruby. It was also a great experience working my second  
+        group project that wasn't in CSC207.
+    </p>
+
+
+	<div style="clear:both"><br /><br /><br /> </div>
+
+	<h2 style="clear:both" class="heading">Project Development Roadmap</h2>
+	<a href="https://docs.google.com/spreadsheets/d/1CFwWu7fwROC2qCSoVpo_UkWQMbuulc854j2E6Ocz3AA/edit?pli=1#gid=1948015352">
+		Click here to accesss product backlogs for the project
+	
+	</a>
+	
+	<h2 class="heading">Description of what has been done</h2>
+	<ul>
+		<li>Users are able to register and login into their accounts.</li>
+		<li>Party hosts can upload information about parties.</li>
+		<li>Users can search parties.</li>
+		<li>Hosts can live stream their parties.</li>
+		<li>Users can see similar parties to the one they are looking at.</li>
+		<li>Addresses are verified with Google API.</li>
+		<li>Users can rate parties.</li>
+		
+		
+	</ul>
+	
+	<h2 class="heading">Performance testing</h2>
+	<ul>
+		<li>The server worked fine on Richard's laptop until around 5000 concurrent requests where it started to produce errors.</li>
+		<li>At 5000 the error percentage was about 9% and at 10000 the error percentage was about 40%. </li>
+		<li>The server error production was scaling exponentially and not linearly. We want to fix it so that it scaled linearly.</li>
+		<li>We tried using Rack::Deflater/gzip/racky-zippy to compress the files so that pages can load fast. 
+			However it wasn't compressing the files properly.</li>
+		<li>So then we tried load balancing the server with 5 differents port for our server Thin on Ruby on Rails but 
+			the requests kept coming back to localhost:3000.</li>
+		<li>In the end we were unable to fix the performance/scalability of the server to linear instead of exponential.</li>
+		<li>Error percentage at 5000 concurrent requests <br /><img src="performance/5000.png"/></li>
+		<li>Error percentage at 10000 concurrent requests <br /><img src="performance/5000.png"/></li>
+	</ul>
+	
+	<h2 style="clear:both" class="heading">Actions to secure the website</h2>
+	<ul>
+		<li>Bcrypt hashing was used for passwords.</li>
+		<li>Users are restricted to access certain pages that they do not own.</li>
+		<li>Google API address verfication.</li>
+	</ul>
+	
+	<h2 style="clear:both" class="heading">Flaws and limitations</h2>
+	<ul>
+		<li>It is possible to hijack the stream of a user and we want to add a password to secure the stream (e.g.: http://127.0.0.1:8082/secret/).</li>
+	
+	</ul>
+
+
+</body>
+
+</html>
