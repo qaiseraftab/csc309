@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140807223639) do
+ActiveRecord::Schema.define(version: 20140808011804) do
 
   create_table "album_attachments", force: true do |t|
     t.string   "access_token"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20140807223639) do
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "ended",               default: false
-    t.datetime "featured_until",      default: '2014-08-07 00:00:00'
+    t.datetime "featured_until"
     t.boolean  "streaming"
     t.boolean  "private"
     t.boolean  "food_provided"
