@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'site_map' => 'static_pages#site_map'
   get 'about_us' => 'static_pages#about_us'
 
-  devise_for :users do
+ devise_for :users do
     resource :registration, :only => [:new, :create, :edit, :update],
       as: :user_registration do
         get :cancel
