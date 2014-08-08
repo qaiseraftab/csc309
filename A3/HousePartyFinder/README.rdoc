@@ -67,7 +67,7 @@ bundle update
 
 4. Update the database:
 
-rake db:migrate
+rake db:migrate RAILS_ENV="production"
 
 5. Start the server:
 
