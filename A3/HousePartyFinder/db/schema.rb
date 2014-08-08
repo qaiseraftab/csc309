@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140806201745) do
+ActiveRecord::Schema.define(version: 20140807223639) do
 
   create_table "album_attachments", force: true do |t|
     t.string   "access_token"
@@ -42,11 +42,11 @@ ActiveRecord::Schema.define(version: 20140806201745) do
     t.decimal  "latitude"
     t.decimal  "longitude"
     t.text     "description"
-    t.datetime "posted_date",         default: '2014-08-06 22:10:51'
+    t.datetime "posted_date",         default: '2014-08-06 21:57:13'
     t.datetime "start_date"
     t.datetime "end_date"
     t.boolean  "ended",               default: false
-    t.datetime "featured_until"
+    t.datetime "featured_until",      default: '2014-08-07 00:00:00'
     t.boolean  "streaming"
     t.boolean  "private"
     t.boolean  "food_provided"
@@ -82,16 +82,16 @@ ActiveRecord::Schema.define(version: 20140806201745) do
 
   create_table "users", force: true do |t|
     t.string   "email"
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "admin"
+    t.boolean  "admin",                  default: false
     t.string   "username"
     t.string   "first_name"
     t.string   "last_name"
