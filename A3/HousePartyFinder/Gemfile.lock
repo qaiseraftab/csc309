@@ -73,7 +73,7 @@ GEM
       fog-softlayer
       ipaddress (~> 0.5)
       nokogiri (~> 1.5, >= 1.5.11)
-    fog-brightbox (0.1.1)
+    fog-brightbox (0.2.0)
       fog-core (~> 1.22)
       fog-json
       inflecto
@@ -149,17 +149,11 @@ GEM
     rdoc (4.1.1)
       json (~> 1.4)
     ref (1.0.5)
-    sass (3.2.19)
-    sass-rails (4.0.3)
-      railties (>= 4.0.0, < 5.0)
-      sass (~> 3.2.0)
-      sprockets (~> 2.8, <= 2.11.0)
-      sprockets-rails (~> 2.0)
     sdoc (0.4.0)
       json (~> 1.8)
       rdoc (~> 4.0, < 5.0)
     spring (1.1.3)
-    sprockets (2.11.0)
+    sprockets (2.12.1)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
@@ -204,7 +198,6 @@ DEPENDENCIES
   paperclip (~> 4.1)
   rails (= 4.1.4)
   ransack (~> 1.2.3)
-  sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
   sqlite3
