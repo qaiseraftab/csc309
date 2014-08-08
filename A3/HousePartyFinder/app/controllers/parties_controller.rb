@@ -25,6 +25,7 @@ class PartiesController < ApplicationController
   # GET /parties/my-parties
   def mine
     @parties = current_user.hosted_parties.where(:ended => [false, nil]).paginate(:page => params[:page], :per_page => 12)
+    @all_parties = Party.where(:ended => [false, nil]).paginate(:page => params[:page], :per_page => 12)
   end
 
   # GET /parties/1
